@@ -62,6 +62,8 @@ ui <- function(input, output, session) {
       sidebarLayout(
         sidebarPanel(
           width = 2,
+          selectInput("select.geogrpahy","Choose geography",
+                      choices=c("County Durham", "North Yorkshire")),
           sliderInput("bins",
             "Number of bins:",
             min = 1,
