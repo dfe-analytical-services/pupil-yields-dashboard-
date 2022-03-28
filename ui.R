@@ -62,16 +62,12 @@ ui <- function(input, output, session) {
       sidebarLayout(
         sidebarPanel(
           width = 2,
-          box(
-            selectInput("select.geogrpahy","Choose Geography",
+         
+            selectInput("select.geography","Choose Geography",
                         choices=c("County", "Unitary", "District")),
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30),
-          ),
-          box(
+            
+         
+         
             selectInput("select.LA","Choose LA",
                         choices=c("Sheffield", "Darlington", "Coventry")),
             sliderInput("bins",
@@ -80,9 +76,7 @@ ui <- function(input, output, session) {
                         max = 50,
                         value = 30
             )
-        )
-        )
-      ),
+      ),# close sidebar panel
       
 
         # Show a plot of the generated distribution
@@ -94,7 +88,7 @@ ui <- function(input, output, session) {
           valueBoxOutput("box_info", width = 6)
         )
       )
-    )
+    ), #close tab panel
 
     # Create the accessibility statement-----------------
     tabPanel(
