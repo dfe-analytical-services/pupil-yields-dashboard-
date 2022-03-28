@@ -34,7 +34,7 @@ ui <- function(input, output, session) {
     useShinydashboard(),
 
     # Application title -----------------------------------------------------------------------------------
-    title = "Title of app here",
+    title = "Pupil Yield Data Dashboard",
     footer = p(
       HTML("&nbsp;"),
       img(src = "dfe_logo.svg", height = 100, width = 150, alt = "Department for Education logo"),
@@ -62,15 +62,28 @@ ui <- function(input, output, session) {
       sidebarLayout(
         sidebarPanel(
           width = 2,
-          selectInput("select.geogrpahy","Choose geography",
-                      choices=c("County Durham", "North Yorkshire")),
-          sliderInput("bins",
-            "Number of bins:",
-            min = 1,
-            max = 50,
-            value = 30
-          )
-        ),
+          box(
+            selectInput("select.geogrpahy","Choose Geography",
+                        choices=c("County", "Unitary", "District")),
+            sliderInput("bins",
+                        "Number of bins:",
+                        min = 1,
+                        max = 50,
+                        value = 30),
+          ),
+          box(
+            selectInput("select.LA","Choose LA",
+                        choices=c("Sheffield", "Darlington", "Coventry")),
+            sliderInput("bins",
+                        "Number of bins:",
+                        min = 1,
+                        max = 50,
+                        value = 30
+            )
+        )
+        )
+      ),
+      
 
         # Show a plot of the generated distribution
         mainPanel(
@@ -81,7 +94,7 @@ ui <- function(input, output, session) {
           valueBoxOutput("box_info", width = 6)
         )
       )
-    ),
+    )
 
     # Create the accessibility statement-----------------
     tabPanel(
