@@ -27,90 +27,80 @@
 #
 # ---------------------------------------------------------
 
+#
+# This is the user-interface definition of a Shiny web application. You can
+# run the application by clicking 'Run App' above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    http://shiny.rstudio.com/
+#
+# The documentation for this GOVUK components can be found at:
+#
+#    https://github.com/moj-analytical-services/shinyGovstyle
+#
+
+
+#
+# This is the user-interface definition of a Shiny web application. You can
+# run the application by clicking 'Run App' above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    http://shiny.rstudio.com/
+#
+# The documentation for this GOVUK components can be found at:
+#
+#    https://github.com/moj-analytical-services/shinyGovstyle
+#
+
+
+
 ui <- function(input, output, session) {
-  navbarPage(
-    useShinyjs(),
-    includeCSS("www/shiny_gov_style.css"),
+  fluidPage(
+    title = tags$head(tags$link(
+      rel = "shortcut icon",
+      href = "dfefavicon.png"
+    )),
+    shinyjs::useShinyjs(),
     useShinydashboard(),
-
-    # Application title -----------------------------------------------------------------------------------
-    title = "Title of app here",
-    footer = p(
-      HTML("&nbsp;"),
-      img(src = "dfe_logo.svg", height = 100, width = 150, alt = "Department for Education logo"),
-      br(),
-      p(
-        HTML("&nbsp;"), "Link back to relevant statistics on ", a(href = "https://explore-education-statistics.service.gov.uk/", "EES."),
-        br(),
-        HTML("&nbsp;"), "If you would like to provide feedback on this dashboard, please complete our ",
-        a(href = "https://forms.office.com/", "online survey"),
-        br(),
-        HTML("&nbsp;"), "Underlying code for this application can be found in ", a(href = "https://github.com/dfe-analytical-services/shiny-template", "our online repo."),
+    tags$head(includeHTML(("google-analytics.html"))),
+    tags$head(
+      tags$link(
+        rel = "stylesheet",
+        type = "text/css",
+        href = "dfe_shiny_gov_style.css"
       )
     ),
-
-    # App code goes here -----------------------------------------------------------------------------------
-
-    # Create first tab--------------------------------------------------------------------------------------
-
-    tabPanel(
-      "App content",
-
-      # Define UI for application that draws a histogram
-
-      # Sidebar with a slider input for number of bins
-      sidebarLayout(
-        sidebarPanel(
-          width = 2,
-          sliderInput("bins",
-            "Number of bins:",
-            min = 1,
-            max = 50,
-            value = 30
-          )
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-          width = 10,
-          plotOutput("distPlot"),
-          br(),
-          # add box to show user input
-          valueBoxOutput("box_info", width = 6)
-        )
+    shinyGovstyle::header(
+      main_text = "DfE",
+      main_link = "https://www.gov.uk/government/organisations/department-for-education",
+      secondary_text = "DfE Shiny Template",
+      logo = "images/DfE_logo.png"
+    ),
+    shinyGovstyle::banner(
+      "beta banner",
+      "beta",
+      paste0(
+        "This Dashboard is in beta phase and we are still reviewing performance and reliability. ",
+        "In case of slowdown or connection issues due to high demand, we have produced two instances of this site which can be accessed at the following links: ",
+        "<a href=", site_primary, " id='link_site_1'>Site 1</a> and ",
+        "<a href=", site_overflow, " id='link_site_2'>Site 2</a>."
       )
     ),
-
-    # Create the accessibility statement-----------------
-    tabPanel(
-      "Accessibility",
-      h2("Accessibility statement"),
-      br("This accessibility statement applies to the **application name**.
-            This application is run by the Department for Education. We want as many people as possible to be able to use this application,
-            and have actively developed this application with accessibilty in mind."),
-      h3("WCAG 2.1 compliance"),
-      br("We follow the reccomendations of the ", a(href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements. "), "This application has been checked using the ", a(href = "https://github.com/ewenme/shinya11y", "Shinya11y tool "), ", which did not detect accessibility issues.
-             This application also fully passes the accessibility audits checked by the ", a(href = "https://developers.google.com/web/tools/lighthouse", "Google Developer Lighthouse tool"), ". This means that this application:"),
-      tags$div(tags$ul(
-        tags$li("uses colours that have sufficient contrast"),
-        tags$li("allows you to zoom in up to 300% without the text spilling off the screen"),
-        tags$li("has its performance regularly monitored, with a team working on any feedback to improve accessibility for all users")
-      )),
-      h3("Limitations"),
-      br("We recognise that there are still potential issues with accessibility in this application, but we will continue
-             to review updates to technology available to us to keep improving accessibility for all of our users. For example, these
-            are known issues that we will continue to monitor and improve:"),
-      tags$div(tags$ul(
-        tags$li("List"),
-        tags$li("known"),
-        tags$li("limitations, e.g."),
-        tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)")
-      )),
-      h3("Feedback"),
-      br(
-        "If you have any feedback on how we could further improve the accessibility of this application, please contact us at",
-        a(href = "mailto:email@education.gov.uk", "email@education.gov.uk")
-      )
-    ) # End of accessibility tab
-  ) # End of navBarPage
-} # End of ui
+    shiny::navlistPanel(
+      "",
+      id = "navlistPanel",
+      widths = c(2, 8),
+      well = FALSE,
+      homepage_panel(),
+      dashboard_panel(),
+      a11y_panel(),
+      support_links()
+    ),
+    tags$script(
+      src = "script.js"
+    ),
+    footer(full = TRUE)
+  )
+}

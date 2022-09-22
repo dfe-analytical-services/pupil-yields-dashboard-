@@ -9,7 +9,7 @@
 # https://shiny.rstudio.com/images/shiny-cheatsheet.pdf
 #
 #
-# This is the server logic of a Shiny web application. You can run the
+# This is the server logic of a Shiny web application. You can run th
 # application by clicking 'Run App' above.
 #
 # Find out more about building applications with Shiny here:
@@ -28,32 +28,104 @@ server <- function(input, output, session) {
   show("app-content")
 
   # Simple server stuff goes here ------------------------------------------------------------
-
+  reactiveRevBal <- reactive({
+    dfRevBal %>% filter(
+      area_name == input$selectArea | area_name == "England",
+      school_phase == input$selectPhase
+    )
+  })
 
   # Define server logic required to draw a histogram
-  output$distPlot <- renderPlot({
+  output$lineRevBal <- renderPlotly({
+    ggplotly(createAvgRevTimeSeries(reactiveRevBal(), input$selectArea)) %>%
+      config(displayModeBar = F) %>%
+      layout(legend = list(orientation = "h", x = 0, y = -0.2))
+  })
 
-    # generate bins based on input$bins from ui.R
-    x <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  reactiveBenchmark <- reactive({
+    dfRevBal %>%
+      filter(
+        area_name %in% c(input$selectArea, input$selectBenchLAs),
+        school_phase == input$selectPhase,
+        year == max(year)
+      )
+  })
 
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = "darkgray", border = "white")
+  output$colBenchmark <- renderPlotly({
+    ggplotly(plotAvgRevBenchmark(reactiveBenchmark()) %>%
+      config(displayModeBar = F),
+    height = 420
+    )
+  })
+
+  output$tabBenchmark <- renderDataTable({
+    datatable(reactiveBenchmark() %>%
+      select(
+        Area = area_name,
+        `Average Revenue Balance (£)` = average_revenue_balance,
+        `Total Revenue Balance (£m)` = total_revenue_balance_million
+      ),
+    options = list(
+      scrollX = TRUE,
+      paging = FALSE
+    )
+    )
   })
 
   # Define server logic to create a box
 
-  output$box_info <- renderValueBox({
+  output$boxavgRevBal <- renderValueBox({
 
     # Put value into box to plug into app
-    shinydashboard::valueBox(
+    valueBox(
       # take input number
-      input$bins,
+      paste0("£", format((reactiveRevBal() %>% filter(
+        year == max(year),
+        area_name == input$selectArea,
+        school_phase == input$selectPhase
+      ))$average_revenue_balance,
+      big.mark = ","
+      )),
       # add subtitle to explain what it's hsowing
-      paste0("Number that user has inputted"),
-      color = "purple"
+      paste0("This is the latest value for the selected inputs"),
+      color = "blue"
     )
   })
+  output$boxpcRevBal <- renderValueBox({
+    latest <- (reactiveRevBal() %>% filter(
+      year == max(year),
+      area_name == input$selectArea,
+      school_phase == input$selectPhase
+    ))$average_revenue_balance
+    penult <- (reactiveRevBal() %>% filter(
+      year == max(year) - 1,
+      area_name == input$selectArea,
+      school_phase == input$selectPhase
+    ))$average_revenue_balance
+
+    # Put value into box to plug into app
+    valueBox(
+      # take input number
+      paste0("£", format(latest - penult,
+        big.mark = ","
+      )),
+      # add subtitle to explain what it's hsowing
+      paste0("Change on previous year"),
+      color = "blue"
+    )
+  })
+
+  observeEvent(input$link_to_app_content_tab, {
+    updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
+  })
+
+  # Download the underlying data button
+  output$download_data <- downloadHandler(
+    filename = "shiny_template_underlying_data.csv",
+    content = function(file) {
+      write.csv(dfRevBal, file)
+    }
+  )
 
 
   # Stop app ---------------------------------------------------------------------------------
