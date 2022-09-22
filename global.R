@@ -13,6 +13,7 @@ shhh <- suppressPackageStartupMessages # It's a library, so shhh!
 shhh(library(shiny))
 shhh(library(shinyjs))
 shhh(library(tools))
+shhh(library(SparkR))
 shhh(library(testthat))
 shhh(library(shinytest))
 shhh(library(shinydashboard))
