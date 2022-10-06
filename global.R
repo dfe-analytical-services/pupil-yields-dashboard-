@@ -86,11 +86,11 @@ dfRevBal <- read_revenue_data()
 # Get geographical levels from data
 
 
-choicesLA <- unique(dfRevBal$local_authority)
+choicesLAs <- unique(dfRevBal$local_authority)
 
 choicesPhase <- unique(dfRevBal$phase_type)
 
-choicesAffordability <- unique(dfRevBal$affordability)
+choicesaffordability <- unique(dfRevBal$affordability)
 
 choicesnumber_developments <- unique(dfRevBal$number_developments)
 
