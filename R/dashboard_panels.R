@@ -81,7 +81,7 @@ dashboard_panel <- function() {
       gov_row(
         column(
           width=12,
-        h1("Overall content title for this dashboard page (h1)"),
+        h1("Pupil Yield Data Dashboard"),
         ),
         column(
           width=12,
@@ -89,20 +89,52 @@ dashboard_panel <- function() {
             class = "well",
             style = "min-height: 100%; height: 100%; overflow-y: visible",
             gov_row(
-            column(
-              width = 6,
-              selectizeInput("selectPhase",
-                    "Select a school phase",
-                    choices = choicesPhase
-                    )),
+            
             column(
               width = 6,
           selectizeInput(
             inputId = "selectArea",
-            label = "Choose an area:",
-            choices = choicesAreas$area_name
-        )
-        ), 
+            label = "Choose a Geography:",
+            choices = choicesLAs
+        ),
+        selectizeInput(
+          inputId = "selectArea",
+          label = "Choose a LA:",
+          choices = choicesLAs
+        ),
+        selectizeInput(
+          inputId = "selectphase_type",
+          label = "Choose an Education Type:",
+          choices = choicesPhase
+        ),
+        selectizeInput(
+          inputId = "selectphase_type",
+          label = "Choose a Phase:",
+          choices = choicesPhase
+        )), 
+        
+        column(
+          width = 6,
+          selectizeInput(
+            inputId = "selectphase_type",
+          label = "Choose an uplift factor:",
+          choices = choicesrurality
+          ),
+          selectizeInput("selecthousing_type",
+                         "Choose a Housing Type:",
+                         choices = choiceshousing_type
+          ),              
+           selectizeInput(
+                           inputId = "selectaffordability",
+                           label = "Choose a Tenure:",
+                           choices = choicesaffordability
+        ),
+        selectizeInput(
+          inputId = "selectnumner_beds",
+          label = "Choose the number of bedrooms:",
+          choices = choicesnumber_beds
+        )),
+          
         column(
           width = 12,
           paste("Download the underlying data for this dashboard:"), br(),
@@ -156,7 +188,7 @@ dashboard_panel <- function() {
                   width=12,
                   selectizeInput("selectBenchLAs",
                                  "Select benchamrk LAs",
-                                 choices = choicesLAs$area_name,
+                                 choices = choicesLAs,
                                  multiple=TRUE,
                                  options = list(maxItems = 3)
                   )

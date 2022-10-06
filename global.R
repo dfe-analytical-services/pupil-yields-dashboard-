@@ -84,25 +84,22 @@ source("R/read_data.R")
 # Read in the data
 dfRevBal <- read_revenue_data()
 # Get geographical levels from data
-dfAreas <- dfRevBal %>%
-  select(
-    geographic_level, country_name, country_code,
-    region_name, region_code,
-    la_name, old_la_code, new_la_code
-  ) %>%
-  distinct()
 
-choicesLAs <- dfAreas %>%
-  filter(geographic_level == "Local authority") %>%
-  select(geographic_level, area_name = la_name) %>%
-  arrange(area_name)
 
-choicesAreas <- dfAreas %>%
-  filter(geographic_level == "National") %>%
-  select(geographic_level, area_name = country_name) %>%
-  rbind(dfAreas %>% filter(geographic_level == "Regional") %>% select(geographic_level, area_name = region_name)) %>%
-  rbind(choicesLAs)
+choicesLA <- unique(dfRevBal$local_authority)
 
-choicesYears <- unique(dfRevBal$time_period)
+choicesPhase <- unique(dfRevBal$phase_type)
 
-choicesPhase <- unique(dfRevBal$school_phase)
+choicesAffordability <- unique(dfRevBal$affordability)
+
+choicesnumber_developments <- unique(dfRevBal$number_developments)
+
+choicesrurality <- unique(dfRevBal$rurality)
+
+choiceshousing_type <- unique(dfRevBal$housing_type)
+
+choiceshimidlow <- unique(dfRevBal$himidlow)
+
+choicesnumber_beds <- unique(dfRevBal$number_beds)
+
+
