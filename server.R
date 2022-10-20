@@ -30,8 +30,8 @@ server <- function(input, output, session) {
   # Simple server stuff goes here ------------------------------------------------------------
   reactiveRevBal <- reactive({
     dfRevBal %>% filter(
-      area_name == input$selectArea | area_name == "England",
-      school_phase == input$selectPhase
+      local_authority == input$selectArea | local_authority == "England",
+      phase_type == input$selectphase_type
     )
   })
 
@@ -45,7 +45,7 @@ server <- function(input, output, session) {
   reactiveBenchmark <- reactive({
     dfRevBal %>%
       filter(
-        area_name %in% c(input$selectArea, input$selectBenchLAs),
+        local_authority %in% c(input$selectArea, input$selectBenchLAs),
         school_phase == input$selectPhase,
         year == max(year)
       )
@@ -61,7 +61,7 @@ server <- function(input, output, session) {
   output$tabBenchmark <- renderDataTable({
     datatable(reactiveBenchmark() %>%
       select(
-        Area = area_name,
+        Area = local_authority,
         `Average Revenue Balance (£)` = average_revenue_balance,
         `Total Revenue Balance (£m)` = total_revenue_balance_million
       ),
@@ -81,7 +81,7 @@ server <- function(input, output, session) {
       # take input number
       paste0("£", format((reactiveRevBal() %>% filter(
         year == max(year),
-        area_name == input$selectArea,
+        local_authority == input$selectArea,
         school_phase == input$selectPhase
       ))$average_revenue_balance,
       big.mark = ","
@@ -94,12 +94,12 @@ server <- function(input, output, session) {
   output$boxpcRevBal <- renderValueBox({
     latest <- (reactiveRevBal() %>% filter(
       year == max(year),
-      area_name == input$selectArea,
+      local_authority == input$selectArea,
       school_phase == input$selectPhase
     ))$average_revenue_balance
     penult <- (reactiveRevBal() %>% filter(
       year == max(year) - 1,
-      area_name == input$selectArea,
+      local_authority == input$selectArea,
       school_phase == input$selectPhase
     ))$average_revenue_balance
 
