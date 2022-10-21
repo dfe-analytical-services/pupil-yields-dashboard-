@@ -98,7 +98,7 @@ dashboard_panel <- function() {
             choices = choicesLAs
         ),
         selectizeInput(
-          inputId = "selectArea",
+          inputId = "selectLA",
           label = "Choose a LA:",
           choices = choicesLAs
         ),
