@@ -28,16 +28,27 @@ server <- function(input, output, session) {
   show("app-content")
 
   # Simple server stuff goes here ------------------------------------------------------------
-  reactiveRevBal <- reactive({
-    dfRevBal %>% filter(
-      area_name == input$selectArea | area_name == "England",
-      school_phase == input$selectPhase
-    )
+  reactivePupilYields <- reactive({
+    dfPYfiltered <- dfRevBal %>% filter(local_authority == input$selectArea | local_authority == "England")
+    if(!('affordability' %in% c(input$select_group,input$select_subgroup))){
+      dfPYfiltered <- filter(dfPYfiltered,affordability==input$selectaffordability)
+    }
+    if(!('housing_type' %in% c(input$select_group,input$select_subgroup))){
+      dfPYfiltered <- filter(dfPYfiltered,housing_type==input$selecthousing_type)
+    }
+    if(!('number_beds' %in% c(input$select_group,input$select_subgroup))){
+      dfPYfiltered <- filter(dfPYfiltered,number_beds==input$selectnumber_beds)
+    }
+    if(!('phase_type' %in% c(input$select_group,input$select_subgroup))){
+      dfPYfiltered <- filter(dfPYfiltered,phase_type==input$selectphase_type)
+    }
+    return(dfPYfiltered)
   })
 
   # Define server logic required to draw a histogram
-  output$lineRevBal <- renderPlotly({
-    ggplotly(createAvgRevTimeSeries(reactiveRevBal(), input$selectArea)) %>%
+  output$py_bar_chart <- renderPlotly({
+    ggplotly(createPYBarChart(reactivePupilYields(), input$selectArea, 
+                              input$select_group, input$select_subgroup)) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
@@ -45,7 +56,7 @@ server <- function(input, output, session) {
   reactiveBenchmark <- reactive({
     dfRevBal %>%
       filter(
-        area_name %in% c(input$selectArea, input$selectBenchLAs),
+        local_authority %in% c(input$selectArea, input$selectBenchLAs),
         school_phase == input$selectPhase,
         year == max(year)
       )
@@ -61,7 +72,7 @@ server <- function(input, output, session) {
   output$tabBenchmark <- renderDataTable({
     datatable(reactiveBenchmark() %>%
       select(
-        Area = area_name,
+        Area = local_authority,
         `Average Revenue Balance (£)` = average_revenue_balance,
         `Total Revenue Balance (£m)` = total_revenue_balance_million
       ),
@@ -79,9 +90,9 @@ server <- function(input, output, session) {
     # Put value into box to plug into app
     valueBox(
       # take input number
-      paste0("£", format((reactiveRevBal() %>% filter(
+      paste0("£", format((reactivePupilYields() %>% filter(
         year == max(year),
-        area_name == input$selectArea,
+        local_authority == input$selectArea,
         school_phase == input$selectPhase
       ))$average_revenue_balance,
       big.mark = ","
@@ -92,14 +103,14 @@ server <- function(input, output, session) {
     )
   })
   output$boxpcRevBal <- renderValueBox({
-    latest <- (reactiveRevBal() %>% filter(
+    latest <- (reactivePupilYields() %>% filter(
       year == max(year),
-      area_name == input$selectArea,
+      local_authority == input$selectArea,
       school_phase == input$selectPhase
     ))$average_revenue_balance
-    penult <- (reactiveRevBal() %>% filter(
+    penult <- (reactivePupilYields() %>% filter(
       year == max(year) - 1,
-      area_name == input$selectArea,
+      local_authority == input$selectArea,
       school_phase == input$selectPhase
     ))$average_revenue_balance
 

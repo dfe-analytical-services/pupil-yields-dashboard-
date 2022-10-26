@@ -89,36 +89,43 @@ dashboard_panel <- function() {
             class = "well",
             style = "min-height: 100%; height: 100%; overflow-y: visible",
             gov_row(
+              column(width=12,
+                     selectizeInput(
+                       inputId = "selectArea",
+                       label = "Choose a LA:",
+                       choices = choicesLAs,
+                       width="50%"
+                     )
+              ),
             
             column(
               width = 6,
-          selectizeInput(
-            inputId = "selectArea",
-            label = "Choose a Geography:",
-            choices = choicesLAs
-        ),
         selectizeInput(
-          inputId = "selectArea",
-          label = "Choose a LA:",
-          choices = choicesLAs
-        ),
-        selectizeInput(
-          inputId = "selectphase_type",
-          label = "Choose an Education Type:",
-          choices = choicesPhase
+          inputId = "select_group",
+          label = "Choose a grouping:",
+          choices = choices_filters,
+          selected = 'affordability'
         ),
         selectizeInput(
           inputId = "selectphase_type",
           label = "Choose a Phase:",
           choices = choicesPhase
-        )), 
+        ),
+        selectizeInput(
+          inputId = "selectnumber_beds",
+          label = "Choose the number of bedrooms:",
+          choices = choicesnumber_beds
+        )
+        ), 
         
         column(
           width = 6,
           selectizeInput(
-            inputId = "selectphase_type",
-          label = "Choose an uplift factor:",
-          choices = choicesrurality
+            inputId = "select_subgroup",
+            label = "Choose a sub-grouping:",
+            choices = choices_filters,
+            selected = 'number_beds'
+            
           ),
           selectizeInput("selecthousing_type",
                          "Choose a Housing Type:",
@@ -128,12 +135,8 @@ dashboard_panel <- function() {
                            inputId = "selectaffordability",
                            label = "Choose a Tenure:",
                            choices = choicesaffordability
-        ),
-        selectizeInput(
-          inputId = "selectnumner_beds",
-          label = "Choose the number of bedrooms:",
-          choices = choicesnumber_beds
-        )),
+        )
+),
           
         column(
           width = 12,
@@ -156,12 +159,10 @@ dashboard_panel <- function() {
                    fluidRow(
                      column(
                        width=12,
-          h2("Outputs 1 (h2)"),
-          valueBoxOutput("boxavgRevBal", width = 6),
-          valueBoxOutput("boxpcRevBal", width = 6),
+          h2("Pupil Yields"),
           box(
             width=12,
-          plotlyOutput("lineRevBal")))
+          plotlyOutput("py_bar_chart")))
         )
         ),
         tabPanel(
