@@ -1,6 +1,6 @@
-createAvgRevTimeSeries <- function(dfRevenueBalance,inputArea){
+createPYBarChart <- function(dfRevenueBalance,inputArea, group, subgroup='number_beds'){
 
-ggplot(dfRevenueBalance, aes(x=affordability,y=pupil_yield,fill=number_beds)) + 
+ggplot(dfRevenueBalance, aes(x=.data[[group]],y=pupil_yield,fill=.data[[subgroup]])) + 
   geom_bar(stat = "identity",position='dodge') +       
   theme_classic() +
   theme(
@@ -10,8 +10,8 @@ ggplot(dfRevenueBalance, aes(x=affordability,y=pupil_yield,fill=number_beds)) +
     axis.line = element_line( size = 1.0),
     legend.position = 'top'
   )  +
-  xlab("Academic year end") +
-  ylab("Average revenue balance") 
+  xlab(group) +
+  ylab("Pupil Yield") 
 }
 
 plotAvgRevBenchmark <- function(dfRevenueBalance,inputArea){

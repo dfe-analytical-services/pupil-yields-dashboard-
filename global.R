@@ -86,6 +86,8 @@ source("R/read_data.R")
 dfRevBal <- read_revenue_data()
 # Get geographical levels from data
 
+choices_filters <- colnames(dfRevBal %>% select(-X, -local_authority, -pupil_yield))
+
 
 choicesLAs <- unique(dfRevBal$local_authority)
 
