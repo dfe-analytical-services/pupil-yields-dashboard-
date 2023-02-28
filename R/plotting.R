@@ -1,6 +1,6 @@
 createAvgRevTimeSeries <- function(dfRevenueBalance,inputArea){
 
-ggplot(dfRevenueBalance, aes(x=tennure,y=pupil_yield,fill=number_of_bedrooms)) + 
+ggplot(dfRevenueBalance, aes(x=tenure,y=pupil_yield,fill=number_of_bedrooms)) + 
   geom_bar(stat = "identity",position='dodge') +       
   theme_classic() +
     scale_fill_manual(values = dfe_palette)+

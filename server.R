@@ -47,7 +47,7 @@ server <- function(input, output, session) {
       filter(
         local_authority %in% c(input$selectArea, input$selectBenchLAs),
         education_phase == input$selectPhase,
-        year == max(year)
+        time_period == max(time_period, na.rm=TRUE)
       )
   })
 
@@ -80,8 +80,8 @@ server <- function(input, output, session) {
     valueBox(
       # take input number
       paste0("£", format((reactiveRevBal() %>% filter(
-        year == max(year),
-        local_authority == input$selectArea,
+        time_period == max(time_period, na.rm=TRUE),
+        la_name == input$selectArea,
         education_phase == input$selectPhase
       ))$average_revenue_balance,
       big.mark = ","
@@ -93,13 +93,13 @@ server <- function(input, output, session) {
   })
   output$boxpcRevBal <- renderValueBox({
     latest <- (reactiveRevBal() %>% filter(
-      year == max(year),
-      local_authority == input$selectArea,
+      time_period == max(time_period, na.rm=TRUE),
+      la_name == input$selectArea,
       education_phase == input$selectPhase
     ))$average_revenue_balance
     penult <- (reactiveRevBal() %>% filter(
-      year == max(year) - 1,
-      local_authority == input$selectArea,
+      time_period == max(time_period, na.rm=TRUE) - 1,
+      la_name == input$selectArea,
       education_phase == input$selectPhase
     ))$average_revenue_balance
 

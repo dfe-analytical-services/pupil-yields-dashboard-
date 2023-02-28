@@ -114,12 +114,12 @@ dashboard_panel <- function() {
         column(
           width = 3,
           selectizeInput(
-            inputId = "selectphase_type",
+            inputId = "selecteducation_type",
             label = "Choose an Education Type:",
             choices = choiceseducation_type
           ),
           selectizeInput(
-            inputId = "selectphase_type",
+            inputId = "selecteducation_phase",
             label = "Choose a Phase:",
             choices = choicesPhase
         )),
