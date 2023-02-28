@@ -86,21 +86,30 @@ source("R/read_data.R")
 dfRevBal <- read_revenue_data()
 # Get geographical levels from data
 
+choicesgeographic_level <- unique(dfRevBal$geographic_level)
 
-choicesLAs <- unique(dfRevBal$local_authority)
+choicesLAs <- unique(dfRevBal$la_name)
 
-choicesPhase <- unique(dfRevBal$phase_type)
+choiceseducation_type <- unique(dfRevBal$education_type)
 
-choicesaffordability <- unique(dfRevBal$affordability)
+choicesPhase <- unique(dfRevBal$education_phase)
+
+# choicesaffordability <- unique(dfRevBal$affordability)
 
 choicesnumber_developments <- unique(dfRevBal$number_developments)
 
-choicesrurality <- unique(dfRevBal$rurality)
+# choicesrurality <- unique(dfRevBal$rurality)
 
-choiceshousing_type <- unique(dfRevBal$housing_type)
+choiceshousing <- unique(dfRevBal$housing)
 
-choiceshimidlow <- unique(dfRevBal$himidlow)
+choicestenure <- unique(dfRevBal$tenure)
 
-choicesnumber_beds <- unique(dfRevBal$number_beds)
+# choiceshimidlow <- unique(dfRevBal$himidlow)
+
+choicesnumber_beds <- unique(dfRevBal$number_of_bedrooms)
+
+choicesearly_years_uplift <- unique(dfRevBal$early_years_uplift)
+
+dfe_palette <- c("#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1")
 
 

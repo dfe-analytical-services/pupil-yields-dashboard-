@@ -90,51 +90,68 @@ dashboard_panel <- function() {
             style = "min-height: 100%; height: 100%; overflow-y: visible",
             gov_row(
             
+      # selectizeInputs (up to 4 columns, if 4 columns set to width 3 each)
+      # column 1   
             column(
-              width = 6,
+              width = 3,
           selectizeInput(
             inputId = "selectArea",
             label = "Choose a Geography:",
-            choices = choicesLAs
+            choices = choicesgeographic_level
         ),
         selectizeInput(
           inputId = "selectLA",
           label = "Choose a LA:",
           choices = choicesLAs
-        ),
-        selectizeInput(
-          inputId = "selectphase_type",
-          label = "Choose an Education Type:",
-          choices = choicesPhase
-        ),
-        selectizeInput(
-          inputId = "selectphase_type",
-          label = "Choose a Phase:",
-          choices = choicesPhase
-        )), 
+        )),
+       # selectizeInput(
+       #   inputId = "selectphase_type",
+       #   label = "Choose a Pupil Yield Type:",
+       #   choices = choicesPhase
+       # )), 
         
+        # column 2  
         column(
-          width = 6,
+          width = 3,
           selectizeInput(
             inputId = "selectphase_type",
-          label = "Choose an uplift factor:",
-          choices = choicesrurality
+            label = "Choose an Education Type:",
+            choices = choiceseducation_type
           ),
+          selectizeInput(
+            inputId = "selectphase_type",
+            label = "Choose a Phase:",
+            choices = choicesPhase
+        )),
+        
+        # column 3
+        column(
+          width = 3,
           selectizeInput("selecthousing_type",
                          "Choose a Housing Type:",
-                         choices = choiceshousing_type
-          ),              
-           selectizeInput(
-                           inputId = "selectaffordability",
-                           label = "Choose a Tenure:",
-                           choices = choicesaffordability
-        ),
-        selectizeInput(
-          inputId = "selectnumner_beds",
-          label = "Choose the number of bedrooms:",
-          choices = choicesnumber_beds
-        )),
-          
+                         choices = choiceshousing
+          ),
+          selectizeInput(
+            inputId = "selecttenure",
+            label = "Choose a Tenure:",
+            choices = choicestenure
+          ),
+          selectizeInput(
+            inputId = "selectnumner_beds",
+            label = "Choose the number of bedrooms:",
+            choices = choicesnumber_beds
+          )),
+        
+        
+        # column 4
+        column(
+          width = 3,
+          selectizeInput(
+            inputId = "selectearly_years_uplift",
+            label = "Early Years Uplift:",
+            choices = choicesearly_years_uplift
+          )),
+        
         column(
           width = 12,
           paste("Download the underlying data for this dashboard:"), br(),
@@ -152,7 +169,7 @@ dashboard_panel <- function() {
           width=12,
                tabsetPanel(id = "tabsetpanels",
                  tabPanel(
-                   "Example panel 1",
+                   "Headlines",
                    fluidRow(
                      column(
                        width=12,
@@ -203,5 +220,42 @@ dashboard_panel <- function() {
         # add box to show user input
 )
           )
+  )
+}
+
+technical_panel <- function() {
+  tabPanel(
+    "Technical",
+    gov_main_layout(
+      gov_row(
+        column(width=12,
+               h1("Technical Details"),
+               br("This Document **application name**.
+            This application is run by the Department for Education. We want as many people as possible to be able to use this application,
+            and have actively developed this application with accessibilty in mind."),
+               h2("SUb Heading 1"),
+               br("We follow the reccomendations of the ", a(href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements. ", onclick = "ga('send', 'event', 'click', 'link', 'IKnow', 1)"), "This application has been checked using the ", a(href = "https://github.com/ewenme/shinya11y", "Shinya11y tool "), ", which did not detect accessibility issues.
+             This application also fully passes the accessibility audits checked by the ", a(href = "https://developers.google.com/web/tools/lighthouse", "Google Developer Lighthouse tool"), ". This means that this application:"),
+               tags$div(tags$ul(
+                 tags$li("add text"),
+                 tags$li("add text"),
+                 tags$li("add text")
+               )),
+               h2("add tecxt"),
+               br("add text"),
+               tags$div(tags$ul(
+                 tags$li("List"),
+                 tags$li("known"),
+                 tags$li("limitations, e.g."),
+                 tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)")
+               )),
+               h2("SUb Heading"),
+               br(
+                 "If you have any feedback on how we could further improve the accessibility of this application, please contact us at",
+                 a(href = "mailto:email@education.gov.uk", "email@education.gov.uk")
+               )
+        )
+      )
+    )
   )
 }

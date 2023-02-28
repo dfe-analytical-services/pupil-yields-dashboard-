@@ -30,8 +30,8 @@ server <- function(input, output, session) {
   # Simple server stuff goes here ------------------------------------------------------------
   reactiveRevBal <- reactive({
     dfRevBal %>% filter(
-      local_authority == input$selectArea | local_authority == "England",
-      phase_type == input$selectphase_type
+      la_name == input$selectArea | la_name == "England",
+      education_type == input$selecteducation_type
     )
   })
 
@@ -46,7 +46,7 @@ server <- function(input, output, session) {
     dfRevBal %>%
       filter(
         local_authority %in% c(input$selectArea, input$selectBenchLAs),
-        school_phase == input$selectPhase,
+        education_phase == input$selectPhase,
         year == max(year)
       )
   })
@@ -82,7 +82,7 @@ server <- function(input, output, session) {
       paste0("£", format((reactiveRevBal() %>% filter(
         year == max(year),
         local_authority == input$selectArea,
-        school_phase == input$selectPhase
+        education_phase == input$selectPhase
       ))$average_revenue_balance,
       big.mark = ","
       )),
@@ -95,12 +95,12 @@ server <- function(input, output, session) {
     latest <- (reactiveRevBal() %>% filter(
       year == max(year),
       local_authority == input$selectArea,
-      school_phase == input$selectPhase
+      education_phase == input$selectPhase
     ))$average_revenue_balance
     penult <- (reactiveRevBal() %>% filter(
       year == max(year) - 1,
       local_authority == input$selectArea,
-      school_phase == input$selectPhase
+      education_phase == input$selectPhase
     ))$average_revenue_balance
 
     # Put value into box to plug into app

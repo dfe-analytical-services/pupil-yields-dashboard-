@@ -1,8 +1,9 @@
 createAvgRevTimeSeries <- function(dfRevenueBalance,inputArea){
 
-ggplot(dfRevenueBalance, aes(x=affordability,y=pupil_yield,fill=number_beds)) + 
+ggplot(dfRevenueBalance, aes(x=tennure,y=pupil_yield,fill=number_of_bedrooms)) + 
   geom_bar(stat = "identity",position='dodge') +       
   theme_classic() +
+    scale_fill_manual(values = dfe_palette)+
   theme(
     text = element_text(size = 12),
     axis.title.x = element_text(margin = margin(t = 12)),
@@ -35,7 +36,7 @@ plotAvgRevBenchmark <- function(dfRevenueBalance,inputArea){
     ylab("Average revenue balance") +
     scale_fill_manual(
       "Area",
-      breaks = unique(dfRevenueBalance$area_name),
-      values = gss_colour_pallette
+      breaks = unique(dfRevenueBalance$area_name)
+
     )     
 }
