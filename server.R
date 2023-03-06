@@ -26,14 +26,16 @@ server <- function(input, output, session) {
 
   hide(id = "loading-content", anim = TRUE, animType = "fade")
   show("app-content")
-
   # Simple server stuff goes here ------------------------------------------------------------
   reactiveRevBal <- reactive({
     dfRevBal %>% filter(
-      la_name == input$selectArea | la_name == "England",
-      education_type == input$selecteducation_type
+      time_period == max(time_period),
+      la_name == input$selectLA | la_name == "England",
+      education_type == input$selecteducation_type,
+      education_phase == input$selecteducation_phase
     )
   })
+  
   reactivePYtime_period <- reactive({
     dfRevBal %>% filter(
       la_name == input$selectArea, 
@@ -41,8 +43,8 @@ server <- function(input, output, session) {
     )
   })
   # Define server logic required to draw a histogram
-  output$lineRevBal <- renderPlotly({
-    ggplotly(createAvgRevTimeSeries(reactiveRevBal(), input$selectArea)) %>%
+  output$barPY <- renderPlotly({
+    ggplotly(createPYbarchart(reactiveRevBal())) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
@@ -50,14 +52,6 @@ server <- function(input, output, session) {
     ggplotly(createAvgRevTimeSeries(reactivePYtime_period())) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
-  })
-  reactiveBenchmark <- reactive({
-    dfRevBal %>%
-      filter(
-        local_authority %in% c(input$selectArea, input$selectBenchLAs),
-        education_phase == input$selectPhase,
-        time_period == max(time_period, na.rm=TRUE)
-      )
   })
 
   output$colBenchmark <- renderPlotly({
@@ -91,7 +85,7 @@ server <- function(input, output, session) {
       paste0("£", format((reactiveRevBal() %>% filter(
         time_period == max(time_period, na.rm=TRUE),
         la_name == input$selectArea,
-        education_phase == input$selectPhase
+        education_phase == input$selecteducation_phase
       ))$average_revenue_balance,
       big.mark = ","
       )),
@@ -104,12 +98,12 @@ server <- function(input, output, session) {
     latest <- (reactiveRevBal() %>% filter(
       time_period == max(time_period, na.rm=TRUE),
       la_name == input$selectArea,
-      education_phase == input$selectPhase
+      education_phase == input$selecteducation_phase
     ))$average_revenue_balance
     penult <- (reactiveRevBal() %>% filter(
       time_period == max(time_period, na.rm=TRUE) - 1,
       la_name == input$selectArea,
-      education_phase == input$selectPhase
+      education_phase == input$selecteducation_phase
     ))$average_revenue_balance
 
     # Put value into box to plug into app

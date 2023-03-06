@@ -1,6 +1,6 @@
-createAvgRevTimeSeries <- function(dfRevenueBalance,inputArea){
+createPYbarchart <- function(df){
 
-ggplot(dfRevenueBalance, aes(x=tenure,y=pupil_yield,fill=number_of_bedrooms)) + 
+ggplot(df, aes(x=tenure,y=pupil_yield,fill=housing)) + 
   geom_bar(stat = "identity",position='dodge') +       
   theme_classic() +
     scale_fill_manual(values = dfe_palette)+
@@ -11,15 +11,18 @@ ggplot(dfRevenueBalance, aes(x=tenure,y=pupil_yield,fill=number_of_bedrooms)) +
     axis.line = element_line( size = 1.0),
     legend.position = 'top'
   )  +
-  xlab("Academic year end") +
-  ylab("Average revenue balance") 
+  xlab("Tenure") +
+  ylab("Pupil yield") 
 }
 
 plotPYtime_period <- function(dfPY){
   
-  ggplot(dfPY, aes(x=time_period,
-                               y=pupil_yield
-                               ) + 
+  ggplot(dfPY, 
+         aes(
+           x=time_period,
+           y=pupil_yield
+           ) 
+         ) +
     geom_line() +       
     theme_classic() +
     theme(
@@ -30,8 +33,7 @@ plotPYtime_period <- function(dfPY){
       axis.line = element_line( size = 1.0),
       legend.position = "none"
     ) +
-    
     xlab("Year") +
-    ylab("Pupil Yield") +
+    ylab("Pupil Yield")
     
 }
