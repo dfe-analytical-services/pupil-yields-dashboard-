@@ -181,7 +181,7 @@ dashboard_panel <- function() {
           valueBoxOutput("boxpcRevBal", width = 6),
           box(
             width=12,
-          plotlyOutput("lineRevBal")))
+          plotlyOutput("barPY")))
         )
         ),
         tabPanel(
