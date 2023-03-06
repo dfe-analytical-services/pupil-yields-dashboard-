@@ -34,14 +34,23 @@ server <- function(input, output, session) {
       education_type == input$selecteducation_type
     )
   })
-
+  reactivePYtime_period <- reactive({
+    dfRevBal %>% filter(
+      la_name == input$selectArea, 
+      education_phase == input$selecteducation_phase
+    )
+  })
   # Define server logic required to draw a histogram
   output$lineRevBal <- renderPlotly({
     ggplotly(createAvgRevTimeSeries(reactiveRevBal(), input$selectArea)) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
-
+  output$linePYtime_period <- renderPlotly({
+    ggplotly(createAvgRevTimeSeries(reactivePYtime_period())) %>%
+      config(displayModeBar = F) %>%
+      layout(legend = list(orientation = "h", x = 0, y = -0.2))
+  })
   reactiveBenchmark <- reactive({
     dfRevBal %>%
       filter(

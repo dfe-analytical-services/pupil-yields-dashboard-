@@ -102,7 +102,8 @@ dashboard_panel <- function() {
         selectizeInput(
           inputId = "selectLA",
           label = "Choose a LA:",
-          choices = choicesLAs
+          choices = choicesLAs,
+          selected="LA1"
         )),
        # selectizeInput(
        #   inputId = "selectphase_type",
@@ -116,12 +117,14 @@ dashboard_panel <- function() {
           selectizeInput(
             inputId = "selecteducation_type",
             label = "Choose an Education Type:",
-            choices = choiceseducation_type
+            choices = choiceseducation_type,
+            selected="Mainstream"
           ),
           selectizeInput(
             inputId = "selecteducation_phase",
             label = "Choose a Phase:",
-            choices = choicesPhase
+            choices = choicesPhase,
+            selected="Primary"
         )),
         
         # column 3
@@ -192,7 +195,7 @@ dashboard_panel <- function() {
             width=6,
             box(
               width=12,
-              plotlyOutput("colBenchmark")
+              plotlyOutput("linePYtime_period")
             )
           ),
           column(

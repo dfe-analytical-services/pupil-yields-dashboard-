@@ -15,12 +15,12 @@ ggplot(dfRevenueBalance, aes(x=tenure,y=pupil_yield,fill=number_of_bedrooms)) +
   ylab("Average revenue balance") 
 }
 
-plotAvgRevBenchmark <- function(dfRevenueBalance,inputArea){
+plotPYtime_period <- function(dfPY){
   
-  ggplot(dfRevenueBalance, aes(x=area_name,
-                               y=average_revenue_balance,
-                               fill=area_name)) + 
-    geom_col() +       
+  ggplot(dfPY, aes(x=time_period,
+                               y=pupil_yield
+                               ) + 
+    geom_line() +       
     theme_classic() +
     theme(
       text = element_text(size = 12),
@@ -30,13 +30,8 @@ plotAvgRevBenchmark <- function(dfRevenueBalance,inputArea){
       axis.line = element_line( size = 1.0),
       legend.position = "none"
     ) +
-    scale_y_continuous(
-      labels = scales::number_format(accuracy = 1, big = ',', prefix='£')) +
-    xlab("Area") +
-    ylab("Average revenue balance") +
-    scale_fill_manual(
-      "Area",
-      breaks = unique(dfRevenueBalance$area_name)
-
-    )     
+    
+    xlab("Year") +
+    ylab("Pupil Yield") +
+    
 }
