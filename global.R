@@ -90,7 +90,7 @@ choicesgeographic_level <- unique(dfRevBal$geographic_level)
 
 choicesLAs <- unique(dfRevBal$la_name)
 
-choiceseducation_type <- unique(dfRevBal$education_type)
+choiceseducation_type <- unique(dfRevBal$education_type) %>% sort()
 
 choicesPhase <- unique(dfRevBal$education_phase)
 
