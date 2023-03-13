@@ -1,6 +1,6 @@
 create_bar_headline <- function(df,inputArea, xaxis, breakdown){
 
-ggplot(df, aes(x=xaxis,y=pupil_yield,fill=breakdown)) + 
+ggplot(df, aes(x=get(xaxis),y=pupil_yield,fill=get(breakdown))) + 
   geom_bar(stat = "identity",position='dodge') +       
   theme_classic() +
     scale_fill_manual(values = dfe_palette)+

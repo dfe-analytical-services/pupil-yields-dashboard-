@@ -44,7 +44,7 @@ server <- function(input, output, session) {
   })
   
   reactive_xaxis <- reactive({
-    xaxis <- tolower(input$select_xaxis)
+    xaxis <- tolower(gsub(' ', '_',input$select_xaxis))
     if(input$select_xaxis=='School phase'){
       xaxis <- 'education_phase'
     } else if(input$select_xaxis=='Tenure'){
@@ -54,7 +54,7 @@ server <- function(input, output, session) {
   })
 
   reactive_breakdown <- reactive({
-    breakdown <- tolower(input$select_breakdown)
+    breakdown <- tolower(gsub(' ', '_',input$select_breakdown))
     if(input$select_breakdown=='School phase'){
       breakdown <- 'education_phase'
     } else if(input$select_breakdown=='Tenure'){

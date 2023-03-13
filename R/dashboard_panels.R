@@ -131,7 +131,7 @@ dashboard_panel <- function() {
                   selectizeInput(
                   inputId='select_breakdown',
                   label='Choose breakdown variable',
-                  choices = c('Housing type', 'Tenure', 'Early years uplift', 'Number of bedrooms', 'School phase', 'School type')
+                  choices = c('Tenure', 'Housing type', 'Early years uplift', 'Number of bedrooms', 'School phase', 'School type')
                 ))
                 
               ),
