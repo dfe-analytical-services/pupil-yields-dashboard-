@@ -44,6 +44,7 @@ server <- function(input, output, session) {
   })
   
   reactive_xaxis <- reactive({
+    xaxis <- tolower(input$select_xaxis)
     if(input$select_xaxis=='School phase'){
       xaxis <- 'education_phase'
     } else if(input$select_xaxis=='Tenure'){
@@ -51,11 +52,22 @@ server <- function(input, output, session) {
     }
     return(xaxis)
   })
+
+  reactive_breakdown <- reactive({
+    breakdown <- tolower(input$select_breakdown)
+    if(input$select_breakdown=='School phase'){
+      breakdown <- 'education_phase'
+    } else if(input$select_breakdown=='Tenure'){
+      breakdown <- 'tenure'
+    }
+    return(breakdown)
+  })
   
+    
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({
     print(reactive_headlines())
-    ggplotly(create_bar_headline(reactive_headlines(), input$selectLA, reactive_xaxis())) %>%
+    ggplotly(create_bar_headline(reactive_headlines(), input$selectLA, reactive_xaxis(), reactive_breakdown())) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
