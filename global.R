@@ -83,33 +83,33 @@ source("R/support_links.R")
 source("R/read_data.R")
 
 # Read in the data
-dfRevBal <- read_revenue_data()
+df_py <- read_revenue_data()
 # Get geographical levels from data
 
-choicesgeographic_level <- unique(dfRevBal$geographic_level)
+choicesgeographic_level <- unique(df_py$geographic_level)
 
-choicesLAs <- unique(dfRevBal$la_name)
+choicesLAs <- unique(df_py$la_name)
 
-choiceseducation_type <- unique(dfRevBal$education_type) %>% sort()
+choicesYears <- unique(df_py$time_period)
 
-choicesPhase <- unique(dfRevBal$education_phase)
+choiceseducation_type <- unique(df_py$education_type) %>% sort()
 
-# choicesaffordability <- unique(dfRevBal$affordability)
+choicesPhase <- unique(df_py$education_phase)
 
-choicesnumber_developments <- unique(dfRevBal$number_developments)
+# choicesaffordability <- unique(df_py$affordability)
 
-# choicesrurality <- unique(dfRevBal$rurality)
+choicesnumber_developments <- unique(df_py$number_developments)
 
-choiceshousing <- unique(dfRevBal$housing)
+# choicesrurality <- unique(df_py$rurality)
 
-choicestenure <- unique(dfRevBal$tenure)
+choiceshousing <- unique(df_py$housing)
 
-# choiceshimidlow <- unique(dfRevBal$himidlow)
+choicestenure <- unique(df_py$tenure)
 
-choicesnumber_beds <- unique(dfRevBal$number_of_bedrooms)
+# choiceshimidlow <- unique(df_py$himidlow)
 
-choicesearly_years_uplift <- unique(dfRevBal$early_years_uplift)
+choicesnumber_beds <- unique(df_py$number_of_bedrooms)
+
+choicesearly_years_uplift <- unique(df_py$early_years_uplift)
 
 dfe_palette <- c("#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1")
-
-

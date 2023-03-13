@@ -92,19 +92,51 @@ dashboard_panel <- function() {
             
       # selectizeInputs (up to 4 columns, if 4 columns set to width 3 each)
       # column 1   
-            column(
-              width = 3,
-          selectizeInput(
-            inputId = "selectArea",
-            label = "Choose a Geography:",
-            choices = choicesgeographic_level
-        ),
-        selectizeInput(
-          inputId = "selectLA",
-          label = "Choose a LA:",
-          choices = choicesLAs,
-          selected="LA1"
-        )),
+              p("This is an extra text line"),
+              gov_row(         
+                column(
+                  width=4,
+                selectizeInput(
+                inputId = "selectArea",
+                label = "Choose a Geography:",
+                choices = choicesgeographic_level
+              )),
+              column(
+                width=4,
+                selectizeInput(
+                inputId = "selectLA",
+                label = "Choose a LA:",
+                choices = choicesLAs,
+                selected="LA1"
+              )),
+              column(
+                width=4,
+                selectizeInput(
+                inputId = "select_year",
+                label = "Choose a Year:",
+                choices = choicesYears,
+                selected=max(choicesYears)
+              ))
+              ),
+              gov_row(
+                column(
+                  width=4,
+                  selectizeInput(
+                  inputId='select_xaxis',
+                  label='Choose x-axis variable',
+                  choices = c('School phase', 'School type', 'Housing type', 'Tenure', 'Early years uplift', 'Number of bedrooms')
+                )),
+                column(
+                  width=4,
+                  selectizeInput(
+                  inputId='select_breakdown',
+                  label='Choose breakdown variable',
+                  choices = c('Housing type', 'Tenure', 'Early years uplift', 'Number of bedrooms', 'School phase', 'School type')
+                ))
+                
+              ),
+              gov_row(
+
        # selectizeInput(
        #   inputId = "selectphase_type",
        #   label = "Choose a Pupil Yield Type:",
@@ -153,7 +185,8 @@ dashboard_panel <- function() {
             inputId = "selectearly_years_uplift",
             label = "Early Years Uplift:",
             choices = choicesearly_years_uplift
-          )),
+          ))
+        ),
         
         column(
           width = 12,
@@ -181,7 +214,7 @@ dashboard_panel <- function() {
           valueBoxOutput("boxpcRevBal", width = 6),
           box(
             width=12,
-          plotlyOutput("lineRevBal")))
+          plotlyOutput("bar_headlines")))
         )
         ),
         tabPanel(

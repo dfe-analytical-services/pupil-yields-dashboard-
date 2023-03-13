@@ -28,35 +28,51 @@ server <- function(input, output, session) {
   show("app-content")
 
   # Simple server stuff goes here ------------------------------------------------------------
-  reactiveRevBal <- reactive({
-    dfRevBal %>% filter(
-      la_name == input$selectArea | la_name == "England",
-      education_type == input$selecteducation_type
+  reactive_headlines <- reactive({
+    df_py %>% filter(
+      la_name == input$selectLA,
+      education_type == input$selecteducation_type,
+      time_period == input$select_year
     )
   })
+  
   reactivePYtime_period <- reactive({
-    dfRevBal %>% filter(
-      la_name == input$selectArea, 
+    df_py %>% filter(
+      la_name == input$selectLA,
       education_phase == input$selecteducation_phase
     )
   })
+  
+  reactive_xaxis <- reactive({
+    if(input$select_xaxis=='School phase'){
+      xaxis <- 'education_phase'
+    } else if(input$select_xaxis=='Tenure'){
+      xaxis <- 'tenure'
+    }
+    return(xaxis)
+  })
+  
   # Define server logic required to draw a histogram
-  output$lineRevBal <- renderPlotly({
-    ggplotly(createAvgRevTimeSeries(reactiveRevBal(), input$selectArea)) %>%
+  output$bar_headlines <- renderPlotly({
+    print(reactive_headlines())
+    ggplotly(create_bar_headline(reactive_headlines(), input$selectLA, reactive_xaxis())) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
+  
+  # Render time_period line chart of pupil yield
   output$linePYtime_period <- renderPlotly({
-    ggplotly(createAvgRevTimeSeries(reactivePYtime_period())) %>%
+    ggplotly(create_py_time_period(reactivePYtime_period())) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
+  
   reactiveBenchmark <- reactive({
-    dfRevBal %>%
+    df_py %>%
       filter(
         local_authority %in% c(input$selectArea, input$selectBenchLAs),
-        education_phase == input$selectPhase,
-        time_period == max(time_period, na.rm=TRUE)
+        education_phase == input$selecteducation_phase,
+        time_period == max(time_period, na.rm = TRUE)
       )
   })
 
@@ -88,26 +104,26 @@ server <- function(input, output, session) {
     # Put value into box to plug into app
     valueBox(
       # take input number
-      paste0("£", format((reactiveRevBal() %>% filter(
-        time_period == max(time_period, na.rm=TRUE),
-        la_name == input$selectArea,
+      paste0("£", format((reactive_headlines() %>% filter(
+        time_period == max(time_period, na.rm = TRUE),
+        la_name == input$selectLA,
         education_phase == input$selectPhase
       ))$average_revenue_balance,
       big.mark = ","
       )),
-      # add subtitle to explain what it's hsowing
+      # add subtitle to explain what it's showing
       paste0("This is the latest value for the selected inputs"),
       color = "blue"
     )
   })
   output$boxpcRevBal <- renderValueBox({
-    latest <- (reactiveRevBal() %>% filter(
-      time_period == max(time_period, na.rm=TRUE),
-      la_name == input$selectArea,
+    latest <- (reactive_headlines() %>% filter(
+      time_period == max(time_period, na.rm = TRUE),
+      la_name == input$selectLA,
       education_phase == input$selectPhase
     ))$average_revenue_balance
-    penult <- (reactiveRevBal() %>% filter(
-      time_period == max(time_period, na.rm=TRUE) - 1,
+    penult <- (reactive_headlines() %>% filter(
+      time_period == max(time_period, na.rm = TRUE) - 1,
       la_name == input$selectArea,
       education_phase == input$selectPhase
     ))$average_revenue_balance
@@ -132,7 +148,7 @@ server <- function(input, output, session) {
   output$download_data <- downloadHandler(
     filename = "shiny_template_underlying_data.csv",
     content = function(file) {
-      write.csv(dfRevBal, file)
+      write.csv(df_py, file)
     }
   )
 
