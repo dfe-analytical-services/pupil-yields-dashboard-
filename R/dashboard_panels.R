@@ -5,7 +5,7 @@ homepage_panel <- function() {
       gov_row(
         column(
           12,
-          h1("DfE Analytical Services R-Shiny data dashboard template (h1)"),
+          h1("Estimating Pupil Yield from Housing Development in England"),
           br(),
           br()
         ),
@@ -20,14 +20,14 @@ homepage_panel <- function() {
               div(
                 class = "panel-heading",
                 style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
-                h2("Contents (h2)")
+                h2("Contents")
               ),
               div(
                 class = "panel-body",
                 tags$div(
                   title = "This section is useful if you want to understand how well different industries retain graduates.",
-                  h3("Introduction (h3)"),
-                  p("This app demonstrates the DfE Analytical Services R-Shiny data dashboard template."),
+                  h3("Introduction"),
+                  p("The dashboard provides data on......"),
                   p("You might want to add some brief introductory text here alongside some links to different tabs within your dashboard. Here's an example of a link working:"),
                   p(actionLink("link_to_app_content_tab", "Dashboard panel")),
                   p("You need to add an observeEvent() function to the server.R script for any link that navigates within your App.")
@@ -48,15 +48,15 @@ homepage_panel <- function() {
               div(
                 class = "panel-heading",
                 style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
-                h2("Background Info (h2)")
+                h2("Background Info")
               ),
               div(
                 class = "panel-body",
-                h3("Context and purpose (h3)"),
+                h3("Context and purpose"),
                 p("This app is the DfE Analytical Service's R-Shiny template demonstration app and is being developed to provide a coherent styling for DfE dashboards alongside some useful example componenets that teams can adapt for their own uses."),
                 p("DfE teams using this template should avoid changing the styling and layout, keeping the header, footer and side navigation list formats."),
                                 p("You might want to add some relevant background information for your users here. For example some useful links to your EES publication, data sources and other relevant resources."),
-                h3("Guidance sources (h3)"),
+                h3("Guidance sources"),
                 p("For example, here we'll add some of the key resources we draw on to guide styling and vizualisation...")
               )
             )
@@ -92,8 +92,7 @@ dashboard_panel <- function() {
             
       # selectizeInputs (up to 4 columns, if 4 columns set to width 3 each)
       # column 1   
-              p("This is an extra text line"),
-              gov_row(         
+                gov_row(         
                 column(
                   width=4,
                 selectizeInput(
@@ -118,6 +117,7 @@ dashboard_panel <- function() {
                 selected=max(choicesYears)
               ))
               ),
+              p("Choose the chart variables here:"),
               gov_row(
                 column(
                   width=4,
@@ -145,7 +145,7 @@ dashboard_panel <- function() {
         
         # column 2  
         column(
-          width = 3,
+          width = 4,
           selectizeInput(
             inputId = "selecteducation_type",
             label = "Choose an Education Type:",
@@ -161,7 +161,7 @@ dashboard_panel <- function() {
         
         # column 3
         column(
-          width = 3,
+          width = 4,
           selectizeInput("selecthousing_type",
                          "Choose a Housing Type:",
                          choices = choiceshousing
@@ -180,7 +180,7 @@ dashboard_panel <- function() {
         
         # column 4
         column(
-          width = 3,
+          width = 4,
           selectizeInput(
             inputId = "selectearly_years_uplift",
             label = "Early Years Uplift:",
@@ -218,7 +218,7 @@ dashboard_panel <- function() {
         )
         ),
         tabPanel(
-          "Example panel 2",
+          "Peaks & Averages",
           fluidRow(
             column(
               width=12,

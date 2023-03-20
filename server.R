@@ -49,6 +49,10 @@ server <- function(input, output, session) {
       xaxis <- 'education_phase'
     } else if(input$select_xaxis=='Tenure'){
       xaxis <- 'tenure'
+    }else if(input$select_xaxis=='Housing Type'){
+      xaxis <- 'housing'
+    }else if(input$select_xaxis=='School Type'){
+      xaxis <- 'education_type'
     }
     return(xaxis)
   })
