@@ -92,6 +92,8 @@ choicesLAs <- unique(df_py$la_name)
 
 choicesYears <- unique(df_py$time_period)
 
+filter_list <- c('School phase', 'School type', 'Housing type', 'Tenure', 'Early years uplift', 'Number of bedrooms')
+
 choiceseducation_type <- unique(df_py$education_type) %>% sort()
 
 choicesPhase <- unique(df_py$education_phase)

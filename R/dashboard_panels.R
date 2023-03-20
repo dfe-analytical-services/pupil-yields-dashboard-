@@ -117,76 +117,66 @@ dashboard_panel <- function() {
                 selected=max(choicesYears)
               ))
               ),
-              p("Choose the chart variables here:"),
+              h2("Choose the chart variables here:"),
               gov_row(
                 column(
-                  width=4,
+                  width=6,
                   selectizeInput(
                   inputId='select_xaxis',
                   label='Choose x-axis variable',
-                  choices = c('School phase', 'School type', 'Housing type', 'Tenure', 'Early years uplift', 'Number of bedrooms')
+                  choices = filter_list
                 )),
                 column(
-                  width=4,
+                  width=6,
                   selectizeInput(
                   inputId='select_breakdown',
                   label='Choose breakdown variable',
-                  choices = c('Tenure', 'Housing type', 'Early years uplift', 'Number of bedrooms', 'School phase', 'School type')
+                  choices = filter_list
                 ))
                 
               ),
               gov_row(
-
+                column(12,
+                       
+                tags$h2("Choose the chart filters here:"),
+                ),
        # selectizeInput(
        #   inputId = "selectphase_type",
        #   label = "Choose a Pupil Yield Type:",
        #   choices = choicesPhase
        # )), 
         
-        # column 2  
+        # Filter area
         column(
-          width = 4,
+          width = 6,
           selectizeInput(
-            inputId = "selecteducation_type",
-            label = "Choose an Education Type:",
-            choices = choiceseducation_type,
-            selected="Mainstream"
-          ),
-          selectizeInput(
-            inputId = "selecteducation_phase",
+            inputId = "filter1",
             label = "Choose a Phase:",
             choices = choicesPhase,
             selected="Primary"
-        )),
+          ),
+          selectizeInput(
+            inputId = "filter2",
+            choices = choiceseducation_type,
+            label = "Choose an Education Type:",
+            selected="Mainstream"
+          )
+        ),
         
         # column 3
         column(
-          width = 4,
-          selectizeInput("selecthousing_type",
+          width = 6,
+          selectizeInput("filter3",
                          "Choose a Housing Type:",
                          choices = choiceshousing
           ),
           selectizeInput(
-            inputId = "selecttenure",
+            inputId = "filter4",
             label = "Choose a Tenure:",
             choices = choicestenure
-          ),
-          selectizeInput(
-            inputId = "selectnumner_beds",
-            label = "Choose the number of bedrooms:",
-            choices = choicesnumber_beds
-          )),
-        
-        
-        # column 4
-        column(
-          width = 4,
-          selectizeInput(
-            inputId = "selectearly_years_uplift",
-            label = "Early Years Uplift:",
-            choices = choicesearly_years_uplift
-          ))
-        ),
+          )
+          )
+       ),
         
         column(
           width = 12,

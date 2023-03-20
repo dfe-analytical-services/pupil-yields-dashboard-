@@ -67,7 +67,21 @@ server <- function(input, output, session) {
     return(breakdown)
   })
   
-    
+  reactive_filters <- reactive({
+    filters <- filter_list[!(filter_list %in% c(input$select_breakdown,input$select_xaxis))]
+    return(filters)
+  })
+  
+  observeEvent(reactive_filters(),{
+    for(i in 1:4){
+      updateSelectizeInput(
+        session,
+        paste0('filter',i),
+        label=reactive_filters()[i]
+        )
+    }
+  })
+  
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({
     print(reactive_headlines())
