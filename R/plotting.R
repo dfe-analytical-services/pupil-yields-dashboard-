@@ -1,6 +1,9 @@
 create_bar_headline <- function(df,inputArea, xaxis, breakdown){
 
-ggplot(df, aes(x=get(xaxis),y=pupil_yield,fill=get(breakdown))) + 
+ggplot(
+  df,
+  aes(x=get(xaxis),y=pupil_yield,fill=get(breakdown))
+  ) + 
   geom_bar(stat = "identity",position='dodge') +       
   theme_classic() +
     scale_fill_manual(values = dfe_palette)+
@@ -11,8 +14,8 @@ ggplot(df, aes(x=get(xaxis),y=pupil_yield,fill=get(breakdown))) +
     axis.line = element_line( size = 1.0),
     legend.position = 'top'
   )  +
-  xlab("Academic year end") +
-  ylab("Pupil yields") 
+  xlab(xaxis) +
+  ylab("Pupil yield") 
 }
 
 create_py_time_period <- function(dfPY){

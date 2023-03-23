@@ -124,14 +124,14 @@ dashboard_panel <- function() {
                   selectizeInput(
                   inputId='select_xaxis',
                   label='Choose x-axis variable',
-                  choices = filter_list
+                  choices = filter_list$name
                 )),
                 column(
                   width=6,
                   selectizeInput(
                   inputId='select_breakdown',
                   label='Choose breakdown variable',
-                  choices = filter_list
+                  choices = filter_list$name,
                 ))
                 
               ),

@@ -23,7 +23,10 @@ shhh(library(ggplot2))
 shhh(library(plotly))
 shhh(library(DT))
 shhh(library(xfun))
-shhh(library(tidyr))
+shhh(library(metathis))
+shhh(library(shinyalert))
+shhh(library(checkmate))
+# shhh(library(shinya11y))
 
 # Functions ---------------------------------------------------------------------------------
 
@@ -44,12 +47,16 @@ tidy_code_function <- function() {
   message("App scripts")
   message("----------------------------------------")
   app_scripts <- eval(styler::style_dir(recursive = FALSE)$changed)
+  message("R scripts")
+  message("----------------------------------------")
+  r_scripts <- eval(styler::style_dir("R/")$changed)
   message("Test scripts")
   message("----------------------------------------")
   test_scripts <- eval(styler::style_dir("tests/", filetype = "r")$changed)
-  script_changes <- c(app_scripts, test_scripts)
+  script_changes <- c(app_scripts, r_scripts, test_scripts)
   return(script_changes)
 }
+
 
 # Source scripts ---------------------------------------------------------------------------------
 
@@ -78,12 +85,15 @@ appLoadingCSS <- "
 
 site_primary <- "https://department-for-education.shinyapps.io/dfe-shiny-template/"
 site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
+sites_list <- c(site_primary, site_overflow) # We can add further mirrors where necessary. Each one can generally handle about 2,500 users simultaneously
+ees_pub_name <- "Statistical publication" # Update this with your parent publication name (e.g. the EES publication)
+ees_publication <- "https://explore-education-statistics.service.gov.uk/find-statistics/" # Update with parent publication link
+google_analytics_key <- "Z967JJVQQX"
 
-source("R/support_links.R")
 source("R/read_data.R")
 
 # Read in the data
-df_py <- read_revenue_data()
+df_py <- read_data()
 # Get geographical levels from data
 
 choicesgeographic_level <- unique(df_py$geographic_level)
@@ -92,7 +102,19 @@ choicesLAs <- unique(df_py$la_name)
 
 choicesYears <- unique(df_py$time_period)
 
-filter_list <- c('School phase', 'School type', 'Housing type', 'Tenure', 'Early years uplift', 'Number of bedrooms')
+filter_list <- data.frame(
+  name = c('School phase', 'School type', 'Housing type', 'Tenure', 'Early years uplift', 'Number of bedrooms'),
+  colid = c('education_phase', 'education_type', 'housing', 'tenure', 'early_years_uplift', 'number_of_bedrooms')
+)
+
+choices <- list(
+  education_type = unique(df_py$education_type) %>% sort(),
+  education_phase = unique(df_py$education_phase),
+  housing = unique(df_py$housing),
+  tenure = unique(df_py$tenure),
+  number_of_bedrooms = unique(df_py$number_of_bedrooms),
+  early_years_uplift = unique(df_py$early_years_uplift)
+)
 
 choiceseducation_type <- unique(df_py$education_type) %>% sort()
 

@@ -29,17 +29,27 @@ server <- function(input, output, session) {
 
   # Simple server stuff goes here ------------------------------------------------------------
   reactive_headlines <- reactive({
+    print(reactive_filters()$colid)
+    print(paste(input$filter1, input$filter2, input$filter3, input$filter4))
     df_py %>% filter(
       la_name == input$selectLA,
-      education_type == input$selecteducation_type,
-      time_period == input$select_year
+      time_period == input$select_year,
+      get(reactive_filters()$colid[1]) == input$filter1,
+      get(reactive_filters()$colid[2]) == input$filter2,
+      get(reactive_filters()$colid[3]) == input$filter3,
+      get(reactive_filters()$colid[4]) == input$filter4
     )
   })
   
   reactivePYtime_period <- reactive({
+    print(reactive_filters()$colid)
+    print(paste(input$filter1, input$filter2, input$filter3, input$filter4))
     df_py %>% filter(
       la_name == input$selectLA,
-      education_phase == input$selecteducation_phase
+      get(reactive_filters()$colid[1]) == input$filter1,
+      get(reactive_filters()$colid[2]) == input$filter2,
+      get(reactive_filters()$colid[3]) == input$filter3,
+      get(reactive_filters()$colid[4]) == input$filter4
     )
   })
   
@@ -72,16 +82,22 @@ server <- function(input, output, session) {
   })
   
   reactive_filters <- reactive({
-    filters <- filter_list[!(filter_list %in% c(input$select_breakdown,input$select_xaxis))]
-    return(filters)
+    filter_list %>% 
+      filter(!(name %in% c(input$select_breakdown,input$select_xaxis)))
   })
   
   observeEvent(reactive_filters(),{
     for(i in 1:4){
+      cat('=============================',fill=TRUE)
+      print(reactive_filters()$name[i])
+      print(choices[reactive_filters()$colid[i]][[1]])
+      print(choices[reactive_filters()$colid[i]][[1]][1])
       updateSelectizeInput(
         session,
         paste0('filter',i),
-        label=reactive_filters()[i]
+        label = reactive_filters()$name[i],
+        choices = choices[reactive_filters()$colid[i]][[1]],
+        selected = choices[reactive_filters()$colid[i]][[1]][1]
         )
     }
   })

@@ -11,9 +11,9 @@
 # to either add the file to .gitignore or add an entry for the file into 
 # datafiles_log.csv.
 
-read_revenue_data <- function(file='data/YieldsDummyData.csv'){
+read_data <- function(file='data/YieldsDummyData.csv'){
   # This reads in an example file. For the purposes of this demo, we're using the 
   # latest test data.
-  dfRevenue <- read.csv(file)
-  return(dfRevenue)
+  df <- read.csv(file)
+  return(df)
 }
