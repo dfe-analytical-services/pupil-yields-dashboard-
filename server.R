@@ -49,9 +49,9 @@ server <- function(input, output, session) {
       xaxis <- 'education_phase'
     } else if(input$select_xaxis=='Tenure'){
       xaxis <- 'tenure'
-    }else if(input$select_xaxis=='Housing Type'){
+    }else if(input$select_xaxis=='Housing type'){
       xaxis <- 'housing'
-    }else if(input$select_xaxis=='School Type'){
+    }else if(input$select_xaxis=='School type'){
       xaxis <- 'education_type'
     }
     return(xaxis)
@@ -63,6 +63,10 @@ server <- function(input, output, session) {
       breakdown <- 'education_phase'
     } else if(input$select_breakdown=='Tenure'){
       breakdown <- 'tenure'
+    } else if(input$select_breakdown=='Housing type'){
+      breakdown <- 'housing'
+    } else if(input$select_breakdown=='School type'){
+      breakdown <- 'education_type'
     }
     return(breakdown)
   })
