@@ -65,7 +65,7 @@ server <- function(input, output, session) {
       }
     }
   })
-  
+
   observeEvent(input$cookie_consent, {
     msg <- list(
       name = "dfe_analytics",
@@ -82,17 +82,17 @@ server <- function(input, output, session) {
       }
     }
   })
-  
+
   observeEvent(input$remove, {
     msg <- list(name = "dfe_analytics", value = "denied")
     session$sendCustomMessage("cookie-remove", msg)
     session$sendCustomMessage("analytics-consent", msg)
   })
-  
+
   cookies_data <- reactive({
     input$cookies
   })
-  
+
   output$cookie_status <- renderText({
     cookie_text_stem <- "To better understand the reach of our dashboard tools, this site uses cookies to identify numbers of unique users as part of Google Analytics. You have chosen to"
     cookie_text_tail <- "the use of cookies on this website."
@@ -108,9 +108,9 @@ server <- function(input, output, session) {
       "Cookies consent has not been confirmed."
     }
   })
-  
+
   # ----- end of cookie code ----- #
-  
+
   # Simple server stuff goes here ------------------------------------------------------------
   reactive_headlines <- reactive({
     print(reactive_filters()$colid)
@@ -124,7 +124,7 @@ server <- function(input, output, session) {
       get(reactive_filters()$colid[4]) == input$filter4
     )
   })
-  
+
   reactivePYtime_period <- reactive({
     print(reactive_filters()$colid)
     print(paste(input$filter1, input$filter2, input$filter3, input$filter4))
@@ -136,56 +136,56 @@ server <- function(input, output, session) {
       get(reactive_filters()$colid[4]) == input$filter4
     )
   })
-  
+
   reactive_xaxis <- reactive({
-    xaxis <- tolower(gsub(' ', '_',input$select_xaxis))
-    if(input$select_xaxis=='School phase'){
-      xaxis <- 'education_phase'
-    } else if(input$select_xaxis=='Tenure'){
-      xaxis <- 'tenure'
-    }else if(input$select_xaxis=='Housing type'){
-      xaxis <- 'housing'
-    }else if(input$select_xaxis=='School type'){
-      xaxis <- 'education_type'
+    xaxis <- tolower(gsub(" ", "_", input$select_xaxis))
+    if (input$select_xaxis == "School phase") {
+      xaxis <- "education_phase"
+    } else if (input$select_xaxis == "Tenure") {
+      xaxis <- "tenure"
+    } else if (input$select_xaxis == "Housing type") {
+      xaxis <- "housing"
+    } else if (input$select_xaxis == "School type") {
+      xaxis <- "education_type"
     }
     return(xaxis)
   })
 
   reactive_breakdown <- reactive({
-    breakdown <- tolower(gsub(' ', '_',input$select_breakdown))
-    if(input$select_breakdown=='School phase'){
-      breakdown <- 'education_phase'
-    } else if(input$select_breakdown=='Tenure'){
-      breakdown <- 'tenure'
-    } else if(input$select_breakdown=='Housing type'){
-      breakdown <- 'housing'
-    } else if(input$select_breakdown=='School type'){
-      breakdown <- 'education_type'
+    breakdown <- tolower(gsub(" ", "_", input$select_breakdown))
+    if (input$select_breakdown == "School phase") {
+      breakdown <- "education_phase"
+    } else if (input$select_breakdown == "Tenure") {
+      breakdown <- "tenure"
+    } else if (input$select_breakdown == "Housing type") {
+      breakdown <- "housing"
+    } else if (input$select_breakdown == "School type") {
+      breakdown <- "education_type"
     }
     return(breakdown)
   })
-  
+
   reactive_filters <- reactive({
-    filter_list %>% 
-      filter(!(name %in% c(input$select_breakdown,input$select_xaxis)))
+    filter_list %>%
+      filter(!(name %in% c(input$select_breakdown, input$select_xaxis)))
   })
-  
-  observeEvent(reactive_filters(),{
-    for(i in 1:4){
-      cat('=============================',fill=TRUE)
+
+  observeEvent(reactive_filters(), {
+    for (i in 1:4) {
+      cat("=============================", fill = TRUE)
       print(reactive_filters()$name[i])
       print(choices[reactive_filters()$colid[i]][[1]])
       print(choices[reactive_filters()$colid[i]][[1]][1])
       updateSelectizeInput(
         session,
-        paste0('filter',i),
+        paste0("filter", i),
         label = reactive_filters()$name[i],
         choices = choices[reactive_filters()$colid[i]][[1]],
         selected = choices[reactive_filters()$colid[i]][[1]][1]
-        )
+      )
     }
   })
-  
+
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({
     print(reactive_headlines())
@@ -193,14 +193,14 @@ server <- function(input, output, session) {
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
-  
+
   # Render time_period line chart of pupil yield
   output$linePYtime_period <- renderPlotly({
     ggplotly(create_py_time_period(reactivePYtime_period())) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
-  
+
   reactiveBenchmark <- reactive({
     df_py %>%
       filter(

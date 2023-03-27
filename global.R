@@ -103,8 +103,8 @@ choicesLAs <- unique(df_py$la_name)
 choicesYears <- unique(df_py$time_period)
 
 filter_list <- data.frame(
-  name = c('School phase', 'School type', 'Housing type', 'Tenure', 'Early years uplift', 'Number of bedrooms'),
-  colid = c('education_phase', 'education_type', 'housing', 'tenure', 'early_years_uplift', 'number_of_bedrooms')
+  name = c("School phase", "School type", "Housing type", "Tenure", "Early years uplift", "Number of bedrooms"),
+  colid = c("education_phase", "education_type", "housing", "tenure", "early_years_uplift", "number_of_bedrooms")
 )
 
 choices <- list(
