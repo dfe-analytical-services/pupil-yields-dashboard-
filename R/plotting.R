@@ -5,7 +5,7 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
   ) +
     geom_bar(stat = "identity", position = "dodge") +
     theme_classic() +
-    scale_fill_manual(values = dfe_palette) +
+    scale_fill_manual(values = dfe_palette, name=breakdown) +
     theme(
       text = element_text(size = 12),
       axis.title.x = element_text(margin = margin(t = 12)),
