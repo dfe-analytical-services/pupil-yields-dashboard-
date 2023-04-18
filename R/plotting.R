@@ -16,12 +16,16 @@ ggplot(df, aes(x=get(xaxis),y=pupil_yield,fill=get(breakdown))) +
 }
 
 create_py_time_period <- function(dfPY){
-  
-  ggplot(dfPY, aes(x=time_period,
-                               y=pupil_yield
-                               )
+  dfPY_filtered <- dfPY %>% filter(tenure=='All', housing=='All', number_of_bedrooms=='All', education_phase=='Secondary')
+  mean_py <- mean(dfPY_filtered$pupil_yield)
+  ggplot(dfPY_filtered, aes(
+    x=time_period,
+    y=pupil_yield,
+    color=education_phase
+    )
          ) + 
     geom_line() +       
+    geom_hline(yintercept=mean_py) +
     theme_classic() +
     theme(
       text = element_text(size = 12),

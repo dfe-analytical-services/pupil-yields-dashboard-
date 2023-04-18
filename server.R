@@ -35,46 +35,45 @@ server <- function(input, output, session) {
       time_period == input$select_year
     )
   })
-  
+
   reactivePYtime_period <- reactive({
     df_py %>% filter(
-      la_name == input$selectLA,
-      education_phase == input$selecteducation_phase
+      la_name == input$selectLA
     )
   })
-  
+
   reactive_xaxis <- reactive({
-    xaxis <- tolower(gsub(' ', '_',input$select_xaxis))
-    if(input$select_xaxis=='School phase'){
-      xaxis <- 'education_phase'
-    } else if(input$select_xaxis=='Tenure'){
-      xaxis <- 'tenure'
-    }else if(input$select_xaxis=='Housing type'){
-      xaxis <- 'housing'
-    }else if(input$select_xaxis=='School type'){
-      xaxis <- 'education_type'
+    xaxis <- tolower(gsub(" ", "_", input$select_xaxis))
+    if (input$select_xaxis == "School phase") {
+      xaxis <- "education_phase"
+    } else if (input$select_xaxis == "Tenure") {
+      xaxis <- "tenure"
+    } else if (input$select_xaxis == "Housing type") {
+      xaxis <- "housing"
+    } else if (input$select_xaxis == "School type") {
+      xaxis <- "education_type"
     }
     return(xaxis)
   })
 
   reactive_breakdown <- reactive({
-    breakdown <- tolower(gsub(' ', '_',input$select_breakdown))
-    if(input$select_breakdown=='School phase'){
-      breakdown <- 'education_phase'
-    } else if(input$select_breakdown=='Tenure'){
-      breakdown <- 'tenure'
-    } else if(input$select_breakdown=='Housing type'){
-      breakdown <- 'housing'
-    } else if(input$select_breakdown=='School type'){
-      breakdown <- 'education_type'
+    breakdown <- tolower(gsub(" ", "_", input$select_breakdown))
+    if (input$select_breakdown == "School phase") {
+      breakdown <- "education_phase"
+    } else if (input$select_breakdown == "Tenure") {
+      breakdown <- "tenure"
+    } else if (input$select_breakdown == "Housing type") {
+      breakdown <- "housing"
+    } else if (input$select_breakdown == "School type") {
+      breakdown <- "education_type"
     }
     return(breakdown)
   })
 
   output$headline_title <- renderUI(
-    h2(paste0('Input breakdown = ', input$select_breakdown, "you can add extra things..."))
+    h2(paste0("Input breakdown = ", input$select_breakdown, "you can add extra things..."))
   )
-    
+
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({
     print(reactive_headlines())
@@ -82,14 +81,14 @@ server <- function(input, output, session) {
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
-  
+
   # Render time_period line chart of pupil yield
   output$linePYtime_period <- renderPlotly({
     ggplotly(create_py_time_period(reactivePYtime_period())) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
-  
+
   reactiveBenchmark <- reactive({
     df_py %>%
       filter(

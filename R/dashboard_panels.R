@@ -216,29 +216,12 @@ dashboard_panel <- function() {
                             h2("Pupil Yield showing peak and average"),
                             p("This is the standard paragraph style for adding guiding info around data content."),
                             column(
-                              width=6,
+                              width=12,
                               plotlyOutput("linePYtime_period")
-                            ),
-                            column(
-                              width=6,
-                              div(
-                                class = "well",
-                                style = "min-height: 100%; height: 100%; overflow-y: visible",
-                                fluidRow(
-                                  column(
-                                    width=12,
-                                    selectizeInput("selectBenchLAs",
-                                                   "Select benchamrk LAs",
-                                                   choices = choicesLAs,
-                                                   multiple=TRUE,
-                                                   options = list(maxItems = 3)
-                                    )
-                                  )
-                                )
-                              ),
-                              dataTableOutput("tabBenchmark")
-                            ))
-                        ))
+                            )
+                            )
+                        )
+                        )
           )
         )
         # add box to show user input

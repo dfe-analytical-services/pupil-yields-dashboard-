@@ -15,5 +15,6 @@ read_revenue_data <- function(file='data/YieldsDummyData.csv'){
   # This reads in an example file. For the purposes of this demo, we're using the 
   # latest test data.
   dfRevenue <- read.csv(file)
+  # dfRevenue$time_period <- as.character(dfRevenue$time_period)
   return(dfRevenue)
 }

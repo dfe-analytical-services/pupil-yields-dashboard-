@@ -88,7 +88,7 @@ df_py <- read_revenue_data()
 
 choicesgeographic_level <- unique(df_py$geographic_level)
 
-choicesLAs <- unique(df_py$la_name)
+choicesLAs <- unique(df_py$la_name) %>% sort()
 
 choicesYears <- unique(df_py$time_period)
 
