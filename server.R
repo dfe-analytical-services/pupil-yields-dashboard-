@@ -20,7 +20,6 @@
 
 
 server <- function(input, output, session) {
-
   # Loading screen ---------------------------------------------------------------------------
   # Call initial loading screen
 
@@ -207,39 +206,41 @@ server <- function(input, output, session) {
   })
 
   output$colBenchmark <- renderPlotly({
-    ggplotly(plotAvgRevBenchmark(reactiveBenchmark()) %>%
-      config(displayModeBar = F),
-    height = 420
+    ggplotly(
+      plotAvgRevBenchmark(reactiveBenchmark()) %>%
+        config(displayModeBar = F),
+      height = 420
     )
   })
 
   output$tabBenchmark <- renderDataTable({
-    datatable(reactiveBenchmark() %>%
-      select(
-        Area = local_authority,
-        `Average Revenue Balance (£)` = average_revenue_balance,
-        `Total Revenue Balance (£m)` = total_revenue_balance_million
-      ),
-    options = list(
-      scrollX = TRUE,
-      paging = FALSE
-    )
+    datatable(
+      reactiveBenchmark() %>%
+        select(
+          Area = local_authority,
+          `Average Revenue Balance (£)` = average_revenue_balance,
+          `Total Revenue Balance (£m)` = total_revenue_balance_million
+        ),
+      options = list(
+        scrollX = TRUE,
+        paging = FALSE
+      )
     )
   })
 
   # Define server logic to create a box
 
   output$boxavgRevBal <- renderValueBox({
-
     # Put value into box to plug into app
     valueBox(
       # take input number
-      paste0("£", format((reactive_headlines() %>% filter(
-        time_period == max(time_period, na.rm = TRUE),
-        la_name == input$selectLA,
-        education_phase == input$selectPhase
-      ))$average_revenue_balance,
-      big.mark = ","
+      paste0("£", format(
+        (reactive_headlines() %>% filter(
+          time_period == max(time_period, na.rm = TRUE),
+          la_name == input$selectLA,
+          education_phase == input$selectPhase
+        ))$average_revenue_balance,
+        big.mark = ","
       )),
       # add subtitle to explain what it's showing
       paste0("This is the latest value for the selected inputs"),

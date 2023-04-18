@@ -79,7 +79,7 @@ dashboard_panel <- function() {
     gov_main_layout(
       gov_row(
         column(
-          width=12,
+          width = 12,
           h1("Pupil Yield Data Dashboard"),
         ),
         column(
@@ -88,12 +88,12 @@ dashboard_panel <- function() {
             class = "well",
             style = "min-height: 100%; height: 100%; overflow-y: visible",
             gov_row(
-              
+
               # selectizeInputs (up to 4 columns, if 4 columns set to width 3 each)
-              # column 1   
-              gov_row(         
+              # column 1
+              gov_row(
                 column(
-                  width=4,
+                  width = 4,
                   selectizeInput(
                     inputId = "selectArea",
                     label = "Choose a Geography:",
@@ -124,7 +124,7 @@ dashboard_panel <- function() {
                 paste("Download the underlying data for this dashboard:"), br(),
                 downloadButton(
                   outputId = "download_data",
-                  label= "Download data",
+                  label = "Download data",
                   icon = shiny::icon("download"),
                   class = "downloadButton"
                 )
@@ -133,17 +133,18 @@ dashboard_panel <- function() {
           )
         ),
         column(
-          width=12,
-          tabsetPanel(id = "tabsetpanels",
-                      tabPanel(
-                        "Headlines",
-                        gov_row(
-                          column(
-                            width=12,
-                            uiOutput('headline_title'),
-                            plotlyOutput("bar_headlines")
-                            )
-                        ),
+          width = 12,
+          tabsetPanel(
+            id = "tabsetpanels",
+            tabPanel(
+              "Headlines",
+              gov_row(
+                column(
+                  width = 12,
+                  uiOutput("headline_title"),
+                  plotlyOutput("bar_headlines")
+                )
+              ),
               gov_row(
                 column(
                   width = 6,
@@ -192,21 +193,21 @@ dashboard_panel <- function() {
                   ),
                 )
               )
-              ),
-                      tabPanel(
-                        "Peaks & Averages",
-                        fluidRow(
-                          column(
-                            width=12,
-                            h2("Pupil Yield showing peak and average"),
-                            p("This is the standard paragraph style for adding guiding info around data content."),
-                            column(
-                              width=12,
-                              plotlyOutput("linePYtime_period")
-                            )
-                            )
-                        )
-                        )
+            ),
+            tabPanel(
+              "Peaks & Averages",
+              fluidRow(
+                column(
+                  width = 12,
+                  h2("Pupil Yield showing peak and average"),
+                  p("This is the standard paragraph style for adding guiding info around data content."),
+                  column(
+                    width = 12,
+                    plotlyOutput("linePYtime_period")
+                  )
+                )
+              )
+            )
           )
         )
         # add box to show user input
@@ -252,4 +253,3 @@ technical_panel <- function() {
     )
   )
 }
-
