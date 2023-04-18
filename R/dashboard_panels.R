@@ -190,11 +190,6 @@ dashboard_panel <- function() {
                     "Choose a Housing Type:",
                     choices = choiceshousing
                   ),
-                  selectizeInput(
-                    inputId = "filter4",
-                    label = "Choose a Tenure:",
-                    choices = choicestenure
-                  )
                 )
               )
               ),
