@@ -102,13 +102,13 @@ choicesnumber_developments <- unique(df_py$number_developments)
 
 # choicesrurality <- unique(df_py$rurality)
 
-choiceshousing <- unique(df_py$housing)
+choiceshousing <- unique(df_py$housing) %>% sort()
 
-choicestenure <- unique(df_py$tenure)
+choicestenure <- unique(df_py$tenure) %>% sort()
 
 # choiceshimidlow <- unique(df_py$himidlow)
 
-choicesnumber_beds <- unique(df_py$number_of_bedrooms)
+choicesnumber_beds <- unique(df_py$number_of_bedrooms) %>% sort()
 
 choicesearly_years_uplift <- unique(df_py$early_years_uplift)
 
