@@ -117,76 +117,6 @@ dashboard_panel <- function() {
                     selected=max(choicesYears)
                   ))
               ),
-              p("Choose the chart variables here:"),
-              gov_row(
-                column(
-                  width=4,
-                  selectizeInput(
-                    inputId='select_xaxis',
-                    label='Choose x-axis variable',
-                    choices = c('School phase', 'School type', 'Housing type', 'Tenure', 'Number of bedrooms')
-                  )),
-                column(
-                  width=4,
-                  selectizeInput(
-                    inputId='select_breakdown',
-                    label='Choose breakdown variable',
-                    choices = c('Tenure', 'Housing type', 'Number of bedrooms', 'School phase', 'School type')
-                  ))
-                
-              ),
-              gov_row(
-                
-                # selectizeInput(
-                #   inputId = "selectphase_type",
-                #   label = "Choose a Pupil Yield Type:",
-                #   choices = choicesPhase
-                # )), 
-                
-                # column 2  
-                column(
-                  width = 4,
-                  selectizeInput(
-                    inputId = "selecteducation_type",
-                    label = "Choose an Education Type:",
-                    choices = choiceseducation_type,
-                    selected="Mainstream"
-                  ),
-                  selectizeInput(
-                    inputId = "selecteducation_phase",
-                    label = "Choose a Phase:",
-                    choices = choicesPhase,
-                    selected="Primary"
-                  )),
-                
-                # column 3
-                column(
-                  width = 4,
-                  selectizeInput("selecthousing_type",
-                                 "Choose a Housing Type:",
-                                 choices = choiceshousing
-                  ),
-                  selectizeInput(
-                    inputId = "selecttenure",
-                    label = "Choose a Tenure:",
-                    choices = choicestenure
-                  ),
-                  selectizeInput(
-                    inputId = "selectnumner_beds",
-                    label = "Choose the number of bedrooms:",
-                    choices = choicesnumber_beds
-                  )),
-                
-                
-                # column 4
-                column(
-                  width = 4,
-                  selectizeInput(
-                    inputId = "selectearly_years_uplift",
-                    label = "Early Years Uplift:",
-                    choices = choicesearly_years_uplift
-                  ))
-              ),
               
               column(
                 width = 12,
@@ -197,7 +127,8 @@ dashboard_panel <- function() {
                   icon = shiny::icon("download"),
                   class = "downloadButton"
                 )
-              ))
+              )
+            )
           )
         ),
         
@@ -206,11 +137,76 @@ dashboard_panel <- function() {
           tabsetPanel(id = "tabsetpanels",
                       tabPanel(
                         "Headlines",
-                        fluidRow(
+                        gov_row(
                           column(
                             width=12,
                             uiOutput('headline_title'),
-                            plotlyOutput("bar_headlines")))
+                            plotlyOutput("bar_headlines")
+                            )
+                        ),
+                        gov_row(
+                          p("Choose the chart variables here:"),
+                          column(
+                            width=4,
+                            selectizeInput(
+                              inputId='select_xaxis',
+                              label='Choose x-axis variable',
+                              choices = c('School phase', 'School type', 'Housing type', 'Tenure', 'Number of bedrooms')
+                            )
+                            ),
+                          column(
+                            width=4,
+                            selectizeInput(
+                              inputId='select_breakdown',
+                              label='Choose breakdown variable',
+                              choices = c('Tenure', 'Housing type', 'Number of bedrooms', 'School phase', 'School type')
+                            )
+                            )
+                        ),
+                        gov_row(
+                          column(
+                            width = 4,
+                            selectizeInput(
+                              inputId = "selecteducation_type",
+                              label = "Choose an Education Type:",
+                              choices = choiceseducation_type,
+                              selected="Mainstream"
+                            ),
+                            selectizeInput(
+                              inputId = "selecteducation_phase",
+                              label = "Choose a Phase:",
+                              choices = choicesPhase,
+                              selected="Primary"
+                            )
+                            ),
+                          
+                          # column 3
+                          column(
+                            width = 4,
+                            selectizeInput("selecthousing_type",
+                                           "Choose a Housing Type:",
+                                           choices = choiceshousing
+                            ),
+                            selectizeInput(
+                              inputId = "selecttenure",
+                              label = "Choose a Tenure:",
+                              choices = choicestenure
+                            ),
+                            selectizeInput(
+                              inputId = "selectnumner_beds",
+                              label = "Choose the number of bedrooms:",
+                              choices = choicesnumber_beds
+                            )
+                            ),
+                          column(
+                            width = 4,
+                            selectizeInput(
+                              inputId = "selectearly_years_uplift",
+                              label = "Early Years Uplift:",
+                              choices = choicesearly_years_uplift
+                            )
+                            )
+                        )
                       ),
                       tabPanel(
                         "Peaks & Averages",
