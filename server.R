@@ -114,26 +114,19 @@ server <- function(input, output, session) {
   # Simple server stuff goes here ------------------------------------------------------------
   reactive_headlines <- reactive({
     print(reactive_filters()$colid)
-    print(paste(input$filter1, input$filter2, input$filter3, input$filter4))
+    print(paste(input$filter1, input$filter2, input$filter3))
     df_py %>% filter(
       la_name == input$selectLA,
       time_period == input$select_year,
       get(reactive_filters()$colid[1]) == input$filter1,
       get(reactive_filters()$colid[2]) == input$filter2,
       get(reactive_filters()$colid[3]) == input$filter3,
-      get(reactive_filters()$colid[4]) == input$filter4
     )
   })
 
   reactivePYtime_period <- reactive({
-    print(reactive_filters()$colid)
-    print(paste(input$filter1, input$filter2, input$filter3, input$filter4))
     df_py %>% filter(
-      la_name == input$selectLA,
-      get(reactive_filters()$colid[1]) == input$filter1,
-      get(reactive_filters()$colid[2]) == input$filter2,
-      get(reactive_filters()$colid[3]) == input$filter3,
-      get(reactive_filters()$colid[4]) == input$filter4
+      la_name == input$selectLA
     )
   })
 
@@ -171,7 +164,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(reactive_filters(), {
-    for (i in 1:4) {
+    for (i in 1:3) {
       cat("=============================", fill = TRUE)
       print(reactive_filters()$name[i])
       print(choices[reactive_filters()$colid[i]][[1]])
