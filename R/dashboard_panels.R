@@ -209,13 +209,8 @@ dashboard_panel <- function() {
                         fluidRow(
                           column(
                             width=12,
-                            h2("Insert auto title here"),
-                            valueBoxOutput("boxavgRevBal", width = 6),
-                            valueBoxOutput("boxpcRevBal", width = 6),
-                            box(
-                              width=12,
-                              plotlyOutput("bar_headlines")))
-                        )
+                            uiOutput('headline_title'),
+                            plotlyOutput("bar_headlines")))
                       ),
                       tabPanel(
                         "Peaks & Averages",
@@ -226,10 +221,7 @@ dashboard_panel <- function() {
                             p("This is the standard paragraph style for adding guiding info around data content."),
                             column(
                               width=6,
-                              box(
-                                width=12,
-                                plotlyOutput("linePYtime_period")
-                              )
+                              plotlyOutput("linePYtime_period")
                             ),
                             column(
                               width=6,

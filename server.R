@@ -70,7 +70,10 @@ server <- function(input, output, session) {
     }
     return(breakdown)
   })
-  
+
+  output$headline_title <- renderUI(
+    h2(paste0('Input breakdown = ', input$select_breakdown, "you can add extra things..."))
+  )
     
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({
