@@ -17,12 +17,17 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
     ylab("Pupil yield")
 }
 
-create_py_time_period <- function(dfPY) {
-  ggplot(dfPY, aes(
-    x = time_period,
-    y = pupil_yield
-  )) +
-    geom_line() +
+create_py_time_period <- function(dfPY){
+  dfPY_filtered <- dfPY %>% filter(tenure=='All', housing=='All', number_of_bedrooms=='All', education_phase=='Secondary')
+  mean_py <- mean(dfPY_filtered$pupil_yield)
+  ggplot(dfPY_filtered, aes(
+    x=time_period,
+    y=pupil_yield,
+    color=education_phase
+    )
+         ) + 
+    geom_line() +       
+    geom_hline(yintercept=mean_py) +
     theme_classic() +
     theme(
       text = element_text(size = 12),

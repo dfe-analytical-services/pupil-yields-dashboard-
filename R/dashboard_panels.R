@@ -79,7 +79,7 @@ dashboard_panel <- function() {
     gov_main_layout(
       gov_row(
         column(
-          width = 12,
+          width=12,
           h1("Pupil Yield Data Dashboard"),
         ),
         column(
@@ -88,12 +88,12 @@ dashboard_panel <- function() {
             class = "well",
             style = "min-height: 100%; height: 100%; overflow-y: visible",
             gov_row(
-
+              
               # selectizeInputs (up to 4 columns, if 4 columns set to width 3 each)
-              # column 1
-              gov_row(
+              # column 1   
+              gov_row(         
                 column(
-                  width = 4,
+                  width=4,
                   selectizeInput(
                     inputId = "selectArea",
                     label = "Choose a Geography:",
@@ -119,7 +119,31 @@ dashboard_panel <- function() {
                   )
                 )
               ),
-              h2("Choose the chart variables here:"),
+              column(
+                width = 12,
+                paste("Download the underlying data for this dashboard:"), br(),
+                downloadButton(
+                  outputId = "download_data",
+                  label= "Download data",
+                  icon = shiny::icon("download"),
+                  class = "downloadButton"
+                )
+              )
+            )
+          )
+        ),
+        column(
+          width=12,
+          tabsetPanel(id = "tabsetpanels",
+                      tabPanel(
+                        "Headlines",
+                        gov_row(
+                          column(
+                            width=12,
+                            uiOutput('headline_title'),
+                            plotlyOutput("bar_headlines")
+                            )
+                        ),
               gov_row(
                 column(
                   width = 6,
@@ -143,13 +167,6 @@ dashboard_panel <- function() {
                   12,
                   tags$h2("Choose the chart filters here:"),
                 ),
-                # selectizeInput(
-                #   inputId = "selectphase_type",
-                #   label = "Choose a Pupil Yield Type:",
-                #   choices = choicesPhase
-                # )),
-
-                # Filter area
                 column(
                   width = 6,
                   selectizeInput(
@@ -179,75 +196,22 @@ dashboard_panel <- function() {
                     choices = choicestenure
                   )
                 )
+              )
               ),
-              column(
-                width = 12,
-                paste("Download the underlying data for this dashboard:"), br(),
-                downloadButton(
-                  outputId = "download_data",
-                  label = "Download data",
-                  icon = shiny::icon("download"),
-                  class = "downloadButton"
-                )
-              )
-            )
-          )
-        ),
-        column(
-          width = 12,
-          tabsetPanel(
-            id = "tabsetpanels",
-            tabPanel(
-              "Headlines",
-              fluidRow(
-                column(
-                  width = 12,
-                  h2("Outputs 1 (h2)"),
-                  valueBoxOutput("boxavgRevBal", width = 6),
-                  valueBoxOutput("boxpcRevBal", width = 6),
-                  box(
-                    width = 12,
-                    plotlyOutput("bar_headlines")
-                  )
-                )
-              )
-            ),
-            tabPanel(
-              "Peaks & Averages",
-              fluidRow(
-                column(
-                  width = 12,
-                  h2("Outputs 2 (h2)"),
-                  p("This is the standard paragraph style for adding guiding info around data content."),
-                  column(
-                    width = 6,
-                    box(
-                      width = 12,
-                      plotlyOutput("linePYtime_period")
-                    )
-                  ),
-                  column(
-                    width = 6,
-                    div(
-                      class = "well",
-                      style = "min-height: 100%; height: 100%; overflow-y: visible",
-                      fluidRow(
-                        column(
-                          width = 12,
-                          selectizeInput("selectBenchLAs",
-                            "Select benchamrk LAs",
-                            choices = choicesLAs,
-                            multiple = TRUE,
-                            options = list(maxItems = 3)
-                          )
+                      tabPanel(
+                        "Peaks & Averages",
+                        fluidRow(
+                          column(
+                            width=12,
+                            h2("Pupil Yield showing peak and average"),
+                            p("This is the standard paragraph style for adding guiding info around data content."),
+                            column(
+                              width=12,
+                              plotlyOutput("linePYtime_period")
+                            )
+                            )
                         )
-                      )
-                    ),
-                    dataTableOutput("tabBenchmark")
-                  )
-                )
-              )
-            )
+                        )
           )
         )
         # add box to show user input
@@ -293,3 +257,4 @@ technical_panel <- function() {
     )
   )
 }
+
