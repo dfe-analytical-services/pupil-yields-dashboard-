@@ -58,12 +58,41 @@
 
 ui <- function(input, output, session) {
   fluidPage(
-    title = tags$head(tags$link(
-      rel = "shortcut icon",
-      href = "dfefavicon.png"
-    )),
+    #    use_tota11y(),
+    title = tags$head(
+      tags$link(
+        rel = "shortcut icon",
+        href = "dfefavicon.png"
+      ),
+      # Add title for browser tabs
+      tags$title("Pupil Yields")
+    ),
+    tags$html(lang = "en"),
+    # Add meta description for search engines
+    meta() %>%
+      meta_general(
+        application_name = "Pupil Yields",
+        description = "Pupil Yields",
+        robots = "index,follow",
+        generator = "R-Shiny",
+        subject = "stats development",
+        rating = "General",
+        referrer = "no-referrer"
+      ),
     shinyjs::useShinyjs(),
+    customDisconnectMessage(),
     useShinydashboard(),
+    # Setting up cookie consent based on a cookie recording the consent:
+    # https://book.javascript-for-r.com/shiny-cookies.html
+    tags$head(
+      tags$script(
+        src = paste0(
+          "https://cdn.jsdelivr.net/npm/js-cookie@rc/",
+          "dist/js.cookie.min.js"
+        )
+      ),
+      tags$script(src = "cookie-consent.js")
+    ),
     tags$head(includeHTML(("google-analytics.html"))),
     tags$head(
       tags$link(
@@ -73,10 +102,12 @@ ui <- function(input, output, session) {
       )
     ),
     shinyGovstyle::header(
-      main_text = "DfE",
+      main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
-      secondary_text = "DfE Shiny Template",
-      logo = "images/DfE_logo.png"
+      secondary_text = "Pupil Yields",
+      logo = "images/DfE_logo_landscape.png",
+      logo_width = 150,
+      logo_height = 32
     ),
     shinyGovstyle::banner(
       "beta banner",
@@ -95,7 +126,6 @@ ui <- function(input, output, session) {
       well = FALSE,
       homepage_panel(),
       dashboard_panel(),
-      technical_panel(),
       a11y_panel(),
       support_links()
     ),
