@@ -9,9 +9,9 @@ homepage_panel <- function() {
           br(),
           br()
         ),
-        
+
         ## Left panel -------------------------------------------------------
-        
+
         column(
           6,
           div(
@@ -37,9 +37,9 @@ homepage_panel <- function() {
             )
           ),
         ),
-        
+
         ## Right panel ------------------------------------------------------
-        
+
         column(
           6,
           div(
@@ -65,7 +65,6 @@ homepage_panel <- function() {
       )
     )
   )
-  
 }
 
 
@@ -73,9 +72,9 @@ dashboard_panel <- function() {
   tabPanel(
     value = "dashboard",
     "Dashboard",
-    
+
     # Define UI for application that draws a histogram
-    
+
     # Sidebar with a slider input for number of bins
     gov_main_layout(
       gov_row(
@@ -84,7 +83,7 @@ dashboard_panel <- function() {
           h1("Pupil Yield Data Dashboard"),
         ),
         column(
-          width=12,
+          width = 12,
           div(
             class = "well",
             style = "min-height: 100%; height: 100%; overflow-y: visible",
@@ -99,25 +98,27 @@ dashboard_panel <- function() {
                     inputId = "selectArea",
                     label = "Choose a Geography:",
                     choices = choicesgeographic_level
-                  )),
+                  )
+                ),
                 column(
-                  width=4,
+                  width = 4,
                   selectizeInput(
                     inputId = "selectLA",
                     label = "Choose a LA:",
                     choices = choicesLAs,
-                    selected="LA1"
-                  )),
+                    selected = "LA1"
+                  )
+                ),
                 column(
-                  width=4,
+                  width = 4,
                   selectizeInput(
                     inputId = "select_year",
                     label = "Choose a Year:",
                     choices = choicesYears,
-                    selected=max(choicesYears)
-                  ))
+                    selected = max(choicesYears)
+                  )
+                )
               ),
-              
               column(
                 width = 12,
                 paste("Download the underlying data for this dashboard:"), br(),
@@ -131,7 +132,6 @@ dashboard_panel <- function() {
             )
           )
         ),
-        
         column(
           width=12,
           tabsetPanel(id = "tabsetpanels",
@@ -144,70 +144,60 @@ dashboard_panel <- function() {
                             plotlyOutput("bar_headlines")
                             )
                         ),
-                        gov_row(
-                          p("Choose the chart variables here:"),
-                          column(
-                            width=4,
-                            selectizeInput(
-                              inputId='select_xaxis',
-                              label='Choose x-axis variable',
-                              choices = c('School phase', 'School type', 'Housing type', 'Tenure', 'Number of bedrooms')
-                            )
-                            ),
-                          column(
-                            width=4,
-                            selectizeInput(
-                              inputId='select_breakdown',
-                              label='Choose breakdown variable',
-                              choices = c('Tenure', 'Housing type', 'Number of bedrooms', 'School phase', 'School type')
-                            )
-                            )
-                        ),
-                        gov_row(
-                          column(
-                            width = 4,
-                            selectizeInput(
-                              inputId = "selecteducation_type",
-                              label = "Choose an Education Type:",
-                              choices = choiceseducation_type,
-                              selected="Mainstream"
-                            ),
-                            selectizeInput(
-                              inputId = "selecteducation_phase",
-                              label = "Choose a Phase:",
-                              choices = choicesPhase,
-                              selected="Primary"
-                            )
-                            ),
-                          
-                          # column 3
-                          column(
-                            width = 4,
-                            selectizeInput("selecthousing_type",
-                                           "Choose a Housing Type:",
-                                           choices = choiceshousing
-                            ),
-                            selectizeInput(
-                              inputId = "selecttenure",
-                              label = "Choose a Tenure:",
-                              choices = choicestenure
-                            ),
-                            selectizeInput(
-                              inputId = "selectnumner_beds",
-                              label = "Choose the number of bedrooms:",
-                              choices = choicesnumber_beds
-                            )
-                            ),
-                          column(
-                            width = 4,
-                            selectizeInput(
-                              inputId = "selectearly_years_uplift",
-                              label = "Early Years Uplift:",
-                              choices = choicesearly_years_uplift
-                            )
-                            )
-                        )
-                      ),
+              gov_row(
+                column(
+                  width = 6,
+                  selectizeInput(
+                    inputId = "select_xaxis",
+                    label = "Choose x-axis variable",
+                    choices = filter_list$name
+                  )
+                ),
+                column(
+                  width = 6,
+                  selectizeInput(
+                    inputId = "select_breakdown",
+                    label = "Choose breakdown variable",
+                    choices = filter_list$name,
+                  )
+                )
+              ),
+              gov_row(
+                column(
+                  12,
+                  tags$h2("Choose the chart filters here:"),
+                ),
+                column(
+                  width = 6,
+                  selectizeInput(
+                    inputId = "filter1",
+                    label = "Choose a Phase:",
+                    choices = choicesPhase,
+                    selected = "Primary"
+                  ),
+                  selectizeInput(
+                    inputId = "filter2",
+                    choices = choiceseducation_type,
+                    label = "Choose an Education Type:",
+                    selected = "Mainstream"
+                  )
+                ),
+
+                # column 3
+                column(
+                  width = 6,
+                  selectizeInput("filter3",
+                    "Choose a Housing Type:",
+                    choices = choiceshousing
+                  ),
+                  selectizeInput(
+                    inputId = "filter4",
+                    label = "Choose a Tenure:",
+                    choices = choicestenure
+                  )
+                )
+              )
+              ),
                       tabPanel(
                         "Peaks & Averages",
                         fluidRow(
@@ -235,32 +225,33 @@ technical_panel <- function() {
     "Technical",
     gov_main_layout(
       gov_row(
-        column(width=12,
-               h1("Technical Details"),
-               br("This Document **application name**.
+        column(
+          width = 12,
+          h1("Technical Details"),
+          br("This Document **application name**.
             This application is run by the Department for Education. We want as many people as possible to be able to use this application,
             and have actively developed this application with accessibilty in mind."),
-               h2("SUb Heading 1"),
-               br("We follow the reccomendations of the ", a(href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements. ", onclick = "ga('send', 'event', 'click', 'link', 'IKnow', 1)"), "This application has been checked using the ", a(href = "https://github.com/ewenme/shinya11y", "Shinya11y tool "), ", which did not detect accessibility issues.
+          h2("SUb Heading 1"),
+          br("We follow the reccomendations of the ", a(href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements. ", onclick = "ga('send', 'event', 'click', 'link', 'IKnow', 1)"), "This application has been checked using the ", a(href = "https://github.com/ewenme/shinya11y", "Shinya11y tool "), ", which did not detect accessibility issues.
              This application also fully passes the accessibility audits checked by the ", a(href = "https://developers.google.com/web/tools/lighthouse", "Google Developer Lighthouse tool"), ". This means that this application:"),
-               tags$div(tags$ul(
-                 tags$li("add text"),
-                 tags$li("add text"),
-                 tags$li("add text")
-               )),
-               h2("add tecxt"),
-               br("add text"),
-               tags$div(tags$ul(
-                 tags$li("List"),
-                 tags$li("known"),
-                 tags$li("limitations, e.g."),
-                 tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)")
-               )),
-               h2("SUb Heading"),
-               br(
-                 "If you have any feedback on how we could further improve the accessibility of this application, please contact us at",
-                 a(href = "mailto:email@education.gov.uk", "email@education.gov.uk")
-               )
+          tags$div(tags$ul(
+            tags$li("add text"),
+            tags$li("add text"),
+            tags$li("add text")
+          )),
+          h2("add tecxt"),
+          br("add text"),
+          tags$div(tags$ul(
+            tags$li("List"),
+            tags$li("known"),
+            tags$li("limitations, e.g."),
+            tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)")
+          )),
+          h2("SUb Heading"),
+          br(
+            "If you have any feedback on how we could further improve the accessibility of this application, please contact us at",
+            a(href = "mailto:email@education.gov.uk", "email@education.gov.uk")
+          )
         )
       )
     )

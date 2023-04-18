@@ -27,18 +27,113 @@ server <- function(input, output, session) {
   hide(id = "loading-content", anim = TRUE, animType = "fade")
   show("app-content")
 
+  # ----- start of cookie code ----- #
+  observeEvent(input$cookies, {
+    if (!is.null(input$cookies)) {
+      if (!("dfe_analytics" %in% names(input$cookies))) {
+        shinyalert(
+          inputId = "cookie_consent",
+          title = "Cookie consent",
+          text = "This site uses cookies to record traffic flow using Google Analytics",
+          size = "s",
+          closeOnEsc = TRUE,
+          closeOnClickOutside = FALSE,
+          html = FALSE,
+          type = "",
+          showConfirmButton = TRUE,
+          showCancelButton = TRUE,
+          confirmButtonText = "Accept",
+          confirmButtonCol = "#AEDEF4",
+          timer = 0,
+          imageUrl = "",
+          animation = TRUE
+        )
+      } else {
+        msg <- list(
+          name = "dfe_analytics",
+          value = input$cookies$dfe_analytics
+        )
+        session$sendCustomMessage("analytics-consent", msg)
+        if ("cookies" %in% names(input)) {
+          if ("dfe_analytics" %in% names(input$cookies)) {
+            if (input$cookies$dfe_analytics == "denied") {
+              ga_msg <- list(name = paste0("_ga_", google_analytics_key))
+              session$sendCustomMessage("cookie-remove", ga_msg)
+            }
+          }
+        }
+      }
+    }
+  })
+
+  observeEvent(input$cookie_consent, {
+    msg <- list(
+      name = "dfe_analytics",
+      value = ifelse(input$cookie_consent, "granted", "denied")
+    )
+    session$sendCustomMessage("cookie-set", msg)
+    session$sendCustomMessage("analytics-consent", msg)
+    if ("cookies" %in% names(input)) {
+      if ("dfe_analytics" %in% names(input$cookies)) {
+        if (input$cookies$dfe_analytics == "denied") {
+          ga_msg <- list(name = paste0("_ga_", google_analytics_key))
+          session$sendCustomMessage("cookie-remove", ga_msg)
+        }
+      }
+    }
+  })
+
+  observeEvent(input$remove, {
+    msg <- list(name = "dfe_analytics", value = "denied")
+    session$sendCustomMessage("cookie-remove", msg)
+    session$sendCustomMessage("analytics-consent", msg)
+  })
+
+  cookies_data <- reactive({
+    input$cookies
+  })
+
+  output$cookie_status <- renderText({
+    cookie_text_stem <- "To better understand the reach of our dashboard tools, this site uses cookies to identify numbers of unique users as part of Google Analytics. You have chosen to"
+    cookie_text_tail <- "the use of cookies on this website."
+    if ("cookies" %in% names(input)) {
+      if ("dfe_analytics" %in% names(input$cookies)) {
+        if (input$cookies$dfe_analytics == "granted") {
+          paste(cookie_text_stem, "accept", cookie_text_tail)
+        } else {
+          paste(cookie_text_stem, "reject", cookie_text_tail)
+        }
+      }
+    } else {
+      "Cookies consent has not been confirmed."
+    }
+  })
+
+  # ----- end of cookie code ----- #
+
   # Simple server stuff goes here ------------------------------------------------------------
   reactive_headlines <- reactive({
+    print(reactive_filters()$colid)
+    print(paste(input$filter1, input$filter2, input$filter3, input$filter4))
     df_py %>% filter(
       la_name == input$selectLA,
-      education_type == input$selecteducation_type,
-      time_period == input$select_year
+      time_period == input$select_year,
+      get(reactive_filters()$colid[1]) == input$filter1,
+      get(reactive_filters()$colid[2]) == input$filter2,
+      get(reactive_filters()$colid[3]) == input$filter3,
+      get(reactive_filters()$colid[4]) == input$filter4
     )
   })
 
   reactivePYtime_period <- reactive({
+    print(reactive_filters()$colid)
+    print(paste(input$filter1, input$filter2, input$filter3, input$filter4))
     df_py %>% filter(
-      la_name == input$selectLA
+      la_name == input$selectLA,
+      get(reactive_filters()$colid[1]) == input$filter1,
+      get(reactive_filters()$colid[2]) == input$filter2,
+      get(reactive_filters()$colid[3]) == input$filter3,
+      get(reactive_filters()$colid[4]) == input$filter4
     )
   })
 
@@ -70,6 +165,26 @@ server <- function(input, output, session) {
     return(breakdown)
   })
 
+  reactive_filters <- reactive({
+    filter_list %>%
+      filter(!(name %in% c(input$select_breakdown, input$select_xaxis)))
+  })
+
+  observeEvent(reactive_filters(), {
+    for (i in 1:4) {
+      cat("=============================", fill = TRUE)
+      print(reactive_filters()$name[i])
+      print(choices[reactive_filters()$colid[i]][[1]])
+      print(choices[reactive_filters()$colid[i]][[1]][1])
+      updateSelectizeInput(
+        session,
+        paste0("filter", i),
+        label = reactive_filters()$name[i],
+        choices = choices[reactive_filters()$colid[i]][[1]],
+        selected = choices[reactive_filters()$colid[i]][[1]][1]
+      )
+    }
+  })
   output$headline_title <- renderUI(
     h2(paste0("Input breakdown = ", input$select_breakdown, "you can add extra things..."))
   )
