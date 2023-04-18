@@ -55,7 +55,7 @@ homepage_panel <- function() {
                 h3("Context and purpose"),
                 p("This app is the DfE Analytical Service's R-Shiny template demonstration app and is being developed to provide a coherent styling for DfE dashboards alongside some useful example componenets that teams can adapt for their own uses."),
                 p("DfE teams using this template should avoid changing the styling and layout, keeping the header, footer and side navigation list formats."),
-                                p("You might want to add some relevant background information for your users here. For example some useful links to your EES publication, data sources and other relevant resources."),
+                p("You might want to add some relevant background information for your users here. For example some useful links to your EES publication, data sources and other relevant resources."),
                 h3("Guidance sources"),
                 p("For example, here we'll add some of the key resources we draw on to guide styling and vizualisation...")
               )
@@ -81,7 +81,7 @@ dashboard_panel <- function() {
       gov_row(
         column(
           width=12,
-        h1("Pupil Yield Data Dashboard"),
+          h1("Pupil Yield Data Dashboard"),
         ),
         column(
           width=12,
@@ -89,173 +89,173 @@ dashboard_panel <- function() {
             class = "well",
             style = "min-height: 100%; height: 100%; overflow-y: visible",
             gov_row(
-            
-      # selectizeInputs (up to 4 columns, if 4 columns set to width 3 each)
-      # column 1   
-                gov_row(         
+              
+              # selectizeInputs (up to 4 columns, if 4 columns set to width 3 each)
+              # column 1   
+              gov_row(         
                 column(
                   width=4,
-                selectizeInput(
-                inputId = "selectArea",
-                label = "Choose a Geography:",
-                choices = choicesgeographic_level
-              )),
-              column(
-                width=4,
-                selectizeInput(
-                inputId = "selectLA",
-                label = "Choose a LA:",
-                choices = choicesLAs,
-                selected="LA1"
-              )),
-              column(
-                width=4,
-                selectizeInput(
-                inputId = "select_year",
-                label = "Choose a Year:",
-                choices = choicesYears,
-                selected=max(choicesYears)
-              ))
+                  selectizeInput(
+                    inputId = "selectArea",
+                    label = "Choose a Geography:",
+                    choices = choicesgeographic_level
+                  )),
+                column(
+                  width=4,
+                  selectizeInput(
+                    inputId = "selectLA",
+                    label = "Choose a LA:",
+                    choices = choicesLAs,
+                    selected="LA1"
+                  )),
+                column(
+                  width=4,
+                  selectizeInput(
+                    inputId = "select_year",
+                    label = "Choose a Year:",
+                    choices = choicesYears,
+                    selected=max(choicesYears)
+                  ))
               ),
               p("Choose the chart variables here:"),
               gov_row(
                 column(
                   width=4,
                   selectizeInput(
-                  inputId='select_xaxis',
-                  label='Choose x-axis variable',
-                  choices = c('School phase', 'School type', 'Housing type', 'Tenure', 'Early years uplift', 'Number of bedrooms')
-                )),
+                    inputId='select_xaxis',
+                    label='Choose x-axis variable',
+                    choices = c('School phase', 'School type', 'Housing type', 'Tenure', 'Number of bedrooms')
+                  )),
                 column(
                   width=4,
                   selectizeInput(
-                  inputId='select_breakdown',
-                  label='Choose breakdown variable',
-                  choices = c('Tenure', 'Housing type', 'Early years uplift', 'Number of bedrooms', 'School phase', 'School type')
-                ))
+                    inputId='select_breakdown',
+                    label='Choose breakdown variable',
+                    choices = c('Tenure', 'Housing type', 'Number of bedrooms', 'School phase', 'School type')
+                  ))
                 
               ),
               gov_row(
-
-       # selectizeInput(
-       #   inputId = "selectphase_type",
-       #   label = "Choose a Pupil Yield Type:",
-       #   choices = choicesPhase
-       # )), 
-        
-        # column 2  
-        column(
-          width = 4,
-          selectizeInput(
-            inputId = "selecteducation_type",
-            label = "Choose an Education Type:",
-            choices = choiceseducation_type,
-            selected="Mainstream"
-          ),
-          selectizeInput(
-            inputId = "selecteducation_phase",
-            label = "Choose a Phase:",
-            choices = choicesPhase,
-            selected="Primary"
-        )),
-        
-        # column 3
-        column(
-          width = 4,
-          selectizeInput("selecthousing_type",
-                         "Choose a Housing Type:",
-                         choices = choiceshousing
-          ),
-          selectizeInput(
-            inputId = "selecttenure",
-            label = "Choose a Tenure:",
-            choices = choicestenure
-          ),
-          selectizeInput(
-            inputId = "selectnumner_beds",
-            label = "Choose the number of bedrooms:",
-            choices = choicesnumber_beds
-          )),
-        
-        
-        # column 4
-        column(
-          width = 4,
-          selectizeInput(
-            inputId = "selectearly_years_uplift",
-            label = "Early Years Uplift:",
-            choices = choicesearly_years_uplift
-          ))
-        ),
-        
-        column(
-          width = 12,
-          paste("Download the underlying data for this dashboard:"), br(),
-          downloadButton(
-            outputId = "download_data",
-            label= "Download data",
-            icon = shiny::icon("download"),
-            class = "downloadButton"
-          )
-        ))
+                
+                # selectizeInput(
+                #   inputId = "selectphase_type",
+                #   label = "Choose a Pupil Yield Type:",
+                #   choices = choicesPhase
+                # )), 
+                
+                # column 2  
+                column(
+                  width = 4,
+                  selectizeInput(
+                    inputId = "selecteducation_type",
+                    label = "Choose an Education Type:",
+                    choices = choiceseducation_type,
+                    selected="Mainstream"
+                  ),
+                  selectizeInput(
+                    inputId = "selecteducation_phase",
+                    label = "Choose a Phase:",
+                    choices = choicesPhase,
+                    selected="Primary"
+                  )),
+                
+                # column 3
+                column(
+                  width = 4,
+                  selectizeInput("selecthousing_type",
+                                 "Choose a Housing Type:",
+                                 choices = choiceshousing
+                  ),
+                  selectizeInput(
+                    inputId = "selecttenure",
+                    label = "Choose a Tenure:",
+                    choices = choicestenure
+                  ),
+                  selectizeInput(
+                    inputId = "selectnumner_beds",
+                    label = "Choose the number of bedrooms:",
+                    choices = choicesnumber_beds
+                  )),
+                
+                
+                # column 4
+                column(
+                  width = 4,
+                  selectizeInput(
+                    inputId = "selectearly_years_uplift",
+                    label = "Early Years Uplift:",
+                    choices = choicesearly_years_uplift
+                  ))
+              ),
+              
+              column(
+                width = 12,
+                paste("Download the underlying data for this dashboard:"), br(),
+                downloadButton(
+                  outputId = "download_data",
+                  label= "Download data",
+                  icon = shiny::icon("download"),
+                  class = "downloadButton"
+                )
+              ))
           )
         ),
         
         column(
           width=12,
-               tabsetPanel(id = "tabsetpanels",
-                 tabPanel(
-                   "Headlines",
-                   fluidRow(
-                     column(
-                       width=12,
-          h2("Outputs 1 (h2)"),
-          valueBoxOutput("boxavgRevBal", width = 6),
-          valueBoxOutput("boxpcRevBal", width = 6),
-          box(
-            width=12,
-          plotlyOutput("bar_headlines")))
-        )
-        ),
-        tabPanel(
-          "Peaks & Averages",
-          fluidRow(
-            column(
-              width=12,
-          h2("Outputs 2 (h2)"),
-          p("This is the standard paragraph style for adding guiding info around data content."),
-          column(
-            width=6,
-            box(
-              width=12,
-              plotlyOutput("linePYtime_period")
-            )
-          ),
-          column(
-            width=6,
-            div(
-              class = "well",
-              style = "min-height: 100%; height: 100%; overflow-y: visible",
-              fluidRow(
-                column(
-                  width=12,
-                  selectizeInput("selectBenchLAs",
-                                 "Select benchamrk LAs",
-                                 choices = choicesLAs,
-                                 multiple=TRUE,
-                                 options = list(maxItems = 3)
-                  )
-                )
-                  )
-              ),
-                dataTableOutput("tabBenchmark")
-          ))
-        ))
-              )
+          tabsetPanel(id = "tabsetpanels",
+                      tabPanel(
+                        "Headlines",
+                        fluidRow(
+                          column(
+                            width=12,
+                            h2("Insert auto title here"),
+                            valueBoxOutput("boxavgRevBal", width = 6),
+                            valueBoxOutput("boxpcRevBal", width = 6),
+                            box(
+                              width=12,
+                              plotlyOutput("bar_headlines")))
+                        )
+                      ),
+                      tabPanel(
+                        "Peaks & Averages",
+                        fluidRow(
+                          column(
+                            width=12,
+                            h2("Pupil Yield showing peak and average"),
+                            p("This is the standard paragraph style for adding guiding info around data content."),
+                            column(
+                              width=6,
+                              box(
+                                width=12,
+                                plotlyOutput("linePYtime_period")
+                              )
+                            ),
+                            column(
+                              width=6,
+                              div(
+                                class = "well",
+                                style = "min-height: 100%; height: 100%; overflow-y: visible",
+                                fluidRow(
+                                  column(
+                                    width=12,
+                                    selectizeInput("selectBenchLAs",
+                                                   "Select benchamrk LAs",
+                                                   choices = choicesLAs,
+                                                   multiple=TRUE,
+                                                   options = list(maxItems = 3)
+                                    )
+                                  )
+                                )
+                              ),
+                              dataTableOutput("tabBenchmark")
+                            ))
+                        ))
+          )
         )
         # add box to show user input
-)
-          )
+      )
+    )
   )
 }
 
@@ -295,3 +295,4 @@ technical_panel <- function() {
     )
   )
 }
+
