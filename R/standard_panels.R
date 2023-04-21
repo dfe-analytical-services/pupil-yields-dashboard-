@@ -75,5 +75,18 @@ support_links <- function() {
         )
       )
     )
+    )
+  }
+
+technical_panel <- function(){
+  tabPanel(
+    "Technical",
+    gov_row(
+      column(
+        width=12,
+        h2("Technical documentation"),
+        p("")
+      )
+    )
   )
 }

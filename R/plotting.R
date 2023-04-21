@@ -5,7 +5,7 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
   ) +
     geom_bar(stat = "identity", position = "dodge") +
     theme_classic() +
-    scale_fill_manual(values = dfe_palette, name=breakdown) +
+    scale_fill_manual(values = dfe_palette, name = breakdown) +
     theme(
       text = element_text(size = 12),
       axis.title.x = element_text(margin = margin(t = 12)),
@@ -17,20 +17,19 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
     ylab("Pupil yield")
 }
 
-create_py_time_period <- function(dfPY){
+create_py_time_period <- function(dfPY) {
   print(dfPY)
-  dfPY_filtered <- dfPY %>% filter(tenure=='All', housing=='All', number_of_bedrooms=='All', education_phase=='Secondary')
+  dfPY_filtered <- dfPY %>% filter(tenure == "All", housing == "All", number_of_bedrooms == "All", education_phase == "Secondary")
   mean_py <- mean(dfPY_filtered$pupil_yield)
   print(dfPY_filtered)
   print(mean_py)
   ggplot(dfPY_filtered, aes(
-    x=time_period,
-    y=pupil_yield,
-    color=education_phase
-    )
-         ) + 
-    geom_line() +       
-    geom_hline(yintercept=mean_py) +
+    x = time_period,
+    y = pupil_yield,
+    color = education_phase
+  )) +
+    geom_line() +
+    geom_hline(yintercept = mean_py) +
     theme_classic() +
     theme(
       text = element_text(size = 12),
