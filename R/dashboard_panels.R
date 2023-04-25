@@ -151,7 +151,7 @@ dashboard_panel <- function() {
                   selectizeInput(
                     inputId = "select_xaxis",
                     label = "Choose x-axis variable",
-                    choices = filter_list$name
+                    choices = filter_list%>% filter(!(name%in% c("Housing type","Tenure")))%>%pull(name)
                   )
                 ),
                 column(
