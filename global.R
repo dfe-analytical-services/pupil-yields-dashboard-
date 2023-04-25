@@ -96,6 +96,8 @@ source("R/read_data.R")
 df_py <- read_data()
 # Get geographical levels from data
 
+df_py$education_phase <- factor(df_py$education_phase, levels = )
+
 choicesgeographic_level <- unique(df_py$geographic_level)
 
 choicesLAs <- unique(df_py$la_name) %>% sort()
@@ -107,18 +109,10 @@ filter_list <- data.frame(
   colid = c("education_phase", "education_type", "housing", "tenure", "number_of_bedrooms")
 )
 
-choices <- list(
-  education_type = unique(df_py$education_type) %>% sort(),
-  education_phase = unique(df_py$education_phase),
-  housing = unique(df_py$housing),
-  tenure = unique(df_py$tenure),
-  number_of_bedrooms = unique(df_py$number_of_bedrooms),
-  early_years_uplift = unique(df_py$early_years_uplift)
-)
-
 choiceseducation_type <- unique(df_py$education_type) %>% sort()
 
-choicesPhase <- unique(df_py$education_phase)
+choicesPhase <- c("Early Years", "Primary", "Secondary", "Post-16", "SP/Alternative")
+df_py$education_phase <- factor(df_py$education_phase, levels = choicesPhase)
 
 # choicesaffordability <- unique(df_py$affordability)
 
@@ -135,5 +129,15 @@ choicestenure <- unique(df_py$tenure) %>% sort()
 choicesnumber_beds <- unique(df_py$number_of_bedrooms) %>% sort()
 
 choicesearly_years_uplift <- unique(df_py$early_years_uplift)
+
+choices <- list(
+  education_type = choiceseducation_type,
+  education_phase = choicesPhase,
+  housing = choiceshousing,
+  tenure = choicestenure,
+  number_of_bedrooms = choicesnumber_beds,
+  early_years_uplift = choicesearly_years_uplift
+)
+
 
 dfe_palette <- c("#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1")

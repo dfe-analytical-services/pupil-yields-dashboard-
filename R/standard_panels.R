@@ -75,7 +75,7 @@ support_links <- function() {
         )
       )
     )
-    )
-  }
+  )
+}
 
 

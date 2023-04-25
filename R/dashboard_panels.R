@@ -147,7 +147,7 @@ dashboard_panel <- function() {
               ),
               gov_row(
                 column(
-                  width = 6,
+                  width = 4,
                   selectizeInput(
                     inputId = "select_xaxis",
                     label = "Choose x-axis variable",
@@ -155,7 +155,7 @@ dashboard_panel <- function() {
                   )
                 ),
                 column(
-                  width = 6,
+                  width = 4,
                   selectizeInput(
                     inputId = "select_breakdown",
                     label = "Choose breakdown variable",
@@ -169,13 +169,16 @@ dashboard_panel <- function() {
                   tags$h2("Choose the chart filters here:"),
                 ),
                 column(
-                  width = 6,
+                  width = 4,
                   selectizeInput(
                     inputId = "filter1",
                     label = "Choose a Phase:",
                     choices = choicesPhase,
                     selected = "Primary"
-                  ),
+                  )
+                ),
+                column(
+                  width = 4,
                   selectizeInput(
                     inputId = "filter2",
                     choices = choiceseducation_type,
@@ -183,10 +186,8 @@ dashboard_panel <- function() {
                     selected = "Mainstream"
                   )
                 ),
-
-                # column 3
                 column(
-                  width = 6,
+                  width = 4,
                   selectizeInput("filter3",
                     "Choose a Housing Type:",
                     choices = choiceshousing
