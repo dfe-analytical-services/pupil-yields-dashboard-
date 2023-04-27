@@ -16,9 +16,9 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
   # latest test data.
   df <- read.csv(file)
   df$time_period <- paste(
-    substr(df$time_period,1,4),
-    substr(df$time_period,5,6),
-    sep='/'
-    )
+    substr(df$time_period, 1, 4),
+    substr(df$time_period, 5, 6),
+    sep = "/"
+  )
   return(df)
 }

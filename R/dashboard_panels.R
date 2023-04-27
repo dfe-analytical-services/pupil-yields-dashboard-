@@ -151,8 +151,8 @@ dashboard_panel <- function() {
                   selectizeInput(
                     inputId = "select_xaxis",
                     label = "Choose x-axis variable",
-                    choices = filter_list%>% filter(!(name%in% c("Early years uplift")))%>%pull(name),
-                    selected="School phase"
+                    choices = filter_list %>% filter(!(name %in% c("Early years uplift"))) %>% pull(name),
+                    selected = "School phase"
                   )
                 ),
                 column(
@@ -160,7 +160,7 @@ dashboard_panel <- function() {
                   selectizeInput(
                     inputId = "select_breakdown",
                     label = "Choose breakdown variable",
-                    choices = filter_list %>% filter(!(name%in% c("Housing type","Tenure")))%>%pull(name),
+                    choices = filter_list %>% filter(!(name %in% c("Housing type", "Tenure"))) %>% pull(name),
                     selected = "Housing type"
                   )
                 )
@@ -176,7 +176,7 @@ dashboard_panel <- function() {
                     inputId = "filter1",
                     label = "Choose a Phase:",
                     choices = choicesPhase,
-                    selected = 'All'
+                    selected = "All"
                   )
                 ),
                 column(
@@ -185,7 +185,7 @@ dashboard_panel <- function() {
                     inputId = "filter2",
                     choices = choiceseducation_type,
                     label = "Choose an Education Type:",
-                    selected = 'All'
+                    selected = "All"
                   )
                 ),
                 column(
@@ -193,15 +193,15 @@ dashboard_panel <- function() {
                   selectizeInput("filter3",
                     "Choose a Housing Type:",
                     choices = choiceshousing,
-                    selected = 'All'
+                    selected = "All"
                   )
                 ),
                 column(
                   width = 3,
                   selectizeInput("filter4",
-                                 "Choose Early Years Uplift:",
-                                 choices = choicesearly_years_uplift,
-                                 selected = 'All'
+                    "Choose Early Years Uplift:",
+                    choices = choicesearly_years_uplift,
+                    selected = "All"
                   ),
                 )
               )
