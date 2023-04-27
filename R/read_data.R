@@ -15,5 +15,10 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
   # This reads in an example file. For the purposes of this demo, we're using the
   # latest test data.
   df <- read.csv(file)
+  df$time_period <- paste(
+    substr(df$time_period,1,4),
+    substr(df$time_period,5,6),
+    sep='/'
+    )
   return(df)
 }

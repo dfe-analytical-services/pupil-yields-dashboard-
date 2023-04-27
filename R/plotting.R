@@ -1,11 +1,11 @@
 create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
   ggplot(
     df,
-    aes(x = get(xaxis), y = pupil_yield, fill = get(breakdown))
+    aes(x = get(xaxis$colid), y = pupil_yield, fill = get(breakdown$colid))
   ) +
     geom_bar(stat = "identity", position = "dodge") +
     theme_classic() +
-    scale_fill_manual(values = dfe_palette, name = breakdown) +
+    scale_fill_manual(values = dfe_palette, name = breakdown$name) +
     theme(
       text = element_text(size = 12),
       axis.title.x = element_text(margin = margin(t = 12)),
@@ -13,7 +13,7 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
       axis.line = element_line(size = 1.0),
       legend.position = "top"
     ) +
-    xlab(xaxis) +
+    xlab(xaxis$name) +
     ylab("Pupil yield")
 }
 
