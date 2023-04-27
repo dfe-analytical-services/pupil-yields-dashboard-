@@ -77,5 +77,3 @@ support_links <- function() {
     )
   )
 }
-
-
