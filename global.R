@@ -103,6 +103,8 @@ choicesgeographic_level <- unique(df_py$geographic_level)
 choicesLAs <- unique(df_py$la_name) %>% sort()
 
 choicesYears <- unique(df_py$time_period) %>% sort(decreasing = TRUE)
+df_py$time_period <- factor(df_py$time_period, levels = choicesYears %>% sort())
+
 
 filter_list <- data.frame(
   name = c("School phase", "School type", "Housing type", "Number of bedrooms", "Tenure", "Early years uplift"),
