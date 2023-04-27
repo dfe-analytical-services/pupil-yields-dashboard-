@@ -6,4 +6,5 @@ data/some_unpublished_data.csv,unpublished
 data/TestTotalYieldsTable.csv,unpublished
 data/TestTotalYields_tidy.csv,unpublished
 data/TestTotalYieldsTable_tidy.csv,unpublished
+data/TechnicalTable.csv,reference
 data/YieldsDummyData.csv,dummy

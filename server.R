@@ -282,7 +282,7 @@ server <- function(input, output, session) {
       write.csv(df_py, file)
     }
   )
-
+output$technicaltable<-renderTable(technical_table)
 
   # Stop app ---------------------------------------------------------------------------------
 
@@ -290,3 +290,5 @@ server <- function(input, output, session) {
     stopApp()
   })
 }
+
+
