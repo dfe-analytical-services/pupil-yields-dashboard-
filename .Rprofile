@@ -12,6 +12,8 @@ cat("Sourcing .Rprofile.", fill = TRUE)
 
 source("renv/activate.R")
 
+options(repos = "https://cran.r-project.com")
+
 # Tidy code function
 tidy_code <- function() {
   source("global.r")

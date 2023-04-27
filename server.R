@@ -113,13 +113,14 @@ server <- function(input, output, session) {
   # Simple server stuff goes here ------------------------------------------------------------
   reactive_headlines <- reactive({
     print(reactive_filters()$colid)
-    print(paste(input$filter1, input$filter2, input$filter3))
+    print(paste(input$filter1, input$filter2, input$filter3, input$filter3))
     df_py %>% filter(
       la_name == input$selectLA,
       time_period == input$select_year,
       get(reactive_filters()$colid[1]) == input$filter1,
       get(reactive_filters()$colid[2]) == input$filter2,
       get(reactive_filters()$colid[3]) == input$filter3,
+      get(reactive_filters()$colid[4]) == input$filter4
     )
   })
 
@@ -130,31 +131,11 @@ server <- function(input, output, session) {
   })
 
   reactive_xaxis <- reactive({
-    xaxis <- tolower(gsub(" ", "_", input$select_xaxis))
-    if (input$select_xaxis == "School phase") {
-      xaxis <- "education_phase"
-    } else if (input$select_xaxis == "Tenure") {
-      xaxis <- "tenure"
-    } else if (input$select_xaxis == "Housing type") {
-      xaxis <- "housing"
-    } else if (input$select_xaxis == "School type") {
-      xaxis <- "education_type"
-    }
-    return(xaxis)
+    filter_list %>% filter(name == input$select_xaxis)
   })
 
   reactive_breakdown <- reactive({
-    breakdown <- tolower(gsub(" ", "_", input$select_breakdown))
-    if (input$select_breakdown == "School phase") {
-      breakdown <- "education_phase"
-    } else if (input$select_breakdown == "Tenure") {
-      breakdown <- "tenure"
-    } else if (input$select_breakdown == "Housing type") {
-      breakdown <- "housing"
-    } else if (input$select_breakdown == "School type") {
-      breakdown <- "education_type"
-    }
-    return(breakdown)
+    filter_list %>% filter(name == input$select_breakdown)
   })
 
   reactive_filters <- reactive({
@@ -162,18 +143,25 @@ server <- function(input, output, session) {
       filter(!(name %in% c(input$select_breakdown, input$select_xaxis)))
   })
 
+  observeEvent(
+    input$select_xaxis,
+    {
+      updateSelectizeInput(
+        session, "select_breakdown",
+        choices = filter_list %>% filter(name != input$select_xaxis, !(name %in% c("Housing type", "Tenure", "Early years uplift"))) %>% pull(name)
+      )
+    }
+  )
+
   observeEvent(reactive_filters(), {
-    for (i in 1:3) {
+    for (i in 1:4) {
       cat("=============================", fill = TRUE)
-      print(reactive_filters()$name[i])
-      print(choices[reactive_filters()$colid[i]][[1]])
-      print(choices[reactive_filters()$colid[i]][[1]][1])
       updateSelectizeInput(
         session,
         paste0("filter", i),
         label = reactive_filters()$name[i],
         choices = choices[reactive_filters()$colid[i]][[1]],
-        selected = choices[reactive_filters()$colid[i]][[1]][1]
+        selected = reactive_filters()$default[i]
       )
     }
   })

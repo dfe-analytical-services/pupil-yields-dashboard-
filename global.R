@@ -102,11 +102,14 @@ choicesgeographic_level <- unique(df_py$geographic_level)
 
 choicesLAs <- unique(df_py$la_name) %>% sort()
 
-choicesYears <- unique(df_py$time_period)
+choicesYears <- unique(df_py$time_period) %>% sort(decreasing = TRUE)
+df_py$time_period <- factor(df_py$time_period, levels = choicesYears %>% sort())
+
 
 filter_list <- data.frame(
-  name = c("School phase", "School type", "Housing type", "Tenure", "Number of bedrooms"),
-  colid = c("education_phase", "education_type", "housing", "tenure", "number_of_bedrooms")
+  name = c("School phase", "School type", "Housing type", "Number of bedrooms", "Tenure", "Early years uplift"),
+  colid = c("education_phase", "education_type", "housing", "number_of_bedrooms", "tenure", "early_years_uplift"),
+  default = c("Early years", "Mainstream", "All", "All", "All", "Off")
 )
 
 choiceseducation_type <- unique(df_py$education_type) %>% sort()
@@ -116,19 +119,19 @@ df_py$education_phase <- factor(df_py$education_phase, levels = choicesPhase)
 
 # choicesaffordability <- unique(df_py$affordability)
 
-choicesnumber_developments <- unique(df_py$number_developments)
+choicesnumber_developments <- c("All", unique(df_py$number_developments) %>% sort()) %>% unique()
 
 # choicesrurality <- unique(df_py$rurality)
 
-choiceshousing <- unique(df_py$housing) %>% sort()
+choiceshousing <- c("All", unique(df_py$housing) %>% sort()) %>% unique()
 
-choicestenure <- unique(df_py$tenure) %>% sort()
+choicestenure <- c("All", unique(df_py$tenure) %>% sort()) %>% unique()
 
 # choiceshimidlow <- unique(df_py$himidlow)
 
-choicesnumber_beds <- unique(df_py$number_of_bedrooms) %>% sort()
+choicesnumber_beds <- c("All", unique(df_py$number_of_bedrooms) %>% sort()) %>% unique()
 
-choicesearly_years_uplift <- unique(df_py$early_years_uplift)
+choicesearly_years_uplift <- c("All", unique(df_py$early_years_uplift) %>% sort()) %>% unique()
 
 choices <- list(
   education_type = choiceseducation_type,

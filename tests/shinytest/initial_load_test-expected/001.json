@@ -1,6 +1,16 @@
 {
   "input": {
-
+    "filter1": "All",
+    "filter2": "All",
+    "filter3": "All",
+    "filter4": "Off",
+    "navlistPanel": "Homepage",
+    "select_breakdown": "School type",
+    "select_xaxis": "School phase",
+    "select_year": "2021/22",
+    "selectArea": "Unitary",
+    "selectLA": "LA1 Rural",
+    "tabsetpanels": "Headlines"
   },
   "output": {
 
