@@ -91,14 +91,14 @@ server <- function(input, output, session) {
       tableOutput("table_timeseries")
     }
   })
-  
+
   output$table_timeseries <- renderTable({
     df <- reactivePYtime_period() %>%
       select(time_period, la_name, education_phase, number_of_pupils, completed_properties_in_fy, pupil_yield)
-    colnames(df) <- c('Financial year', 'Local authority', 'School phase', '# pupils', 'Completed properties', 'Pupil yield')
+    colnames(df) <- c("Financial year", "Local authority", "School phase", "# pupils", "Completed properties", "Pupil yield")
     return(df)
   })
-  
+
   observeEvent(input$cookie_consent, {
     msg <- list(
       name = "dfe_analytics",
@@ -161,7 +161,7 @@ server <- function(input, output, session) {
   reactivePYtime_period <- reactive({
     df_py %>% filter(
       la_name == input$selectLA,
-      tenure == "All", housing == "All", number_of_bedrooms == "All", 
+      tenure == "All", housing == "All", number_of_bedrooms == "All",
       education_phase == "Secondary"
     )
   })
