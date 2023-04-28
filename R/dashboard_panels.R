@@ -220,7 +220,13 @@ dashboard_panel <- function() {
                   p("This is the standard paragraph style for adding guiding info around data content."),
                   column(
                     width = 12,
-                    plotlyOutput("linePYtime_period")
+                    radioGroupButtons(
+                      "timetab_toggle",
+                      label = NULL,
+                      choices = c("Chart", "Table"),
+                      selected = "Chart"
+                    ),
+                    uiOutput("timeseries_data")
                   )
                 )
               )

@@ -18,7 +18,7 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
 }
 
 create_py_time_period <- function(dfPY) {
-  dfPY_filtered <- dfPY %>% filter(tenure == "All", housing == "All", number_of_bedrooms == "All", education_phase == "Secondary")
+  dfPY_filtered <- dfPY
   mean_py <- mean(dfPY_filtered$pupil_yield)
   ggplot(dfPY_filtered, aes(
     x = time_period,
