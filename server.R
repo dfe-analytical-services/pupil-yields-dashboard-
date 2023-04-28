@@ -66,26 +66,26 @@ server <- function(input, output, session) {
   })
 
   output$headlines_data <- renderUI({
-    if(input$bartab_toggle=='Chart'){
+    if (input$bartab_toggle == "Chart") {
       plotlyOutput("bar_headlines")
     } else {
       tableOutput("table_headlines")
     }
   })
-  
+
   output$table_headlines <- renderTable({
     print(reactive_headlines())
     print(reactive_xaxis())
-    df <- reactive_headlines() %>% 
-      select(time_period, la_name,reactive_xaxis()$colid,reactive_breakdown()$colid,'pupil_yield') %>%
+    df <- reactive_headlines() %>%
+      select(time_period, la_name, reactive_xaxis()$colid, reactive_breakdown()$colid, "pupil_yield") %>%
       pivot_wider(
-        names_from=reactive_xaxis()$colid, 
-        values_from='pupil_yield'
-      ) 
-    colnames(df)[1:3] <- c('Academic Year', "Local Authority", reactive_breakdown()$name)
+        names_from = reactive_xaxis()$colid,
+        values_from = "pupil_yield"
+      )
+    colnames(df)[1:3] <- c("Academic Year", "Local Authority", reactive_breakdown()$name)
     return(df)
   })
-  
+
   observeEvent(input$cookie_consent, {
     msg <- list(
       name = "dfe_analytics",
@@ -291,7 +291,7 @@ server <- function(input, output, session) {
       write.csv(df_py, file)
     }
   )
-output$technicaltable<-renderTable(technical_table)
+  output$technicaltable <- renderTable(technical_table)
 
   # Stop app ---------------------------------------------------------------------------------
 
@@ -299,5 +299,3 @@ output$technicaltable<-renderTable(technical_table)
     stopApp()
   })
 }
-
-
