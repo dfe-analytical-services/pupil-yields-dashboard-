@@ -107,15 +107,6 @@ dashboard_panel <- function() {
                     choices = choicesLAs,
                     selected = "LA1"
                   )
-                ),
-                column(
-                  width = 4,
-                  selectizeInput(
-                    inputId = "select_year",
-                    label = "Choose a Year:",
-                    choices = choicesYears,
-                    selected = choicesYears[1]
-                  )
                 )
               ),
               column(
@@ -141,7 +132,13 @@ dashboard_panel <- function() {
                 column(
                   width = 12,
                   uiOutput("headline_title"),
-                  plotlyOutput("bar_headlines")
+                  radioGroupButtons(
+                    "bartab_toggle",
+                    label=NULL, 
+                    choices=c("Chart",'Table'), 
+                    selected="Chart"
+                    ),
+                  uiOutput("headlines_data")
                 )
               ),
               gov_row(
@@ -161,6 +158,15 @@ dashboard_panel <- function() {
                     label = "Choose breakdown variable",
                     choices = filter_list %>% filter(!(name %in% c("Housing type", "Tenure"))) %>% pull(name),
                     selected = "Housing type"
+                  )
+                ),
+                column(
+                  width = 4,
+                  selectizeInput(
+                    inputId = "select_year",
+                    label = "Choose a Year:",
+                    choices = choicesYears,
+                    selected = choicesYears[1]
                   )
                 )
               ),
