@@ -65,6 +65,40 @@ server <- function(input, output, session) {
     }
   })
 
+  output$headlines_data <- renderUI({
+    if (input$bartab_toggle == "Chart") {
+      plotlyOutput("bar_headlines")
+    } else {
+      tableOutput("table_headlines")
+    }
+  })
+
+  output$table_headlines <- renderTable({
+    df <- reactive_headlines() %>%
+      select(time_period, la_name, reactive_xaxis()$colid, reactive_breakdown()$colid, "pupil_yield") %>%
+      pivot_wider(
+        names_from = reactive_xaxis()$colid,
+        values_from = "pupil_yield"
+      )
+    colnames(df)[1:3] <- c("Financial Year", "Local authority", reactive_breakdown()$name)
+    return(df)
+  })
+
+  output$timeseries_data <- renderUI({
+    if (input$timetab_toggle == "Chart") {
+      plotlyOutput("linePYtime_period")
+    } else {
+      tableOutput("table_timeseries")
+    }
+  })
+
+  output$table_timeseries <- renderTable({
+    df <- reactivePYtime_period() %>%
+      select(time_period, la_name, education_phase, number_of_pupils, completed_properties_in_fy, pupil_yield)
+    colnames(df) <- c("Financial year", "Local authority", "School phase", "# pupils", "Completed properties", "Pupil yield")
+    return(df)
+  })
+
   observeEvent(input$cookie_consent, {
     msg <- list(
       name = "dfe_analytics",
@@ -113,7 +147,7 @@ server <- function(input, output, session) {
   # Simple server stuff goes here ------------------------------------------------------------
   reactive_headlines <- reactive({
     print(reactive_filters()$colid)
-    print(paste(input$filter1, input$filter2, input$filter3, input$filter3))
+    print(paste(input$filter1, input$filter2, input$filter3, input$filter4))
     df_py %>% filter(
       la_name == input$selectLA,
       time_period == input$select_year,
@@ -126,7 +160,9 @@ server <- function(input, output, session) {
 
   reactivePYtime_period <- reactive({
     df_py %>% filter(
-      la_name == input$selectLA
+      la_name == input$selectLA,
+      tenure == "All", housing == "All", number_of_bedrooms == "All",
+      education_phase == "Secondary"
     )
   })
 
@@ -270,7 +306,7 @@ server <- function(input, output, session) {
       write.csv(df_py, file)
     }
   )
-output$technicaltable<-renderTable(technical_table)
+  output$technicaltable <- renderTable(technical_table)
 
   # Stop app ---------------------------------------------------------------------------------
 
@@ -278,5 +314,3 @@ output$technicaltable<-renderTable(technical_table)
     stopApp()
   })
 }
-
-
