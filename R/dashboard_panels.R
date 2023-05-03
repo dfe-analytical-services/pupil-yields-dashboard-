@@ -206,7 +206,7 @@ dashboard_panel <- function() {
                   selectizeInput("filter4",
                     "Choose Early Years Uplift:",
                     choices = choicesearly_years_uplift,
-                    selected = "All"
+                    selected = "Off"
                   ),
                 )
               )
