@@ -81,6 +81,7 @@ dashboard_panel <- function() {
         column(
           width = 12,
           h1("Pupil Yield Data Dashboard"),
+          p("This draft Pupil Yield Data Dashboard (which is still under development ) includes anonymous/dummy data from four local authorities at present."),
         ),
         column(
           width = 12,
