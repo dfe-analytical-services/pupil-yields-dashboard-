@@ -132,7 +132,7 @@ choicestenure <- c("All", unique(df_py$tenure) %>% sort()) %>% unique()
 
 choicesnumber_beds <- c("All", unique(df_py$number_of_bedrooms) %>% sort()) %>% unique()
 
-choicesearly_years_uplift <- c("All", unique(df_py$early_years_uplift) %>% sort()) %>% unique()
+choicesearly_years_uplift <- c(unique(df_py$early_years_uplift) %>% sort()) %>% unique()
 
 choices <- list(
   education_type = choiceseducation_type,
