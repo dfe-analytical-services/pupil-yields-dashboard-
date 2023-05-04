@@ -247,36 +247,61 @@ technical_panel <- function() {
         column(
           width = 12,
           h1("Technical Details"),
+          
           h2("Data Sources"),
           p("Data for this project were obtained from the Ordnance Survey (OS) under the Public Sector Geospatial Agreement (PSGA), the ONS, and the National Pupil Database (NPD) which is held by the Department for Education. All data sources and their use are described in the relevant sections below."),
+          
           h2("OS New Build Data"),
           p("The OS build-out data is provided by the Ordnance Survey (OS) Consultancy and Technical Services team as derived content, using OS AddressBase to identify new build or newly developed properties."),
-          p("For more information, including how to access the OS AddressBase, see OS information about the Public Sector Geospatial Agreement (PSGA), which is available to all public sector organisations. DfE received AddressBase data from OS in June 2022."),
+          p("For more information, including how to access the OS AddressBase, see", a(href = "https://www.ordnancesurvey.co.uk/customers/public-sector/public-sector-geospatial-agreement", " OS information"), ".
+about the Public Sector Geospatial Agreement (PSGA), which is available to all public sector organisations. DfE received AddressBase data from OS in June 2022."),
+          
         )
       ),
+      
       h2("National Pupil Database"),
       p("DfE stores all pupil information from the National Pupil Database centrally in the Pupil Data Repository (PDR). This contains returns from the termly School Census, alongside many other datasets. For this project, the School Census provided the primary data source, given that it contains pupil addresses and ages. We supplemented this with the Early Years (EY) Census (pupil-level returns from providers with children in receipt of a government funded place), the Alternative Provision Census (such as special schools, in-patients at hospitals, etc.), the Pupil Referral Unit (PRU) census (for years 2009-2012, after which pupils are included in the School Census), and the Individualised Learner Record (ILR) for all young people in Further Education (FE). This data is required to build accurate pupil profiles within new developments, allowing education type, phase and Special Educational Needs (SEN) to be constructed and analysed, and broken down by housing type, tenure and size (bedroom numbers)."),
       p("If replicating this pupil yield research in future, local authorities would use the pupil census returns from their area to identify addresses and other information."),
+      
       h2("Data Cleaning"),
-      p("DfE cleaned the pupil data before attempting address matching to remove formatting inconsistencies and human errors and identify any missing data. Data cleaning of the OS new build data was sone in R Studio, and the data cleaning of the pupil census data was done in SQL Server Management Studio. With increased use of Unique Property Reference Numbers (UPRNs) in pupil census collections in future years, such data cleaning should become unnecessary."),
+      p("DfE cleaned the pupil data before attempting address matching to remove formatting inconsistencies and human errors and identify any missing data. Data cleaning of the OS new build data was done in R Studio, and the data cleaning of the pupil census data was done in SQL Server Management Studio. With increased use of Unique Property Reference Numbers (UPRNs) in pupil census collections in future years, such data cleaning should become unnecessary."),
+     
       h2("OS Residential New Build Data"),
       tableOutput("technicaltable"),
-      p("To tidy above table format"),
+      
+      h2("VOA Property Bedroom Data"),
+      p("We were provided property bedroom data by the ONS from the Valuation Office Agency (VOA). This data gives the number of bedrooms for a given UPRN. Due to issues around disclosure the ONS were not able to provide bedroom data for all properties. The VOA data was joined on to the OS new build data via the UPRN to give the number of bedrooms for each property where this was available. There was bedroom data available for 78.3% of the properties in the OS new build data. We have described below how we attributed assumed bedroom numbers to the remaining “unknowns” after pupil addresses were matched to the OS new build data."),
+      p("Using the ready date as the date the property was ready (as advised to use by OS), the number of properties completed up to the year ending 31st August was calculated. This provided a cumulative count of the completed properties from 2007 up to the start of the academic year."),
+      p("More information on the detailed method for the VOA data joining can be provided on request."),
+      
       h2("Pupil Data Repository (PDR) Data"),
       p("School Census data (and the other relevant census data) are accessed by DfE through the PDR. These data are given in whichever format a school has submitted its census details and therefore formatting and data quality are variable. Given that LAs will have access to school census data in their area, they may find it easier to source and clean data at LA level than we have at national level. More information on the detailed method for data cleaning to enable address matching can be provided on request. However, we are working with Management Information System (MIS) suppliers to enable increased use of UPRNs with pupil addresses, minimising the need for data cleaning in future."),
+      
       h2("Data Linking"),
-      p("To obtain a pupil yield for each development, property addresses needed to be matched to pupil addresses in the PDR. Before any matching began, the OS dataset was subset to only include new build developments of size ten or more dwellings which commenced and completed between January 2008 and. 2008 is the earliest year available for OS housing build-out data, and there are more development schemes in the data as the years progress."),
+      p("To obtain a pupil yield for each development, property addresses needed to be matched to pupil addresses in the PDR. Before any matching began, the OS dataset was subset to only include new build developments of size ten or more dwellings which commenced and completed between January 2008 and 2022. 2008 is the earliest year available for OS housing build-out data, and there are more development schemes in the data as the years progress."),
+      
       h2("Exact and probabilistic matching"),
       p("Due to the inconsistencies in how pupil addresses were recorded in the PDR, we employed exact and probabilistic address matching techniques to ensure accuracy and reliability in the pupil yield data. Full details of the methods used are available on request. However, we are working with MIS suppliers to enable increased use of UPRNs with pupil addresses, which should simplify the address matching process for local authorities producing similar pupil yield data in future."),
+      
       h2("Testing"),
       p("The accuracy of the address matching was tested using 200,000 addresses from the pupil census and testing how accurately they were matched to the OS new builds data. The testing was carried out by running the addresses through the exact matching and then the remaining unmatched addresses were put through the probabilistic matching. A manual check was done between the census address and new build address to determine if each match was correct. The unmatched census addresses were also checked to determine if they were correctly not matched to a new build – this was done by looking at all the properties in the postcode of the unmatched address and checking if any matched."),
       p("Testing showed that the majority of the matching came from exact matching. The partial matching was 96.41% correct, meaning that there were 3.39% of partially matched addresses that should not have been matched. The unmatched addresses were 92.85% correct, meaning that there were 7.15% of addresses that were not matched that should have been."),
       p("Overall, (assuming the percentages extend for the entire exact matched and unmatched samples), this test of 200,000 addresses provides an accuracy of 96.29%, where the error of 3.71% is made up of incorrectly matched addresses (0.27%) and missed addresses that should have matched but did not (3.45%). More information on the testing we carried out is available on request."),
+      
       h2("Matching To Census"),
       p("The address matching outlined above results in a table of pupil reference number, address as given in the census and all the relevant OS new build data. This table is then joined with the cleaned census data on pupil reference and full address to provide a final matched table that contains all the census addresses across all academic years that have been identified as a new build and has the required fields from the census and the OS new build data. The table is then to be aggregated ready to be used in the pupil yields dashboard."),
-      p("To add in VOA"),
+      p("Property bedroom data was available for 70% of the properties after address-matching. Addresses where the bedroom data was not available were labelled as ‘Unknown’. To ensure these properties were not “lost” from the data, we distributed this count across 2, 3 and 4+ bedrooms proportionally at a scheme level (or LA level when there was no bedroom data at a scheme level) by the housing type and affordable/market tenure."),
+      
       h2("Pupil Yield Analysis"),
-      p("From the linked dataset, we calculated pupil yield metrics."),
+      p("From the linked dataset, we calculated pupil yield metrics. The yields are broken down by education setting, phase, academic year, housing type, market/affordable tenure and number of bedrooms."),
+      p("Education setting: If the pupil is in an AP, PRU or special school then we defined the setting as a special setting, otherwise mainstream."),
+      p("Phase: Early years, post-16, primary, secondary and special (where special covers all phases where a pupil is in a special, AP or PRU school or is in a post 16 setting with a EHCP up to the age of 25)"),
+      p("Academic year: For each academic year we are comparing the pupil numbers in new build properties in the Spring census for that year and the number of completed properties up to that academic year. For example, in the academic year 2021/22 we compare the pupil numbers in the Spring census (in Jan 2022) and the number of completed properties up to and including 31st August 2021."),
+      p("Housing type: Flat or house as defined above"),
+      p("Property tenure: Whether affordable or market housing"),
+      p("Bedrooms: Number of bedrooms in the property if available."),
+      p("For the breakdown by housing type, market/affordable tenure and bedrooms we also have the calculation for all in each of those fields (that is the pupil yield in all housing types and/or affordability types and/or number of bedrooms)"),
+      p("Additionally, we conduct a count of pupils in special settings and those with an EHCP."),
       p("The pupil yield research aims to measure the number of pupils living in the sample of developments in each year, from pre-completion since 2008 through to 2022. Within these yield factors, a pupil is counted for every year that they live in a new build development. For example, a child would be included in annual counts for year one, two, three, etc., once they enter a new build property. They will continue to be counted even if they change phase (for instance from Primary to Secondary) but will at this point be captured in the yield factors for their new phase."),
       p("Since the national OS dataset was constructed in 2007, any new builds prior to this time are not robustly identified. As such, we included developments which both commenced and completed since 2008. Calculating pupil yield factors over this time frame helps to demonstrate when pupil yields peak and stabilise, though in many cases secondary phase pupil yields are on an upward trajectory and the data time period is not long enough to show the peak."),
       p("DfE’s pupil yield data counts all pupils living in the sample developments, whether they moved into the property from elsewhere or were born there. We have not discounted pupils who have moved within the local area, recognising that patterns of pupil migration and the backfilling of vacated properties by more incoming families will vary from place to place. Local authorities can adjust our pupil yield factors to account for local evidence, where appropriate."),
