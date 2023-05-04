@@ -202,7 +202,7 @@ server <- function(input, output, session) {
     }
   })
   output$headline_title <- renderUI(
-    h2(paste0("Pupil Yield is spilt by ",input$select_breakdown, ""))
+    h2(paste0("Pupil Yield is spilt by ",input$select_xaxis, " and ",input$select_breakdown, ""))
   )
 
   # Define server logic required to draw a histogram
