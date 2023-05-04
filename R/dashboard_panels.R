@@ -6,6 +6,7 @@ homepage_panel <- function() {
         column(
           12,
           h1("Estimating Pupil Yield from Housing Development in England"),
+          p("This draft Pupil Yield Data Dashboard (which is still under development ) includes anonymous/dummy data from four local authorities at present."),
           br(),
           br()
         ),
