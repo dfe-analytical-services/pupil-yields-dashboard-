@@ -208,14 +208,23 @@ server <- function(input, output, session) {
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({
     print(reactive_headlines())
-    ggplotly(create_bar_headline(reactive_headlines(), input$selectLA, reactive_xaxis(), reactive_breakdown())) %>%
+    ggplotly(
+      create_bar_headline(
+        reactive_headlines(), input$selectLA, 
+        reactive_xaxis(), reactive_breakdown()), 
+      tooltip = c("text")
+      ) %>%
       config(displayModeBar = F) %>%
-      layout(legend = list(orientation = "h", x = 0, y = -0.2))
+      layout(
+        legend = list(orientation = "h", x = 0, y = -0.2)#,
+        #hovermode = "x unified"
+        )
   })
 
   # Render time_period line chart of pupil yield
   output$linePYtime_period <- renderPlotly({
-    ggplotly(create_py_time_period(reactivePYtime_period())) %>%
+    ggplotly(create_py_time_period(reactivePYtime_period()), 
+             tooltip = c("text")) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })

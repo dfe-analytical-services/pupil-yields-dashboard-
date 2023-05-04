@@ -1,7 +1,14 @@
 create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
   ggplot(
     df,
-    aes(x = get(xaxis$colid), y = pupil_yield, fill = get(breakdown$colid))
+    aes(
+      x    = get(xaxis$colid), 
+      y    = pupil_yield, 
+      fill = get(breakdown$colid),
+      text = paste0('<i>Pupil Yield</i>: ',pupil_yield,
+                    '<br><b>',xaxis$name,'</b>: ', get(xaxis$colid),
+                    '<br><b>',breakdown$name,'</b>: ', get(breakdown$colid))
+        )
   ) +
     geom_bar(stat = "identity", position = "dodge") +
     theme_classic() +
@@ -23,7 +30,9 @@ create_py_time_period <- function(dfPY) {
   ggplot(dfPY_filtered, aes(
     x = time_period,
     y = pupil_yield,
-    group = tenure
+    group = tenure,
+    text = paste0('<i>Pupil yield</i>: ',pupil_yield,
+                  '<br><b>Financial year</b>: ', time_period)
   )) +
     geom_line(color = dfe_palette[1]) +
     geom_hline(yintercept = mean_py, color = dfe_palette[2], linetype = "dashed") +
