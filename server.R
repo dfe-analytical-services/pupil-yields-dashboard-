@@ -162,7 +162,7 @@ server <- function(input, output, session) {
     df_py %>% filter(
       la_name == input$selectLA,
       tenure == "All", housing == "All", number_of_bedrooms == "All",
-      education_phase == "Secondary"
+      education_phase == input$timeseries.phase
     )
   })
 
