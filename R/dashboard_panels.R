@@ -143,7 +143,14 @@ dashboard_panel <- function() {
                   uiOutput("headlines_data")
                 )
               ),
+              
+              
+  
+                  
               gov_row(
+                column(
+                  12,
+                  tags$h2("Choose the chart breakdowns here:")),
                 column(
                   width = 4,
                   selectizeInput(
@@ -206,7 +213,7 @@ dashboard_panel <- function() {
                 column(
                   width = 3,
                   selectizeInput("filter4",
-                    "Choose Early Years Uplift:",
+                    "Choose Early Years Uplift (filter not working in this version):",
                     choices = choicesearly_years_uplift,
                     selected = "Off"
                   ),
@@ -236,6 +243,10 @@ dashboard_panel <- function() {
                   )
                 )
               )
+            ),
+            tabPanel(
+              "SEND",
+              fluidRow()
             )
           )
         )
