@@ -20,5 +20,16 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
     substr(df$time_period, 5, 6),
     sep = "/"
   )
+  df <- df %>% rbind(
+    df %>%
+    summarise(
+      number_of_pupils=sum(number_of_pupils),
+      completed_properties_in_fy=sum(completed_properties_in_fy),
+      pupil_yield=sum(number_of_pupils)/sum(completed_properties_in_fy),
+      .by=c(la_name, tenure, housing, number_of_bedrooms, 
+            education_phase, education_type, geographic_level,
+            early_years_uplift)) %>%
+      mutate(time_period='All', .before=la_name)
+  )
   return(df)
 }
