@@ -5,7 +5,7 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
       x    = get(xaxis$colid), 
       y    = pupil_yield, 
       fill = get(breakdown$colid),
-      text = paste0('<i>Pupil Yield</i>: ',pupil_yield,
+      text = paste0('<i>Pupil Yield</i>: ',round(pupil_yield,2),
                     '<br><b>',xaxis$name,'</b>: ', get(xaxis$colid),
                     '<br><b>',breakdown$name,'</b>: ', get(breakdown$colid))
         )
