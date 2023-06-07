@@ -7,7 +7,7 @@
     "navlistPanel": "dashboard",
     "select_breakdown": "School type",
     "select_xaxis": "School phase",
-    "select_year": "2021/22",
+    "select_year": "All",
     "selectArea": "Unitary",
     "selectLA": "LA1 Rural",
     "tabsetpanels": "Headlines"
@@ -22,31 +22,36 @@
               0.9,
               0.9,
               0.9,
-              0.9
+              0.9,
+              0.449999999999999
             ],
             "base": [
+              0,
               0,
               0,
               0,
               0
             ],
             "x": [
-              1,
               4,
               2,
-              3
+              3,
+              1,
+              4.775
             ],
             "y": [
-              0.065789474,
-              0.018092105,
-              0.299342105,
-              0.163651316
+              0.0445929064146434,
+              0.308402585410896,
+              0.142197599261311,
+              0.07705274605764,
+              0.00192072638379605
             ],
             "text": [
-              "get(xaxis$colid): Early Years<br />pupil_yield: 0.065789474<br />get(breakdown$colid): Mainstream",
-              "get(xaxis$colid): Post-16<br />pupil_yield: 0.018092105<br />get(breakdown$colid): Mainstream",
-              "get(xaxis$colid): Primary<br />pupil_yield: 0.299342105<br />get(breakdown$colid): Mainstream",
-              "get(xaxis$colid): Secondary<br />pupil_yield: 0.163651316<br />get(breakdown$colid): Mainstream"
+              "<i>Pupil Yield<\/i>: 0.04<br><b>School phase<\/b>: Post-16<br><b>School type<\/b>: Mainstream",
+              "<i>Pupil Yield<\/i>: 0.31<br><b>School phase<\/b>: Primary<br><b>School type<\/b>: Mainstream",
+              "<i>Pupil Yield<\/i>: 0.14<br><b>School phase<\/b>: Secondary<br><b>School type<\/b>: Mainstream",
+              "<i>Pupil Yield<\/i>: 0.08<br><b>School phase<\/b>: Early Years<br><b>School type<\/b>: Mainstream",
+              "<i>Pupil Yield<\/i>: 0<br><b>School phase<\/b>: SP/Alternative<br><b>School type<\/b>: Mainstream"
             ],
             "type": "bar",
             "textposition": "none",
@@ -68,11 +73,11 @@
           },
           {
             "orientation": "v",
-            "width": 0.9,
+            "width": 0.449999999999999,
             "base": 0,
-            "x": 5,
-            "y": 0.007401316,
-            "text": "get(xaxis$colid): SP/Alternative<br />pupil_yield: 0.007401316<br />get(breakdown$colid): Special School",
+            "x": 5.225,
+            "y": 0.00897226753670473,
+            "text": "<i>Pupil Yield<\/i>: 0.01<br><b>School phase<\/b>: SP/Alternative<br><b>School type<\/b>: Special School",
             "type": "bar",
             "textposition": "none",
             "marker": {
@@ -180,28 +185,28 @@
             "type": "linear",
             "autorange": false,
             "range": [
-              -0.01496710525,
-              0.31430921025
+              -0.03,
+              0.63
             ],
             "tickmode": "array",
             "ticktext": [
               "0.0",
-              "0.1",
               "0.2",
-              "0.3"
+              "0.4",
+              "0.6"
             ],
             "tickvals": [
               0,
-              0.1,
               0.2,
-              0.3
+              0.4,
+              0.6
             ],
             "categoryorder": "array",
             "categoryarray": [
               "0.0",
-              "0.1",
               "0.2",
-              "0.3"
+              "0.4",
+              "0.6"
             ],
             "nticks": null,
             "ticks": "outside",
@@ -401,7 +406,7 @@
       ]
     },
     "headline_title": {
-      "html": "<h2>Input breakdown = School type<\/h2>",
+      "html": "<h2>Pupil Yield is spilt by School type<\/h2>",
       "deps": [
 
       ]

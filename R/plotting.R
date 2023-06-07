@@ -22,7 +22,7 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
       axis.line = element_line(size = 1.0),
       legend.position = "top"
     ) +
-    ylim(0,max(c(0.6,df$pupil_yield*1.02))) +
+    ylim(0, max(c(0.6, df$pupil_yield * 1.02))) +
     xlab(xaxis$name) +
     ylab("Pupil yield")
 }
@@ -50,7 +50,7 @@ create_py_time_period <- function(dfPY) {
       axis.line = element_line(size = 1.0),
       legend.position = "none"
     ) +
-    ylim(0,max(c(0.6,df$pupil_yield*1.02))) +
+    ylim(0, max(c(0.6, df$pupil_yield * 1.02))) +
     xlab("Year") +
     ylab("Pupil Yield")
 }
