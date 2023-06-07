@@ -202,7 +202,7 @@ server <- function(input, output, session) {
     }
   })
   output$headline_title <- renderUI(
-    h2(paste0("Pupil Yield is spilt by ",input$select_breakdown, ""))
+    h2(paste0("Pupil Yield is spilt by ", input$select_breakdown, ""))
   )
 
   # Define server logic required to draw a histogram
@@ -210,21 +210,23 @@ server <- function(input, output, session) {
     print(reactive_headlines())
     ggplotly(
       create_bar_headline(
-        reactive_headlines(), input$selectLA, 
-        reactive_xaxis(), reactive_breakdown()), 
+        reactive_headlines(), input$selectLA,
+        reactive_xaxis(), reactive_breakdown()
+      ),
       tooltip = c("text")
-      ) %>%
+    ) %>%
       config(displayModeBar = F) %>%
       layout(
-        legend = list(orientation = "h", x = 0, y = -0.2)#,
-        #hovermode = "x unified"
-        )
+        legend = list(orientation = "h", x = 0, y = -0.2) # ,
+        # hovermode = "x unified"
+      )
   })
 
   # Render time_period line chart of pupil yield
   output$linePYtime_period <- renderPlotly({
-    ggplotly(create_py_time_period(reactivePYtime_period()), 
-             tooltip = c("text")) %>%
+    ggplotly(create_py_time_period(reactivePYtime_period()),
+      tooltip = c("text")
+    ) %>%
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
