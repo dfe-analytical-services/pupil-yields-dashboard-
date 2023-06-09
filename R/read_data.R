@@ -20,7 +20,6 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
     substr(df$time_period, 5, 6),
     sep = "/"
   )
-
   df_means <-df%>%filter(tenure=="All",
                          housing=="All",
                          number_of_bedrooms=="All",
@@ -50,6 +49,5 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
            completed_properties_in_fy,
            pupil_yield)
   df<-df%>%rbind(df_means)
-
   return(df)
 }

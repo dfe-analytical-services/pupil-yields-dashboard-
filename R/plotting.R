@@ -2,13 +2,15 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
   ggplot(
     df,
     aes(
-      x    = get(xaxis$colid), 
-      y    = pupil_yield, 
+      x = get(xaxis$colid),
+      y = pupil_yield,
       fill = get(breakdown$colid),
-      text = paste0('<i>Pupil Yield</i>: ',pupil_yield,
-                    '<br><b>',xaxis$name,'</b>: ', get(xaxis$colid),
-                    '<br><b>',breakdown$name,'</b>: ', get(breakdown$colid))
-        )
+      text = paste0(
+        "<i>Pupil Yield</i>: ", round(pupil_yield, 2),
+        "<br><b>", xaxis$name, "</b>: ", get(xaxis$colid),
+        "<br><b>", breakdown$name, "</b>: ", get(breakdown$colid)
+      )
+    )
   ) +
     geom_bar(stat = "identity", position = "dodge") +
     theme_classic() +
@@ -20,6 +22,7 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
       axis.line = element_line(size = 1.0),
       legend.position = "top"
     ) +
+    ylim(0, max(c(0.6, df$pupil_yield * 1.02))) +
     xlab(xaxis$name) +
     ylab("Pupil yield")
 }
@@ -27,12 +30,14 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
 create_py_time_period <- function(dfPY) {
   dfPY_filtered <- dfPY
   mean_py <- mean(dfPY_filtered$pupil_yield)
-  ggplot(dfPY_filtered %>% filter(time_period != 'All'), aes(
+  ggplot(dfPY_filtered %>% filter(time_period != "All"), aes(
     x = time_period,
     y = pupil_yield,
     group = tenure,
-    text = paste0('<i>Pupil yield</i>: ',pupil_yield,
-                  '<br><b>Financial year</b>: ', time_period)
+    text = paste0(
+      "<i>Pupil yield</i>: ", pupil_yield,
+      "<br><b>Financial year</b>: ", time_period
+    )
   )) +
     geom_line(color = dfe_palette[1]) +
     geom_hline(yintercept = mean_py, color = dfe_palette[2], linetype = "dashed") +
@@ -45,6 +50,7 @@ create_py_time_period <- function(dfPY) {
       axis.line = element_line(size = 1.0),
       legend.position = "none"
     ) +
+    ylim(0, max(c(0.6, df$pupil_yield * 1.02))) +
     xlab("Year") +
     ylab("Pupil Yield")
 }
