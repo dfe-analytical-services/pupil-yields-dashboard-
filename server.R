@@ -147,6 +147,8 @@ server <- function(input, output, session) {
   # Simple server stuff goes here ------------------------------------------------------------
   reactive_headlines <- reactive({
     print(reactive_filters()$colid)
+    print(unique(df_py$time_period))
+    print(input$select_year)
     print(paste(input$filter1, input$filter2, input$filter3, input$filter4))
     df_py %>% filter(
       la_name == input$selectLA,

@@ -30,6 +30,8 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
 create_py_time_period <- function(dfPY) {
   dfPY_filtered <- dfPY
   mean_py <- mean(dfPY_filtered$pupil_yield)
+  message("mean_py")
+  print(mean_py)
   ggplot(dfPY_filtered %>% filter(time_period != "All"), aes(
     x = time_period,
     y = pupil_yield,
@@ -50,7 +52,7 @@ create_py_time_period <- function(dfPY) {
       axis.line = element_line(size = 1.0),
       legend.position = "none"
     ) +
-    ylim(0, max(c(0.6, df$pupil_yield * 1.02))) +
+#    ylim(0, max(c(0.6, dfPY_filtered$pupil_yield * 1.02))) +
     xlab("Year") +
     ylab("Pupil Yield")
 }
