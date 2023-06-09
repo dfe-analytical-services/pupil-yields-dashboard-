@@ -20,19 +20,34 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
     substr(df$time_period, 5, 6),
     sep = "/"
   )
-  df <- df %>% rbind(
-    df %>%
-      summarise(
-        number_of_pupils = sum(number_of_pupils),
-        completed_properties_in_fy = sum(completed_properties_in_fy),
-        pupil_yield = sum(number_of_pupils) / sum(completed_properties_in_fy),
-        .by = c(
-          la_name, tenure, housing, number_of_bedrooms,
-          education_phase, education_type, geographic_level,
-          early_years_uplift
-        )
-      ) %>%
-      mutate(time_period = "All", .before = la_name)
-  )
+  df_means <-df%>%filter(tenure=="All",
+                         housing=="All",
+                         number_of_bedrooms=="All",
+                         early_years_uplift=="off"
+                         )%>%group_by(education_phase,
+                                      la_name,
+                                      education_type,
+                                      geographic_level)%>%
+    summarise(pupil_yield=mean(pupil_yield))%>%
+    mutate(time_period="All",
+           tenure="All",
+           housing="All",
+           number_of_bedrooms="All",
+           early_years_uplift="off",
+           completed_properties_in_fy=NA,
+           number_of_pupils=NA)%>%
+    select(time_period,
+           la_name,
+           tenure,
+           housing,
+           number_of_bedrooms,
+           education_phase,
+           education_type,
+           geographic_level,
+           number_of_pupils,
+           early_years_uplift,
+           completed_properties_in_fy,
+           pupil_yield)
+  df<-df%>%rbind(df_means)
   return(df)
 }
