@@ -150,7 +150,8 @@ dashboard_panel <- function() {
               gov_row(
                 column(
                   12,
-                  tags$h2("Choose the chart breakdowns here:")),
+                  tags$h2("Choose the chart breakdowns here:"))
+                                                                              ,
                 column(
                   width = 4,
                   selectizeInput(
