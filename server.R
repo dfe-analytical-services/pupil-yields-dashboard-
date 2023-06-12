@@ -203,9 +203,18 @@ server <- function(input, output, session) {
       )
     }
   })
-  output$headline_title <- renderUI(
+  output$headlines_title <- renderUI(
     h2(paste0("Pupil Yield is spilt by ",input$select_xaxis, " and ",input$select_breakdown, ""))
   )
+  output$headlines_caption <- renderUI(
+    p(paste0("This chart shows Pupil Yields for ",
+             tolower(paste0(
+             reactive_filters()$name[1], " set to ",input$filter1, ", ",
+             reactive_filters()$name[2], " set to ",input$filter2, " and ",
+             reactive_filters()$name[3], " set to ",input$filter3, " for ",
+             ifelse(input$select_year=="All","all years",input$select_year), ". "))))
+  )
+  
 
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({

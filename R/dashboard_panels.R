@@ -133,18 +133,19 @@ dashboard_panel <- function() {
               gov_row(
                 column(
                   width = 12,
-                  uiOutput("headline_title"),
+                  uiOutput("headlines_title"),
                   radioGroupButtons(
                     "bartab_toggle",
                     label = NULL,
                     choices = c("Chart", "Table"),
                     selected = "Chart"
                   ),
-                  uiOutput("headlines_data")
+                  uiOutput("headlines_data"),
+                  uiOutput("headlines_caption")
                 )
               ),
               
-              
+    
   
                   
               gov_row(
@@ -156,7 +157,7 @@ dashboard_panel <- function() {
                   width = 4,
                   selectizeInput(
                     inputId = "select_xaxis",
-                    label = "Choose x-axis variable",
+                    label = "Choose first breakdown variable",
                     choices = filter_list %>% filter(!(name %in% c("Early years uplift"))) %>% pull(name),
                     selected = "School phase"
                   )
@@ -165,7 +166,7 @@ dashboard_panel <- function() {
                   width = 4,
                   selectizeInput(
                     inputId = "select_breakdown",
-                    label = "Choose breakdown variable",
+                    label = "Choose next breakdown variable",
                     choices = filter_list %>% filter(!(name %in% c("Housing type", "Tenure"))) %>% pull(name),
                     selected = "Housing type"
                   )
