@@ -95,6 +95,7 @@ source("R/read_data.R")
 
 # Read in the data
 df_py <- read_data()
+df_ehcp <- read_ehcp()
 # Get geographical levels from data
 
 df_py$education_phase <- factor(df_py$education_phase, levels = )

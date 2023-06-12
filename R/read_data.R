@@ -54,3 +54,6 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
   df<-df %>% rbind(df_means)
   return(df)
 }
+read_ehcp<-function(){
+  read.csv("data/YieldsDummyDataEHCP.csv",stringsAsFactors = FALSE)
+}
