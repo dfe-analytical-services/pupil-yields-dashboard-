@@ -259,7 +259,7 @@ dashboard_panel <- function() {
                   p(" "),
                   selectizeInput(
                     "send_year",
-                    label="Select a year",
+                    label="Choose a Year",
                     choices=df_ehcp %>% arrange(-AcademicYear) %>% pull(AcademicYear) %>% unique(),
                     selected=max(df_ehcp$AcademicYear)
                   )
