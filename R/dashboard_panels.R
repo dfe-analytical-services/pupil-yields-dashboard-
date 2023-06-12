@@ -249,7 +249,22 @@ dashboard_panel <- function() {
             ),
             tabPanel(
               "SEND",
-              fluidRow()
+              gov_row(
+                column(
+                  width=12,
+                  p(" "),
+                  valueBoxOutput("send_box_1", width = 4),
+                  valueBoxOutput("send_box_2", width = 4),
+                  valueBoxOutput("send_box_3", width = 4),
+                  p(" "),
+                  selectizeInput(
+                    "send_year",
+                    label="Select a year",
+                    choices=df_ehcp %>% arrange(-AcademicYear) %>% pull(AcademicYear) %>% unique(),
+                    selected=max(df_ehcp$AcademicYear)
+                  )
+                )
+              )
             )
           )
         )
