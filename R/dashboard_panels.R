@@ -187,7 +187,7 @@ dashboard_panel <- function() {
                   tags$h2("Choose the chart filters here:"),
                 ),
                 column(
-                  width = 3,
+                  width = 4,
                   selectizeInput(
                     inputId = "filter1",
                     label = "Choose a Phase:",
@@ -196,7 +196,7 @@ dashboard_panel <- function() {
                   )
                 ),
                 column(
-                  width = 3,
+                  width = 4,
                   selectizeInput(
                     inputId = "filter2",
                     choices = choiceseducation_type,
@@ -205,7 +205,7 @@ dashboard_panel <- function() {
                   )
                 ),
                 column(
-                  width = 3,
+                  width = 4,
                   selectizeInput("filter3",
                     "Choose a Housing Type:",
                     choices = choiceshousing,
