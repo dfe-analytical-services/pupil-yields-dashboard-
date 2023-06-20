@@ -30,23 +30,24 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
 create_py_time_period <- function(dfPY) {
   dfPY_filtered <- dfPY
   mean_py <- mean(dfPY_filtered$pupil_yield)
-  message("mean_py")
-  print(mean_py)
-  ggplot(dfPY_filtered %>% filter(time_period != "All"), aes(
-    x = time_period,
-    y = pupil_yield,
+  ggplot(
+    dfPY_filtered %>% filter(time_period != "All"), 
+    aes(
+      x = time_period,
+      y = pupil_yield,
     group = tenure,
     text = paste0(
       "<i>Pupil yield</i>: ", pupil_yield,
       "<br><b>Financial year</b>: ", time_period
     )
   )) +
-    geom_line(color = dfe_palette[1]) +
-    geom_hline(yintercept = mean_py, color = dfe_palette[2], linetype = "dashed") +
+    geom_line(aes(color='Yearly pupil yield')) +
+    geom_hline(aes(yintercept = mean_py, color = "Mean pupil yield"), linetype = "dashed") +
+    scale_colour_manual(values = dfe_palette) +
     theme_classic() +
     theme(
       text = element_text(size = 12),
-      axis.text.x = element_text(angle = 300),
+      axis.text.x = element_text(angle = 320),
       axis.title.x = element_blank(),
       axis.title.y = element_text(margin = margin(r = 12)),
       axis.line = element_line(size = 1.0),
@@ -54,5 +55,6 @@ create_py_time_period <- function(dfPY) {
     ) +
     #    ylim(0, max(c(0.6, dfPY_filtered$pupil_yield * 1.02))) +
     xlab("Year") +
-    ylab("Pupil Yield")
+    ylab("Pupil Yield") +
+    labs(color='')
 }
