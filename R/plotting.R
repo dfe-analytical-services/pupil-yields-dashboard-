@@ -52,7 +52,7 @@ create_py_time_period <- function(dfPY) {
       axis.line = element_line(size = 1.0),
       legend.position = "top"
     ) +
-#    ylim(0, max(c(0.6, dfPY_filtered$pupil_yield * 1.02))) +
+    #    ylim(0, max(c(0.6, dfPY_filtered$pupil_yield * 1.02))) +
     xlab("Year") +
     ylab("Pupil Yield")
 }

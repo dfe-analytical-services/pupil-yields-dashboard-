@@ -144,15 +144,11 @@ dashboard_panel <- function() {
                   uiOutput("headlines_caption")
                 )
               ),
-              
-    
-  
-                  
               gov_row(
                 column(
                   12,
-                  tags$h2("Choose the chart breakdowns here:"))
-                                                                              ,
+                  tags$h2("Choose the chart breakdowns here:")
+                ),
                 column(
                   width = 4,
                   selectizeInput(
@@ -240,21 +236,20 @@ dashboard_panel <- function() {
                     uiOutput("timeseries_data"),
                     column(
                       width = 4,
-                    
-                    selectizeInput(
-                      "timeseries.phase",
-                      label = "Choose a school phase",
-                      choices = choices$education_phase
-                    )),
-                      column(
-                        width = 4,
-                        
-                        selectizeInput(
-                          "timeseries.housing",
-                          label = "Choose a housing type",
-                          choices = choices$housing
-                      
-                    ))
+                      selectizeInput(
+                        "timeseries.phase",
+                        label = "Choose a school phase",
+                        choices = choices$education_phase
+                      )
+                    ),
+                    column(
+                      width = 4,
+                      selectizeInput(
+                        "timeseries.housing",
+                        label = "Choose a housing type",
+                        choices = choices$housing
+                      )
+                    )
                   )
                 )
               )
@@ -263,7 +258,7 @@ dashboard_panel <- function() {
               "SEND",
               gov_row(
                 column(
-                  width=12,
+                  width = 12,
                   p(" "),
                   valueBoxOutput("send_box_1", width = 4),
                   valueBoxOutput("send_box_3", width = 4),
@@ -271,9 +266,9 @@ dashboard_panel <- function() {
                   p(" "),
                   selectizeInput(
                     "send_year",
-                    label="Choose a Year",
-                    choices=df_ehcp %>% arrange(-AcademicYear) %>% pull(AcademicYear) %>% unique(),
-                    selected=max(df_ehcp$AcademicYear)
+                    label = "Choose a Year",
+                    choices = df_ehcp %>% arrange(-AcademicYear) %>% pull(AcademicYear) %>% unique(),
+                    selected = max(df_ehcp$AcademicYear)
                   )
                 )
               )
