@@ -254,8 +254,8 @@ dashboard_panel <- function() {
                   width=12,
                   p(" "),
                   valueBoxOutput("send_box_1", width = 4),
-                  valueBoxOutput("send_box_2", width = 4),
                   valueBoxOutput("send_box_3", width = 4),
+                  valueBoxOutput("send_box_2", width = 4),
                   p(" "),
                   selectizeInput(
                     "send_year",
