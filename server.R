@@ -163,7 +163,7 @@ server <- function(input, output, session) {
   reactivePYtime_period <- reactive({
     df_py %>% filter(
       la_name == input$selectLA,
-      tenure == "All", housing == "All", number_of_bedrooms == "All",
+      tenure == "All", housing == input$timeseries.housing, number_of_bedrooms == "All",
       education_phase == input$timeseries.phase
     )
   })
@@ -204,17 +204,20 @@ server <- function(input, output, session) {
     }
   })
   output$headlines_title <- renderUI(
-    h2(paste0("Pupil Yield is spilt by ",input$select_xaxis, " and ",input$select_breakdown, ""))
+    h2(paste0("Pupil Yield is spilt by ", input$select_xaxis, " and ", input$select_breakdown, ""))
   )
   output$headlines_caption <- renderUI(
-    p(paste0("This chart shows Pupil Yields for ",
-             tolower(paste0(
-             reactive_filters()$name[1], " set to ",input$filter1, ", ",
-             reactive_filters()$name[2], " set to ",input$filter2, " and ",
-             reactive_filters()$name[3], " set to ",input$filter3, " for ",
-             ifelse(input$select_year=="All","all years",input$select_year), ". "))))
+    p(paste0(
+      "This chart shows Pupil Yields for ",
+      tolower(paste0(
+        reactive_filters()$name[1], " set to ", input$filter1, ", ",
+        reactive_filters()$name[2], " set to ", input$filter2, " and ",
+        reactive_filters()$name[3], " set to ", input$filter3, " for ",
+        ifelse(input$select_year == "All", "all years", input$select_year), ". "
+      ))
+    ))
   )
-  
+
 
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({
@@ -330,34 +333,34 @@ server <- function(input, output, session) {
   )
   output$technicaltable <- renderTable(technical_table)
 
-  
 
-# SEND Value boxes --------------------------------------------------------
+
+  # SEND Value boxes --------------------------------------------------------
 
   output$send_box_1 <- renderValueBox(
     valueBox(
-      df_ehcp %>% filter(AcademicYear==input$send_year, LTLA22NM==input$selectLA, SENprovision_Name=='EHCP') %>%
+      df_ehcp %>% filter(AcademicYear == input$send_year, LTLA22NM == input$selectLA, SENprovision_Name == "EHCP") %>%
         pull(Percentage) %>% paste("%"),
       "EHCP"
     )
-  )  
-  
+  )
+
   output$send_box_2 <- renderValueBox(
     valueBox(
-      df_ehcp %>% filter(AcademicYear==input$send_year, LTLA22NM==input$selectLA, SENprovision_Name=='No SEN support') %>%
+      df_ehcp %>% filter(AcademicYear == input$send_year, LTLA22NM == input$selectLA, SENprovision_Name == "No SEN support") %>%
         pull(Percentage) %>% paste("%"),
       "No SEN support"
     )
-  )  
+  )
 
   output$send_box_3 <- renderValueBox(
     valueBox(
-      df_ehcp %>% filter(AcademicYear==input$send_year, LTLA22NM==input$selectLA, SENprovision_Name=='SEN support') %>%
+      df_ehcp %>% filter(AcademicYear == input$send_year, LTLA22NM == input$selectLA, SENprovision_Name == "SEN support") %>%
         pull(Percentage) %>% paste("%"),
       "SEN support"
     )
-  )  
-  
+  )
+
   # Stop app ---------------------------------------------------------------------------------
 
   session$onSessionEnded(function() {
