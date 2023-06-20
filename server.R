@@ -163,7 +163,7 @@ server <- function(input, output, session) {
   reactivePYtime_period <- reactive({
     df_py %>% filter(
       la_name == input$selectLA,
-      tenure == "All", housing == "All", number_of_bedrooms == "All",
+      tenure == "All", housing == input$timeseries.housing, number_of_bedrooms == "All",
       education_phase == input$timeseries.phase
     )
   })

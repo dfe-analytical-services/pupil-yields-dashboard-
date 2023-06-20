@@ -50,7 +50,7 @@ create_py_time_period <- function(dfPY) {
       axis.title.x = element_blank(),
       axis.title.y = element_text(margin = margin(r = 12)),
       axis.line = element_line(size = 1.0),
-      legend.position = "none"
+      legend.position = "top"
     ) +
 #    ylim(0, max(c(0.6, dfPY_filtered$pupil_yield * 1.02))) +
     xlab("Year") +

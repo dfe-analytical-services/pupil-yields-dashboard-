@@ -238,11 +238,23 @@ dashboard_panel <- function() {
                       selected = "Chart"
                     ),
                     uiOutput("timeseries_data"),
+                    column(
+                      width = 4,
+                    
                     selectizeInput(
                       "timeseries.phase",
                       label = "Choose a school phase",
                       choices = choices$education_phase
-                    )
+                    )),
+                      column(
+                        width = 4,
+                        
+                        selectizeInput(
+                          "timeseries.housing",
+                          label = "Choose a housing type",
+                          choices = choices$housing
+                      
+                    ))
                   )
                 )
               )
