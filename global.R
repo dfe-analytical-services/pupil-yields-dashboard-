@@ -109,9 +109,9 @@ df_py$time_period <- factor(df_py$time_period, levels = choicesYears %>% sort())
 
 
 filter_list <- data.frame(
-  name = c("School phase", "School type", "Housing type", "Number of bedrooms", "Tenure", "Early years uplift"),
-  colid = c("education_phase", "education_type", "housing", "number_of_bedrooms", "tenure", "early_years_uplift"),
-  default = c("Early years", "Mainstream", "All", "All", "All", "Off")
+  name = c("School phase", "School type", "Housing type", "Number of bedrooms", "Tenure"),
+  colid = c("education_phase", "education_type", "housing", "number_of_bedrooms", "tenure"),
+  default = c("Early years", "Mainstream", "All", "All", "All")
 )
 
 choiceseducation_type <- unique(df_py$education_type) %>% sort()
@@ -133,15 +133,12 @@ choicestenure <- c("All", unique(df_py$tenure) %>% sort()) %>% unique()
 
 choicesnumber_beds <- c("All", unique(df_py$number_of_bedrooms) %>% sort()) %>% unique()
 
-choicesearly_years_uplift <- c(unique(df_py$early_years_uplift) %>% sort()) %>% unique()
-
 choices <- list(
   education_type = choiceseducation_type,
   education_phase = choicesPhase,
   housing = choiceshousing,
   tenure = choicestenure,
-  number_of_bedrooms = choicesnumber_beds,
-  early_years_uplift = choicesearly_years_uplift
+  number_of_bedrooms = choicesnumber_beds
 )
 
 
