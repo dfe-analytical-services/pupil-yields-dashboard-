@@ -11,11 +11,11 @@
 # to either add the file to .gitignore or add an entry for the file into
 # datafiles_log.csv.
 
-read_data <- function(file = "data/YieldsDummyData.csv") {
+read_data <- function(file = "data/PupilYieldsData.csv.gz") {
   # This reads in an example file. For the purposes of this demo, we're using the
   # latest test data.
-  df <- read.csv(file) %>% 
-    filter(early_years_uplift == 'Off') %>% select(-early_years_uplift)
+  df <- read.csv(file)  
+    
   df$time_period <- paste(
     substr(df$time_period, 1, 4),
     substr(df$time_period, 5, 6),

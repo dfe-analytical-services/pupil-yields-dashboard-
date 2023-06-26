@@ -177,6 +177,16 @@ server <- function(input, output, session) {
   })
 
   observeEvent(
+    input$selectArea,
+    {
+      updateSelectizeInput(
+        session, "selectLA",
+        choices = df_py %>% filter(geographic_level == input$selectArea) %>% pull(la_name)%>%unique()%>%sort()
+      )
+    }
+  )
+  
+  observeEvent(
     input$select_xaxis,
     {
       updateSelectizeInput(
