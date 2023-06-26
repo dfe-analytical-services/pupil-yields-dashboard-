@@ -207,14 +207,6 @@ dashboard_panel <- function() {
                     choices = choiceshousing,
                     selected = "All"
                   )
-                ),
-                column(
-                  width = 3,
-                  selectizeInput("filter4",
-                    "Choose Early Years Uplift (filter not working in this version):",
-                    choices = choicesearly_years_uplift,
-                    selected = "Off"
-                  ),
                 )
               )
             ),
@@ -334,10 +326,6 @@ about the Public Sector Geospatial Agreement (PSGA), which is available to all p
       p("The pupil yield research aims to measure the number of pupils living in the sample of developments in each year, from pre-completion since 2008 through to 2022. Within these yield factors, a pupil is counted for every year that they live in a new build development. For example, a child would be included in annual counts for year one, two, three, etc., once they enter a new build property. They will continue to be counted even if they change phase (for instance from Primary to Secondary) but will at this point be captured in the yield factors for their new phase."),
       p("Since the national OS dataset was constructed in 2007, any new builds prior to this time are not robustly identified. As such, we included developments which both commenced and completed since 2008. Calculating pupil yield factors over this time frame helps to demonstrate when pupil yields peak and stabilise, though in many cases secondary phase pupil yields are on an upward trajectory and the data time period is not long enough to show the peak."),
       p("DfE’s pupil yield data counts all pupils living in the sample developments, whether they moved into the property from elsewhere or were born there. We have not discounted pupils who have moved within the local area, recognising that patterns of pupil migration and the backfilling of vacated properties by more incoming families will vary from place to place. Local authorities can adjust our pupil yield factors to account for local evidence, where appropriate."),
-      p("Local authorities can also choose whether or not to apply our Early Years Uplift. This has been included as an option to account for young children who attend early years settings but are not taking up a government-funded place under DfE’s early years entitlements, and are therefore not counted in the Early Years or School Census (until they reach school age)."),
-      p("The department collects the ‘Childcare and early years survey of parents’ which has included percentages for Early Years uptake within the sample population since the 2009-10 academic year. We use these and assume they are national estimates, applying the percentages to the mid-year population counts from the ONS for ages zero to four. By subtracting our own Early Years counts in the PDR from those calculated from the percentage uptake of the overall Early Years population, a figure is equated which comprises those pupils missed in the Early Years and School Census. Further detail on this method is available on request, and more information is also available at ", a(href = "https://www.gov.uk/government/collections/statistics-childcare-and-early-years", " Childcare and Early Years Survey of Parents "), " and Mid-Year Population Estimates. Local authorities with more granular data on the numbers of children taking up places in early years settings that are not counted in the Early Years or School Census collections may wish to use this in preference to our Early Years Uplift."),
-
-
 
       ## h2("Sub Heading"),
       ## p("Add text"),

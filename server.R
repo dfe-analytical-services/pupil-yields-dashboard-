@@ -146,17 +146,12 @@ server <- function(input, output, session) {
 
   # Simple server stuff goes here ------------------------------------------------------------
   reactive_headlines <- reactive({
-    print(reactive_filters()$colid)
-    print(unique(df_py$time_period))
-    print(input$select_year)
-    print(paste(input$filter1, input$filter2, input$filter3, input$filter4))
     df_py %>% filter(
       la_name == input$selectLA,
       time_period == input$select_year,
       get(reactive_filters()$colid[1]) == input$filter1,
       get(reactive_filters()$colid[2]) == input$filter2,
-      get(reactive_filters()$colid[3]) == input$filter3,
-      get(reactive_filters()$colid[4]) == input$filter4
+      get(reactive_filters()$colid[3]) == input$filter3
     )
   })
 
@@ -221,7 +216,6 @@ server <- function(input, output, session) {
 
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({
-    print(reactive_headlines())
     ggplotly(
       create_bar_headline(
         reactive_headlines(), input$selectLA,

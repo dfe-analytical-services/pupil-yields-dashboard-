@@ -14,7 +14,8 @@
 read_data <- function(file = "data/YieldsDummyData.csv") {
   # This reads in an example file. For the purposes of this demo, we're using the
   # latest test data.
-  df <- read.csv(file)
+  df <- read.csv(file) %>% 
+    filter(early_years_uplift == 'Off') %>% select(-early_years_uplift)
   df$time_period <- paste(
     substr(df$time_period, 1, 4),
     substr(df$time_period, 5, 6),
@@ -24,8 +25,7 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
     filter(
       tenure == "All",
       housing == "All",
-      number_of_bedrooms == "All",
-      early_years_uplift == "Off"
+      number_of_bedrooms == "All"
     ) %>%
     group_by(
       education_phase,
@@ -39,7 +39,6 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
       tenure = "All",
       housing = "All",
       number_of_bedrooms = "All",
-      early_years_uplift = "Off",
       completed_properties_in_fy = NA,
       number_of_pupils = NA
     ) %>%
@@ -53,14 +52,13 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
       education_type,
       geographic_level,
       number_of_pupils,
-      early_years_uplift,
       completed_properties_in_fy,
       pupil_yield
     )
-  print(df_means)
   df <- df %>% rbind(df_means)
   return(df)
 }
+
 read_ehcp <- function() {
   read.csv("data/YieldsDummyDataEHCP.csv", stringsAsFactors = FALSE)
 }
