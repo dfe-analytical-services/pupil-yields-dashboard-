@@ -199,7 +199,7 @@ server <- function(input, output, session) {
     }
   })
   output$headlines_title <- renderUI(
-    h2(paste0("Pupil Yield is spilt by ", input$select_xaxis, " and ", input$select_breakdown, ""))
+    h2(paste0("Pupil Yield is split by ", input$select_xaxis, " and ", input$select_breakdown, ""))
   )
   output$headlines_caption <- renderUI(
     p(paste0(
