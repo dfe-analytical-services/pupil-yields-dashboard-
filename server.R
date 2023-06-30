@@ -99,6 +99,10 @@ server <- function(input, output, session) {
     return(df)
   })
 
+  output$timeseries_caption <-renderUI({
+    tags$p("This chart shows the yearly pupil yeild and average pupil yield by school phase as ",tolower(input$timeseries.phase)," and housing type as ", tolower(input$timeseries.housing),". ")
+  })
+  
   observeEvent(input$cookie_consent, {
     msg <- list(
       name = "dfe_analytics",
