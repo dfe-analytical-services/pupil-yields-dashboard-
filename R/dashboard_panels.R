@@ -226,6 +226,7 @@ dashboard_panel <- function() {
                       selected = "Chart"
                     ),
                     uiOutput("timeseries_data"),
+                    uiOutput("timeseries_caption"),
                     column(
                       width = 4,
                       selectizeInput(
