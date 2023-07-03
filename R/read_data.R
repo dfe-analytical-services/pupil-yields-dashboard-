@@ -14,8 +14,8 @@
 read_data <- function(file = "data/YieldsDummyData.csv") {
   # This reads in an example file. For the purposes of this demo, we're using the
   # latest test data.
-  df <- read.csv(file) %>% 
-    filter(early_years_uplift == 'Off') %>% select(-early_years_uplift)
+  df <- read.csv(file) 
+    print(colnames(df))
   df$time_period <- paste(
     substr(df$time_period, 1, 4),
     substr(df$time_period, 5, 6),
@@ -33,13 +33,15 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
       education_type,
       geographic_level
     ) %>%
-    summarise(pupil_yield = mean(pupil_yield)) %>%
+    summarise(pupil_yield = mean(pupil_yield),
+              pupil_yieldAbs = mean(pupil_yieldAbs)) %>%
     mutate(
       time_period = "All",
       tenure = "All",
       housing = "All",
       number_of_bedrooms = "All",
-      completed_properties_in_fy = NA,
+      completed_properties_up_to_FY = NA,
+      completed_properties_up_to_FYAbs = NA,
       number_of_pupils = NA
     ) %>%
     select(
@@ -52,9 +54,12 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
       education_type,
       geographic_level,
       number_of_pupils,
-      completed_properties_in_fy,
-      pupil_yield
+      completed_properties_up_to_FY,
+      pupil_yield,
+      completed_properties_up_to_FYAbs,
+      pupil_yieldAbs
     )
+  print(colnames(df_means))
   df <- df %>% rbind(df_means)
   return(df)
 }
