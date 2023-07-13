@@ -94,7 +94,7 @@ server <- function(input, output, session) {
 
   output$table_timeseries <- renderTable({
     df <- reactivePYtime_period() %>%
-      select(time_period, la_name, education_phase, number_of_pupils, completed_properties_in_fy, pupil_yield)
+      select(time_period, la_name, education_phase, number_of_pupils, completed_properties_up_to_FY, pupil_yield)
     colnames(df) <- c("Financial year", "Local authority", "School phase", "# pupils", "Completed properties", "Pupil yield")
     return(df)
   })

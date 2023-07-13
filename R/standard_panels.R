@@ -50,13 +50,13 @@ a11y_panel <- function() {
 
 support_links <- function() {
   tabPanel(
-    "Support and feedback",
+    "Support & Feedback",
     gov_main_layout(
       gov_row(
         column(
           width = 12,
           h2("Give us feedback"),
-          "If you have any feedback or suggestions for improvements, please submit them using our feedback form (available from  ",
+          "This dashboard is hosted on a new platform that will continue to be developed. If you have any feedback or suggestions for improvements, please email  ",
           a(href = "mailto:liz.pickering@education.gov.uk", "liz.pickering@education.gov.uk)", .noWS = c("after")), ".",
           br(),
           h2("Find more information on the data"),
