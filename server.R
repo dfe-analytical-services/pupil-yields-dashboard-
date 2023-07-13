@@ -99,6 +99,10 @@ server <- function(input, output, session) {
     return(df)
   })
 
+  output$timeseries_caption <-renderUI({
+    tags$p("This chart shows the yearly pupil yeild and average pupil yield by school phase as ",tolower(input$timeseries.phase)," and housing type as ", tolower(input$timeseries.housing),". ")
+  })
+  
   observeEvent(input$cookie_consent, {
     msg <- list(
       name = "dfe_analytics",
@@ -199,7 +203,7 @@ server <- function(input, output, session) {
     }
   })
   output$headlines_title <- renderUI(
-    h2(paste0("Pupil Yield is spilt by ", input$select_xaxis, " and ", input$select_breakdown, ""))
+    h2(paste0("Pupil Yield is split by ", input$select_xaxis, " and ", input$select_breakdown, ""))
   )
   output$headlines_caption <- renderUI(
     p(paste0(
