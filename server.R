@@ -220,6 +220,7 @@ server <- function(input, output, session) {
 
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({
+    print(reactive_headlines())
     ggplotly(
       create_bar_headline(
         reactive_headlines(), input$selectLA,

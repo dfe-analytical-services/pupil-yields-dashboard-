@@ -56,6 +56,30 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
       pupil_yield
     )
   df <- df %>% rbind(df_means)
+  
+  df_bedrooms2p <- df %>% filter(number_of_bedrooms %in% c("2","3","4+")) %>% 
+    summarise(
+      number_of_pupils=sum(number_of_pupils),
+      completed_properties_in_fy=sum(completed_properties_in_fy),
+      .by=c(time_period, la_name, tenure, housing, education_phase, education_type, geographic_level)) %>%
+    mutate(number_of_bedrooms="2+", .before=education_phase) %>%
+    mutate(pupil_yield=number_of_pupils/completed_properties_in_fy) 
+
+  df_bedrooms3p <- df %>% filter(number_of_bedrooms %in% c("3","4+")) %>% 
+    summarise(
+      number_of_pupils=sum(number_of_pupils),
+      completed_properties_in_fy=sum(completed_properties_in_fy),
+      .by=c(time_period, la_name, tenure, housing, education_phase, education_type, geographic_level)) %>%
+    mutate(number_of_bedrooms="3+", .before=education_phase) %>%
+    mutate(pupil_yield=number_of_pupils/completed_properties_in_fy) 
+
+  df <- df %>% rbind(df_bedrooms2p) %>% rbind(df_bedrooms3p) %>% 
+    select(
+      time_period, geographic_level, la_name,education_phase, education_type, tenure, housing, 
+      number_of_bedrooms, number_of_pupils, completed_properties_in_fy, pupil_yield
+      ) %>%
+    arrange(time_period, geographic_level, la_name,education_phase, education_type, tenure, housing, number_of_bedrooms)
+    
   return(df)
 }
 
