@@ -74,11 +74,12 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
     mutate(pupil_yield=number_of_pupils/completed_properties_in_fy) 
 
   df <- df %>% rbind(df_bedrooms2p) %>% rbind(df_bedrooms3p) %>% 
+    filter(!number_of_bedrooms %in% c("2","3"))
     select(
       time_period, geographic_level, la_name,education_phase, education_type, tenure, housing, 
       number_of_bedrooms, number_of_pupils, completed_properties_in_fy, pupil_yield
       ) %>%
-    arrange(time_period, geographic_level, la_name,education_phase, education_type, tenure, housing, number_of_bedrooms)
+    arrange(time_period, geographic_level, la_name,education_phase, education_type, tenure, housing, number_of_bedrooms) 
     
   return(df)
 }
