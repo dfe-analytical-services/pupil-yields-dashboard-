@@ -1,6 +1,6 @@
 homepage_panel <- function() {
   tabPanel(
-    "Homepage",
+    "Information",
     gov_main_layout(
       gov_row(
         column(
@@ -71,7 +71,7 @@ homepage_panel <- function() {
 dashboard_panel <- function() {
   tabPanel(
     value = "dashboard",
-    "Dashboard",
+    "Pupil Yields",
 
     # Define UI for application that draws a histogram
 
