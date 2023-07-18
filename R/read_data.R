@@ -11,7 +11,7 @@
 # to either add the file to .gitignore or add an entry for the file into
 # datafiles_log.csv.
 
-read_data <- function(file = "data/YieldsDummyData.csv") {
+read_data <- function(file = "data/PYJuly.csv") {
   # This reads in an example file. For the purposes of this demo, we're using the
   # latest test data.
   df <- read.csv(file)# %>% 
@@ -85,5 +85,5 @@ read_data <- function(file = "data/YieldsDummyData.csv") {
 }
 
 read_ehcp <- function() {
-  read.csv("data/YieldsDummyDataEHCP.csv", stringsAsFactors = FALSE)
+  read.csv("data/EHCPJuly.csv", stringsAsFactors = FALSE)
 }

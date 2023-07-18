@@ -9,3 +9,5 @@ data/TestTotalYieldsTable_tidy.csv,unpublished
 data/TechnicalTable.csv,reference
 data/YieldsDummyData.csv,dummy
 data/YieldsDummyDataEHCP.csv,dummy
+data/EHCPJuly.csv,reference
+data/PYJuly.csv,reference
