@@ -1,3 +1,4 @@
+source("renv/activate.R")
 # ---------------------------------------------------------
 # This is the .Rprofile file
 #
@@ -10,6 +11,7 @@
 
 cat("Sourcing .Rprofile.", fill = TRUE)
 
+renv::activate()
 
 # Tidy code function
 tidy_code <- function() {
