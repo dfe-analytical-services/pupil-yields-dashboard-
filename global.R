@@ -93,6 +93,12 @@ google_analytics_key <- "Z967JJVQQX"
 
 source("R/read_data.R")
 
+la_lad_lookup <- read.csv("data/la_lad_hierarchy.csv", stringsAsFactors = F) %>%
+  mutate(
+    la_name = gsub(",", "", la_name),
+    lad_name = gsub(",", "", lad_name)
+  )
+
 # Read in the data
 df_py <- read_data()
 df_ehcp <- read_ehcp()
@@ -100,9 +106,17 @@ df_ehcp <- read_ehcp()
 
 df_py$education_phase <- factor(df_py$education_phase, levels = )
 
-choicesgeographic_level <- unique(df_py$geographic_level)
-
-choicesLAs <- unique(df_py$la_name) %>% sort()
+choicesgeographic_level <- c("England", "County/Unitary", "District")
+choicesLAs <- df_py %>%
+  filter(geographic_level == "County/Unitary") %>%
+  pull(la_name) %>%
+  unique() %>%
+  sort()
+choicesLADs <- df_py %>%
+  filter(geographic_level == "District") %>%
+  pull(la_name) %>%
+  unique() %>%
+  sort()
 
 choicesYears <- unique(df_py$time_period) %>% sort(decreasing = TRUE)
 df_py$time_period <- factor(df_py$time_period, levels = choicesYears %>% sort())

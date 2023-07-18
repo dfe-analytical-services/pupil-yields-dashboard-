@@ -14,26 +14,23 @@
 read_data <- function(file = "data/PYJuly.csv") {
   # This reads in an example file. For the purposes of this demo, we're using the
   # latest test data.
-  df <- read.csv(file)# %>% 
-   # filter(early_years_uplift == 'Off') %>% select(-early_years_uplift)
- df$time_period <- paste(
-   substr(df$time_period, 1, 4),
-   substr(df$time_period, 5, 6),
+  df <- read.csv(file) # %>%
+  # filter(early_years_uplift == 'Off') %>% select(-early_years_uplift)
+  df$time_period <- paste(
+    substr(df$time_period, 1, 4),
+    substr(df$time_period, 5, 6),
     sep = "/"
- )
+  )
   df_means <- df %>%
     filter(
       tenure == "All",
       housing == "All",
       number_of_bedrooms == "All"
     ) %>%
-    group_by(
-      education_phase,
-      la_name,
-      education_type,
-      geographic_level
+    summarise(
+      pupil_yield = mean(pupil_yield),
+      .by = c(education_phase, la_name, education_type, geographic_level)
     ) %>%
-    summarise(pupil_yield = mean(pupil_yield)) %>%
     mutate(
       time_period = "All",
       tenure = "All",
@@ -56,31 +53,37 @@ read_data <- function(file = "data/PYJuly.csv") {
       pupil_yield
     )
   df <- df %>% rbind(df_means)
-  
-  df_bedrooms2p <- df %>% filter(number_of_bedrooms %in% c("2","3","4+")) %>% 
-    summarise(
-      number_of_pupils=sum(number_of_pupils),
-      completed_properties_in_fy=sum(completed_properties_in_fy),
-      .by=c(time_period, la_name, tenure, housing, education_phase, education_type, geographic_level)) %>%
-    mutate(number_of_bedrooms="2+", .before=education_phase) %>%
-    mutate(pupil_yield=number_of_pupils/completed_properties_in_fy) 
 
-  df_bedrooms3p <- df %>% filter(number_of_bedrooms %in% c("3","4+")) %>% 
+  df_bedrooms2p <- df %>%
+    filter(number_of_bedrooms %in% c("2", "3", "4+")) %>%
     summarise(
-      number_of_pupils=sum(number_of_pupils),
-      completed_properties_in_fy=sum(completed_properties_in_fy),
-      .by=c(time_period, la_name, tenure, housing, education_phase, education_type, geographic_level)) %>%
-    mutate(number_of_bedrooms="3+", .before=education_phase) %>%
-    mutate(pupil_yield=number_of_pupils/completed_properties_in_fy) 
+      number_of_pupils = sum(number_of_pupils),
+      completed_properties_in_fy = sum(completed_properties_in_fy),
+      .by = c(time_period, la_name, tenure, housing, education_phase, education_type, geographic_level)
+    ) %>%
+    mutate(number_of_bedrooms = "2+", .before = education_phase) %>%
+    mutate(pupil_yield = number_of_pupils / completed_properties_in_fy)
 
-  df <- df %>% rbind(df_bedrooms2p) %>% rbind(df_bedrooms3p) %>% 
-    filter(!number_of_bedrooms %in% c("2","3")) %>%
+  df_bedrooms3p <- df %>%
+    filter(number_of_bedrooms %in% c("3", "4+")) %>%
+    summarise(
+      number_of_pupils = sum(number_of_pupils),
+      completed_properties_in_fy = sum(completed_properties_in_fy),
+      .by = c(time_period, la_name, tenure, housing, education_phase, education_type, geographic_level)
+    ) %>%
+    mutate(number_of_bedrooms = "3+", .before = education_phase) %>%
+    mutate(pupil_yield = number_of_pupils / completed_properties_in_fy)
+
+  df <- df %>%
+    rbind(df_bedrooms2p) %>%
+    rbind(df_bedrooms3p) %>%
+    filter(!number_of_bedrooms %in% c("2", "3")) %>%
     select(
-      time_period, geographic_level, la_name,education_phase, education_type, tenure, housing, 
+      time_period, geographic_level, la_name, education_phase, education_type, tenure, housing,
       number_of_bedrooms, number_of_pupils, completed_properties_in_fy, pupil_yield
-      ) %>%
-    arrange(time_period, geographic_level, la_name,education_phase, education_type, tenure, housing, number_of_bedrooms) 
-    
+    ) %>%
+    arrange(time_period, geographic_level, la_name, education_phase, education_type, tenure, housing, number_of_bedrooms)
+
   return(df)
 }
 
