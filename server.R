@@ -149,9 +149,19 @@ server <- function(input, output, session) {
   # ----- end of cookie code ----- #
 
   # Simple server stuff goes here ------------------------------------------------------------
+  reactive_area <- reactive({
+    if(input$geographic_level_choice=='England'){
+      'England'
+    } else if (input$geographic_level_choice=='County/Unitary'){
+      input$selectLA
+    } else {
+      input$selectLAD
+    }
+  })
+  
   reactive_headlines <- reactive({
     df_py %>% filter(
-      la_name == input$selectLA,
+      la_name == reactive_area(),
       time_period == input$select_year,
       get(reactive_filters()$colid[1]) == input$filter1,
       get(reactive_filters()$colid[2]) == input$filter2,
@@ -161,7 +171,7 @@ server <- function(input, output, session) {
 
   reactivePYtime_period <- reactive({
     df_py %>% filter(
-      la_name == input$selectLA,
+      la_name == reactive_area(),
       tenure == "All", housing == input$timeseries.housing, number_of_bedrooms == "All",
       education_phase == input$timeseries.phase
     )
@@ -181,11 +191,11 @@ server <- function(input, output, session) {
   })
 
   observeEvent(	 
-    input$selectArea,
+    input$selectLA,
     {
       updateSelectizeInput(
-        session, "selectLA",
-        choices = df_py %>% filter(geographic_level == input$selectArea) %>% pull(la_name)%>%unique()%>%sort()
+        session, "selectLAD",
+        choices = la_lad_lookup %>% filter(la_name==input$selectLA) %>% pull(lad_name) %>% sort()
       )
     }
   )
@@ -258,7 +268,7 @@ server <- function(input, output, session) {
   reactiveBenchmark <- reactive({
     df_py %>%
       filter(
-        local_authority %in% c(input$selectArea, input$selectBenchLAs),
+        local_authority %in% c(input$selectLA, input$selectBenchLAs),
         education_phase == input$selecteducation_phase,
         time_period == max(time_period, na.rm = TRUE)
       )
@@ -284,49 +294,6 @@ server <- function(input, output, session) {
         scrollX = TRUE,
         paging = FALSE
       )
-    )
-  })
-
-  # Define server logic to create a box
-
-  output$boxavgRevBal <- renderValueBox({
-    # Put value into box to plug into app
-    valueBox(
-      # take input number
-      paste0("£", format(
-        (reactive_headlines() %>% filter(
-          time_period == max(time_period, na.rm = TRUE),
-          la_name == input$selectLA,
-          education_phase == input$selectPhase
-        ))$average_revenue_balance,
-        big.mark = ","
-      )),
-      # add subtitle to explain what it's showing
-      paste0("This is the latest value for the selected inputs"),
-      color = "blue"
-    )
-  })
-  output$boxpcRevBal <- renderValueBox({
-    latest <- (reactive_headlines() %>% filter(
-      time_period == max(time_period, na.rm = TRUE),
-      la_name == input$selectLA,
-      education_phase == input$selectPhase
-    ))$average_revenue_balance
-    penult <- (reactive_headlines() %>% filter(
-      time_period == max(time_period, na.rm = TRUE) - 1,
-      la_name == input$selectArea,
-      education_phase == input$selectPhase
-    ))$average_revenue_balance
-
-    # Put value into box to plug into app
-    valueBox(
-      # take input number
-      paste0("£", format(latest - penult,
-        big.mark = ","
-      )),
-      # add subtitle to explain what it's hsowing
-      paste0("Change on previous year"),
-      color = "blue"
     )
   })
 

@@ -96,20 +96,34 @@ dashboard_panel <- function() {
                 column(
                   width = 4,
                   selectizeInput(
-                    inputId = "selectArea",
-                    label = "Choose a Geography:",
+                    inputId = "geographic_level_choice",
+                    label = "Choose a geographic level:",
                     choices = choicesgeographic_level
                   )
                 ),
                 column(
                   width = 4,
-                  selectizeInput(
-                    inputId = "selectLA",
-                    label = "Choose a LA:",
-                    choices = choicesLAs,
-                    selected = "LA1"
+                  conditionalPanel(
+                    condition = "input.geographic_level_choice == 'County/Unitary' || input.geographic_level_choice == 'District'", 
+                    selectizeInput(
+                      inputId = "selectLA",
+                      label = "Choose a County/Unitary Local Authority:",
+                      choices = choicesLAs
+                      )
+                    )
+                  ),
+                column(
+                  width = 4,
+                  conditionalPanel(
+                    condition = "input.geographic_level_choice == 'District'", 
+                    selectizeInput(
+                      inputId = "selectLAD",
+                      label = "Choose a Local Authority District:",
+                      choices = choicesLADs
+                    )
                   )
                 )
+                
               ),
               column(
                 width = 12,

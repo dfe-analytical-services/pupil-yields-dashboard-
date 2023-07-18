@@ -11,3 +11,4 @@ data/YieldsDummyData.csv,dummy
 data/YieldsDummyDataEHCP.csv,dummy
 data/EHCPJuly.csv,reference
 data/PYJuly.csv,reference
+data/la_lad_hierarchy.csv,reference
