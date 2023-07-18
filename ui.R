@@ -121,8 +121,8 @@ ui <- function(input, output, session) {
       id = "navlistPanel",
       widths = c(2, 8),
       well = FALSE,
-      dashboard_panel(),
       homepage_panel(),
+      dashboard_panel(),
       technical_panel(),
       a11y_panel(),
       support_links()
