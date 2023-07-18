@@ -6,7 +6,7 @@ homepage_panel <- function() {
         column(
           12,
           h1("Estimating Pupil Yield from Housing Development in England"),
-          #p("This draft Pupil Yield Data Dashboard (which is still under development ) includes anonymous/dummy data from four local authorities at present."),
+          # p("This draft Pupil Yield Data Dashboard (which is still under development ) includes anonymous/dummy data from four local authorities at present."),
           br(),
           br()
         ),
@@ -81,7 +81,7 @@ dashboard_panel <- function() {
         column(
           width = 12,
           h1("Pupil Yield Data Dashboard"),
-         # p("This draft Pupil Yield Data Dashboard (which is still under development ) includes anonymous/dummy data from four local authorities at present."),
+          # p("This draft Pupil Yield Data Dashboard (which is still under development ) includes anonymous/dummy data from four local authorities at present."),
         ),
         column(
           width = 12,
@@ -104,18 +104,18 @@ dashboard_panel <- function() {
                 column(
                   width = 4,
                   conditionalPanel(
-                    condition = "input.geographic_level_choice == 'County/Unitary' || input.geographic_level_choice == 'District'", 
+                    condition = "input.geographic_level_choice == 'County/Unitary' || input.geographic_level_choice == 'District'",
                     selectizeInput(
                       inputId = "selectLA",
                       label = "Choose a County/Unitary Local Authority:",
                       choices = choicesLAs
-                      )
                     )
-                  ),
+                  )
+                ),
                 column(
                   width = 4,
                   conditionalPanel(
-                    condition = "input.geographic_level_choice == 'District'", 
+                    condition = "input.geographic_level_choice == 'District'",
                     selectizeInput(
                       inputId = "selectLAD",
                       label = "Choose a Local Authority District:",
@@ -123,7 +123,6 @@ dashboard_panel <- function() {
                     )
                   )
                 )
-                
               ),
               column(
                 width = 12,

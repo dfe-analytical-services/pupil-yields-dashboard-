@@ -99,10 +99,10 @@ server <- function(input, output, session) {
     return(df)
   })
 
-  output$timeseries_caption <-renderUI({
-    tags$p("This chart shows the yearly pupil yeild and average pupil yield by school phase as ",tolower(input$timeseries.phase)," and housing type as ", tolower(input$timeseries.housing),". ")
+  output$timeseries_caption <- renderUI({
+    tags$p("This chart shows the yearly pupil yeild and average pupil yield by school phase as ", tolower(input$timeseries.phase), " and housing type as ", tolower(input$timeseries.housing), ". ")
   })
-  
+
   observeEvent(input$cookie_consent, {
     msg <- list(
       name = "dfe_analytics",
@@ -150,15 +150,15 @@ server <- function(input, output, session) {
 
   # Simple server stuff goes here ------------------------------------------------------------
   reactive_area <- reactive({
-    if(input$geographic_level_choice=='England'){
-      'England'
-    } else if (input$geographic_level_choice=='County/Unitary'){
+    if (input$geographic_level_choice == "England") {
+      "England"
+    } else if (input$geographic_level_choice == "County/Unitary") {
       input$selectLA
     } else {
       input$selectLAD
     }
   })
-  
+
   reactive_headlines <- reactive({
     df_py %>% filter(
       la_name == reactive_area(),
@@ -190,17 +190,17 @@ server <- function(input, output, session) {
       filter(!(name %in% c(input$select_breakdown, input$select_xaxis)))
   })
 
-  observeEvent(	 
+  observeEvent(
     input$selectLA,
     {
       updateSelectizeInput(
         session, "selectLAD",
-        choices = la_lad_lookup %>% filter(la_name==input$selectLA) %>% pull(lad_name) %>% sort()
+        choices = la_lad_lookup %>% filter(la_name == input$selectLA) %>% pull(lad_name) %>% sort()
       )
     }
   )
-  
-  
+
+
   observeEvent(
     input$select_xaxis,
     {

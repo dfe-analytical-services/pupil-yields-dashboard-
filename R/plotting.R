@@ -31,17 +31,18 @@ create_py_time_period <- function(dfPY) {
   dfPY_filtered <- dfPY
   mean_py <- mean(dfPY_filtered$pupil_yield)
   ggplot(
-    dfPY_filtered %>% filter(time_period != "All"), 
+    dfPY_filtered %>% filter(time_period != "All"),
     aes(
       x = time_period,
       y = pupil_yield,
-    group = tenure,
-    text = paste0(
-      "<i>Pupil yield</i>: ", pupil_yield,
-      "<br><b>Financial year</b>: ", time_period
+      group = tenure,
+      text = paste0(
+        "<i>Pupil yield</i>: ", pupil_yield,
+        "<br><b>Financial year</b>: ", time_period
+      )
     )
-  )) +
-    geom_line(aes(color='Yearly pupil yield')) +
+  ) +
+    geom_line(aes(color = "Yearly pupil yield")) +
     geom_hline(aes(yintercept = mean_py, color = "Mean pupil yield"), linetype = "dashed") +
     scale_colour_manual(values = dfe_palette) +
     theme_classic() +
@@ -56,5 +57,5 @@ create_py_time_period <- function(dfPY) {
     #    ylim(0, max(c(0.6, dfPY_filtered$pupil_yield * 1.02))) +
     xlab("Year") +
     ylab("Pupil Yield") +
-    labs(color='')
+    labs(color = "")
 }
