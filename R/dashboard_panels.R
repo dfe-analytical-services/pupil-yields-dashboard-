@@ -13,10 +13,10 @@ homepage_panel <- function() {
           br()
         ),
 
-        ## Left panel -------------------------------------------------------
+        ## Contents panel -------------------------------------------------------
 
         column(
-          6,
+          12,
           div(
             div(
               class = "panel panel-info",
@@ -28,42 +28,21 @@ homepage_panel <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  title = "This section is useful if you want to understand how well different industries retain graduates.",
                   h3("Introduction"),
-                  p("The Pupil Yield Dashboard provides pupil yield factors for each local authority in England, at county, unitary and district level (where applicable). Pupil yield factors can be displayed by education type (mainstream or special), phase (early years, primary, secondary and post-16) and filtered according to housing type (flats/houses), tenure (market/affordable) and size (bedroom numbers). Alongside headline figures for each local authority, there is a graph showing annual pupil yield factors since 2008, and how pupil yield develops over time."),
-                  p("The technical notes with this dashboard are provided for local authorities with a responsibility for providing sufficient school places under the Education Act 1996 – principally analysts/data scientists involved in pupil forecasting and other population modelling."),
-                  ## p(actionLink("link_to_app_content_tab", "Dashboard panel")),
-                  ## p("You need to add an observeEvent() function to the server.R script for any link that navigates within your App.")
-                ),
+                  h4("Headlines"),
+                  p("This tab displays the average pupil yield factor for each combination of breakdowns (school type, housing type, bedrooms, and tenure) for a specific academic year or all years together. "),
+                  h4("Annual time series"),
+                  p("This tab displays the average cumulative pupil yield factor over time by school phase and housing type. This will show where additional yield has sped up or slowed down by looking at the slope of the curve. Data can be interrogated further on the headlines tab if required."),
+                  h4("Post completion time series"),
+                  p("This tab displays the average pupil yield factor each year after developments have completed, for all developments or only developments completed in certain academic years.  This will show where pupil yield peaks post development. Note: the sample size reduces each year post completion and so care should be taken when using yields furthest from completion."),
+                  h4("Special Educational Needs and Disability"),
+                  p("This tab shows the proportion of pupils living in the properties completed up to the selected academic year that required Special Education Needs (SEN support) or had Education, Health, and Care Plans (EHCPs)."),
+                  ),
                 br()
               )
             )
           ),
         ),
-
-        ## Right panel ------------------------------------------------------
-
-        column(
-          6,
-          div(
-            div(
-              class = "panel panel-info",
-              div(
-                class = "panel-heading",
-                style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
-                h2("Background Info")
-              ),
-              div(
-                class = "panel-body",
-                h3("Context and purpose"),
-                p("DfE has worked with the Office for National Statistics (ONS) to develop a recommended methodology for estimating pupil yield from housing development, to assist local authorities demonstrating the need for education facilities during local plan preparation and the consideration of planning applications. There are technical notes explaining the processes employed in preparing pupil yield data, sitting alongside new guidance, so that local authorities will be able to replicate our methodology when producing similar local pupil yield data in the future."),
-                p(""),
-                ## h3("Guidance sources"),
-                ## p("For example, here we'll add some of the key resources we draw on to guide styling and vizualisation...")
-              )
-            )
-          )
-        )
       )
     )
   )
