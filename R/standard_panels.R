@@ -56,27 +56,30 @@ support_links <- function() {
         column(
           width = 12,
           h2("Give us feedback"),
-          "This dashboard is hosted on a new platform that will continue to be developed. If you have any feedback or suggestions for improvements, please email  ",
-          a(href = "mailto:liz.pickering@education.gov.uk", "liz.pickering@education.gov.uk)", .noWS = c("after")), ".",
+          "The analysis in this dashboard is new. The dashboard itself is also hosted on a new platform that will continue to be developed. If you have any feedback or suggestions for improvements, please email ",
+          a(href = "mailto:Pupil.Yields@education.gov.uk", "Pupil.Yields@education.gov.uk", .noWS = c("after")), ".",
           br(),
           h2("Find more information on the data"),
-          "The data used to produce the dashboard can be downloaded from the Dashboard tab. The methodological information can be found in the Technical tab.  Full details of the methods used are available on request from ",
-          a(href = "mailto:sylvia.williams@education.gov.uk", "sylvia.williams@education.gov.uk.", .noWS = c("after")),
+          "The data displayed in the dashboard can be downloaded from the Dashboard tab. This is not a full set of underlying data that feeds the calculation, which is subject to data protection rules. ",
+          br(),
+          br("A summary of  methodological information can be found in the Technical tab. Full details of the methods used are available on request from ",
+          a(href = "mailto:Pupil.Yields@education.gov.uk", "Pupil.Yields@education.gov.uk", .noWS = c("after")),
           ".",
           br(),
           h2("Contact us"),
           "If you have questions about the dashboard or data within it, please contact ",
-          a(href = "mailto:sylvia.williams@education.gov.uk", "sylvia.williams@education.gov.uk.gov.uk", .noWS = c("after")), br(),
+          a(href = "mailto:Pupil.Yields@education.gov.uk", "Pupil.Yields@education.gov.uk", .noWS = c("after")), br(),
           h2("See the source code"),
           "The source code for this dashboard is available in our ",
           a(href = "https://github.com/dfe-analytical-services/shiny-template", "GitHub repository", .noWS = c("after")),
-          ".",
+          ". Code used to produce the analysis cannot be shared as it is specific to DfE systems.",
           br(),
           br(),
           br(),
           br(),
           br(),
           br()
+          )
         )
       )
     )
