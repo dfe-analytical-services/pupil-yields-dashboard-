@@ -22,20 +22,12 @@ read_data <- function(file = "data/PYJuly.csv") {
     sep = "/"
   )
   df_means <- df %>%
-    filter(
-      tenure == "All",
-      housing == "All",
-      number_of_bedrooms == "All"
-    ) %>%
     summarise(
       pupil_yield = mean(pupil_yield),
-      .by = c(education_phase, la_name, education_type, geographic_level)
+      .by = c(education_phase, la_name, education_type, geographic_level, tenure, housing, number_of_bedrooms)
     ) %>%
     mutate(
       time_period = "All",
-      tenure = "All",
-      housing = "All",
-      number_of_bedrooms = "All",
       completed_properties_in_fy = NA,
       number_of_pupils = NA
     ) %>%
