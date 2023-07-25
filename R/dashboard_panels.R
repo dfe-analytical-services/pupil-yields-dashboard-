@@ -35,7 +35,7 @@ homepage_panel <- function() {
                   p("This tab displays the average cumulative pupil yield factor over time by school phase and housing type. This will show where additional yield has sped up or slowed down by looking at the slope of the curve. Data can be interrogated further on the headlines tab if required."),
                   h4("Post completion time series"),
                   p("This tab displays the average pupil yield factor each year after developments have completed, for all developments or only developments completed in certain academic years.  This will show where pupil yield peaks post development."), 
-                  strong("Note:"), p("the sample size reduces each year post completion and so care should be taken when using yields furthest from completion."),
+                  strong("Note:"), ("the sample size reduces each year post completion and so care should be taken when using yields furthest from completion."),
                   h4("Special Educational Needs and Disability"),
                   p("This tab shows the proportion of pupils living in the properties completed up to the selected academic year that required Special Education Needs (SEN support) or had Education, Health, and Care Plans (EHCPs)."),
                   ),
