@@ -339,7 +339,7 @@ server <- function(input, output, session) {
 
    #actionLinks
   observeEvent(input$linkHeadlinesTab, {
-    updateTabsetPanel(session, "navlistPanel", selected = "dashboard_panel")
+    updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
     updateTabsetPanel(session, "tabs", selected = "Headlines")
  })
   # Stop app ---------------------------------------------------------------------------------

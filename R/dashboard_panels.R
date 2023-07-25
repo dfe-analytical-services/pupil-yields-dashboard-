@@ -29,7 +29,7 @@ homepage_panel <- function() {
                 class = "panel-body",
                 tags$div(
                   h3("Introduction"),
-                  h4(actionLink("LinkHeadlinesTab", "Headlines")),
+                  h4(actionLink("linkHeadlinesTab", "Headlines")),
                   p("This tab displays the average pupil yield factor for each combination of breakdowns (school type, housing type, bedrooms, and tenure) for a specific academic year or all years together. "),
                   h4("Annual time series"),
                   p("This tab displays the average cumulative pupil yield factor over time by school phase and housing type. This will show where additional yield has sped up or slowed down by looking at the slope of the curve. Data can be interrogated further on the headlines tab if required."),
