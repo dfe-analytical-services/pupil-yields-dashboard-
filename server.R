@@ -301,12 +301,27 @@ server <- function(input, output, session) {
   })
 
   # Download the underlying data button
-  output$download_data <- downloadHandler(
-    filename = "shiny_template_underlying_data.csv",
+  output$download_headlines_data <- downloadHandler(
+    filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
       write.csv(df_py, file)
     }
   )
+  
+  output$download_averages_data <- downloadHandler(
+    filename = "pupil_yield_underlying_data.csv",
+    content = function(file) {
+      write.csv(df_py, file)
+    }
+  )
+  
+  output$download_send_data <- downloadHandler(
+    filename = "ehcp_underlying_data.csv",
+    content = function(file) {
+      write.csv(df_ehcp, file)
+    }
+  )
+  
   output$technicaltable <- renderTable(technical_table)
 
 
