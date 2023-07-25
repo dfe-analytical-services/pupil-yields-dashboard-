@@ -31,10 +31,11 @@ homepage_panel <- function() {
                   h3("Introduction"),
                   h4(actionLink("linkHeadlinesTab", "Headlines")),
                   p("This tab displays the average pupil yield factor for each combination of breakdowns (school type, housing type, bedrooms, and tenure) for a specific academic year or all years together. "),
-                  h4("Annual time series"),
+                  h4(actionLink("linkAveragesTab", "Annual time series")),
                   p("This tab displays the average cumulative pupil yield factor over time by school phase and housing type. This will show where additional yield has sped up or slowed down by looking at the slope of the curve. Data can be interrogated further on the headlines tab if required."),
                   h4("Post completion time series"),
-                  p("This tab displays the average pupil yield factor each year after developments have completed, for all developments or only developments completed in certain academic years.  This will show where pupil yield peaks post development. Note: the sample size reduces each year post completion and so care should be taken when using yields furthest from completion."),
+                  p("This tab displays the average pupil yield factor each year after developments have completed, for all developments or only developments completed in certain academic years.  This will show where pupil yield peaks post development."), 
+                  strong("Note:"), p("the sample size reduces each year post completion and so care should be taken when using yields furthest from completion."),
                   h4("Special Educational Needs and Disability"),
                   p("This tab shows the proportion of pupils living in the properties completed up to the selected academic year that required Special Education Needs (SEN support) or had Education, Health, and Care Plans (EHCPs)."),
                   ),
@@ -210,7 +211,7 @@ dashboard_panel <- function() {
                 column(
                   width = 12,
                   h2("Pupil Yield showing peak and average"),
-                  p("This is the standard paragraph style for adding guiding info around data content."),
+                  #p("This is the standard paragraph style for adding guiding info around data content."),
                   column(
                     width = 12,
                     radioGroupButtons(

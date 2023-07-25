@@ -342,6 +342,14 @@ server <- function(input, output, session) {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
     updateTabsetPanel(session, "tabs", selected = "Headlines")
  })
+  
+  observeEvent(input$linkAveragesTab, {
+    updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
+    updateTabsetPanel(session, "tabs", selected = "Annual time series")
+  })
+  
+  
+  
   # Stop app ---------------------------------------------------------------------------------
 
   session$onSessionEnded(function() {
