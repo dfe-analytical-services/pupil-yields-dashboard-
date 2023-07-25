@@ -345,9 +345,13 @@ server <- function(input, output, session) {
   
   observeEvent(input$linkAveragesTab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
-    updateTabsetPanel(session, "tabs", selected = "Annual time series")
+    updateTabsetPanel(session, "tabs", selected = "Averages")
   })
   
+  observeEvent(input$linkSENDTab, {
+    updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
+    updateTabsetPanel(session, "tabs", selected = "SEND")
+  })
   
   
   # Stop app ---------------------------------------------------------------------------------
