@@ -278,11 +278,10 @@ technical_panel <- function() {
           width = 12,
           h1("Technical Details"),
           h2("Data Sources"),
-          p("Data for this project were obtained from the Ordnance Survey (OS) under the Public Sector Geospatial Agreement (PSGA), the ONS, and the National Pupil Database (NPD) which is held by the Department for Education. All data sources and their use are described in the relevant sections below."),
-          h2("OS New Build Data"),
-          p("The OS build-out data is provided by the Ordnance Survey (OS) Consultancy and Technical Services team as derived content, using OS AddressBase to identify new build or newly developed properties."),
-          p("For more information, including how to access the OS AddressBase, see", a(href = "https://www.ordnancesurvey.co.uk/customers/public-sector/public-sector-geospatial-agreement", " OS information"), ".
-about the Public Sector Geospatial Agreement (PSGA), which is available to all public sector organisations. DfE received AddressBase data from OS in June 2022."),
+          p("Data for this project were obtained from the Ordnance Survey (OS), the Valuation Office Agency (VOA) via the Office for National Statistics (ONS), and the Department for Education’s (DfE) National Pupil Database (NPD). Each data source and its use are described in the relevant sections below."),
+          h2("Properties - OS New Build Data"),
+          p("The OS Consultancy and Technical Services team used", a(href = "https://www.ordnancesurvey.co.uk/products/addressbase", "OS AddressBase"), "to identify new build or newly developed properties.  This dataset is referred to as the OS new build data and was provided to the DfE in June 2022, under the Public Sector Geospatial Agreement (PSGA). The dataset allows for analysis by housing type, and tenure. Data are available for 2008 onwards."),
+          p("For more information about the PSGA and how to access the OS AddressBase, see", a(href = "https://www.ordnancesurvey.co.uk/customers/public-sector/public-sector-geospatial-agreement", " OS information.")),
         )
       ),
       h2("National Pupil Database"),
