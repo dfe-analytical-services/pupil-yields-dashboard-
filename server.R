@@ -204,9 +204,15 @@ server <- function(input, output, session) {
   observeEvent(
     input$select_xaxis,
     {
+      choices_update <- filter_list %>% filter(
+        name != input$select_xaxis #, 
+#        !(name %in% c("Housing type", "Tenure", "Early years uplift"))
+        ) %>% 
+        pull(name)
       updateSelectizeInput(
         session, "select_breakdown",
-        choices = filter_list %>% filter(name != input$select_xaxis, !(name %in% c("Housing type", "Tenure", "Early years uplift"))) %>% pull(name)
+        choices = choices_update,
+        selected = ifelse(input$select_xaxis==input$select_breakdown,choices_update[1],input$select_breakdown)
       )
     }
   )
@@ -301,12 +307,27 @@ server <- function(input, output, session) {
   })
 
   # Download the underlying data button
-  output$download_data <- downloadHandler(
-    filename = "shiny_template_underlying_data.csv",
+  output$download_headlines_data <- downloadHandler(
+    filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
       write.csv(df_py, file)
     }
   )
+  
+  output$download_averages_data <- downloadHandler(
+    filename = "pupil_yield_underlying_data.csv",
+    content = function(file) {
+      write.csv(df_py, file)
+    }
+  )
+  
+  output$download_send_data <- downloadHandler(
+    filename = "ehcp_underlying_data.csv",
+    content = function(file) {
+      write.csv(df_ehcp, file)
+    }
+  )
+  
   output$technicaltable <- renderTable(technical_table)
 
 

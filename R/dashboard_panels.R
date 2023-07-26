@@ -123,16 +123,6 @@ dashboard_panel <- function() {
                     )
                   )
                 )
-              ),
-              column(
-                width = 12,
-                paste("Download the underlying data for this dashboard:"), br(),
-                downloadButton(
-                  outputId = "download_data",
-                  label = "Download data",
-                  icon = shiny::icon("download"),
-                  class = "downloadButton"
-                )
               )
             )
           )
@@ -186,7 +176,7 @@ dashboard_panel <- function() {
                     inputId = "select_year",
                     label = "Choose a Year:",
                     choices = choicesYears,
-                    selected = choicesYears[1]
+                    selected = "2021/22" 
                   )
                 )
               ),
@@ -221,6 +211,19 @@ dashboard_panel <- function() {
                     selected = "All"
                   )
                 )
+              ),
+              gov_row(
+                tags$hr(),
+                column(
+                  width = 12,
+                  paste("Download the underlying data for this dashboard:"), br(),
+                  downloadButton(
+                    outputId = "download_headline_data",
+                    label = "Download data",
+                    icon = shiny::icon("download"),
+                    class = "downloadButton"
+                  )
+                )
               )
             ),
             tabPanel(
@@ -245,7 +248,8 @@ dashboard_panel <- function() {
                       selectizeInput(
                         "timeseries.phase",
                         label = "Choose a school phase",
-                        choices = choices$education_phase
+                        choices = choices$education_phase,
+                        selected = 'Primary'
                       )
                     ),
                     column(
@@ -254,6 +258,19 @@ dashboard_panel <- function() {
                         "timeseries.housing",
                         label = "Choose a housing type",
                         choices = choices$housing
+                      )
+                    )
+                  ),
+                  gov_row(
+                    column(
+                      width = 12,
+                      tags$hr(),
+                      paste("Download the underlying data for this dashboard:"), br(),
+                      downloadButton(
+                        outputId = "download_averages_data",
+                        label = "Download data",
+                        icon = shiny::icon("download"),
+                        class = "downloadButton"
                       )
                     )
                   )
@@ -265,19 +282,33 @@ dashboard_panel <- function() {
               gov_row(
                 column(
                   width = 12,
-                  p(" "),
-                  valueBoxOutput("send_box_1", width = 4),
-                  valueBoxOutput("send_box_3", width = 4),
-                  valueBoxOutput("send_box_2", width = 4),
-                  p(" "),
                   selectizeInput(
                     "send_year",
                     label = "Choose a Year",
                     choices = df_ehcp %>% arrange(AcademicYear) %>% pull(AcademicYear) %>% unique(),
                     selected = max(df_ehcp$AcademicYear)
+                  ),
+                  p(" "),
+                  valueBoxOutput("send_box_1", width = 4),
+                  valueBoxOutput("send_box_3", width = 4),
+                  valueBoxOutput("send_box_2", width = 4),
+                  p(" ")
+                )
+              ),
+              gov_row(
+                tags$hr(),
+                column(
+                  width = 12,
+                  paste("Download the underlying data for this dashboard:"), br(),
+                  downloadButton(
+                    outputId = "download_send_data",
+                    label = "Download data",
+                    icon = shiny::icon("download"),
+                    class = "downloadButton"
                   )
                 )
               )
+              
             )
           )
         )
