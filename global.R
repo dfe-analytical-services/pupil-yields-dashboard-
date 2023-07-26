@@ -125,7 +125,7 @@ df_py$time_period <- factor(df_py$time_period, levels = choicesYears %>% sort())
 filter_list <- data.frame(
   name = c("School phase", "School type", "Housing type", "Number of bedrooms", "Tenure"),
   colid = c("education_phase", "education_type", "housing", "number_of_bedrooms", "tenure"),
-  default = c("Early years", "Mainstream", "All", "All", "All")
+  default = c("Primary", "Mainstream", "All", "All", "All")
 )
 
 choiceseducation_type <- unique(df_py$education_type) %>% sort()

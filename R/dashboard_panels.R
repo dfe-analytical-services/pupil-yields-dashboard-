@@ -176,7 +176,7 @@ dashboard_panel <- function() {
                     inputId = "select_year",
                     label = "Choose a Year:",
                     choices = choicesYears,
-                    selected = choicesYears[1]
+                    selected = "2021/22" 
                   )
                 )
               ),
@@ -248,7 +248,8 @@ dashboard_panel <- function() {
                       selectizeInput(
                         "timeseries.phase",
                         label = "Choose a school phase",
-                        choices = choices$education_phase
+                        choices = choices$education_phase,
+                        selected = 'Primary'
                       )
                     ),
                     column(
