@@ -96,8 +96,15 @@ source("R/read_data.R")
 la_lad_lookup <- read.csv("data/la_lad_hierarchy.csv", stringsAsFactors = F) %>%
   mutate(
     la_name = gsub(",", "", la_name),
-    lad_name = gsub(",", "", lad_name)
-  )
+    lad_name = gsub(",", "", lad_name),
+    date_of_introduction=as.Date(date_of_introduction),
+    date_of_termination=as.Date(date_of_termination)
+  ) %>%
+  filter(
+    status == "live" | date_of_termination >= as.Date("2023-03-31"),
+    date_of_introduction <= as.Date("2023-03-31") | is.na(date_of_introduction)
+  ) %>%
+  rbind(data.frame(lad_code='x', lad_name='Cardiff', date_of_introduction=NA, date_of_termination=NA, status='live', new_la_code='x', la_name='Cardiff', old_la_code='x'))
 
 # Read in the data
 df_py <- read_data()
@@ -108,7 +115,7 @@ df_py$education_phase <- factor(df_py$education_phase, levels = )
 
 choicesgeographic_level <- c("England", "County/Unitary", "District")
 choicesLAs <- df_py %>%
-  filter(geographic_level == "County/Unitary") %>%
+  filter(geographic_level == "County/Unitary" | la_name=='Cardiff') %>%
   pull(la_name) %>%
   unique() %>%
   sort()
