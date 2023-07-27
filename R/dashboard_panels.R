@@ -263,7 +263,7 @@ dashboard_panel <- function() {
             ),
             tabPanel(
               value = "SEND",
-              title = "SEND",
+              title = "Special Educational Needs and Disability",
               gov_row(
                 column(
                   width = 12,
@@ -274,9 +274,8 @@ dashboard_panel <- function() {
                     selected = max(df_ehcp %>% filter(AcademicYear!='Total') %>% pull(AcademicYear))
                   ),
                   p(" "),
-                  valueBoxOutput("send_box_1", width = 4),
-                  valueBoxOutput("send_box_3", width = 4),
-                  valueBoxOutput("send_box_2", width = 4),
+                  valueBoxOutput("send_box_1", width = 6),
+                  valueBoxOutput("send_box_3", width = 6),
                   p(" ")
                 )
               ),
