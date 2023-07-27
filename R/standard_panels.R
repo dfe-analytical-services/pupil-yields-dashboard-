@@ -71,7 +71,7 @@ support_links <- function() {
           a(href = "mailto:Pupil.Yields@education.gov.uk", "Pupil.Yields@education.gov.uk", .noWS = c("after")), br(),
           h2("See the source code"),
           "The source code for this dashboard is available in our ",
-          a(href = "https://github.com/dfe-analytical-services/shiny-template", "GitHub repository", .noWS = c("after")),
+          a(href = "https://github.com/dfe-analytical-services/pupil-yields-dashboard-", "GitHub repository", .noWS = c("after")),
           ". Code used to produce the analysis cannot be shared as it is specific to DfE systems.",
           br(),
           br(),
