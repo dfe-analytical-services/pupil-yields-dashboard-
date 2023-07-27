@@ -28,7 +28,7 @@ homepage_panel <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  h3("Introduction"),
+                  h3("Tabs in the dashboard"),
                   h4(actionLink("linkHeadlinesTab", "Headlines")),
                   p("This tab displays the average pupil yield factor for each combination of breakdowns (school type, housing type, bedrooms, and tenure) for a specific academic year or all years together. "),
                   h4(actionLink("linkAveragesTab", "Annual time series")),
