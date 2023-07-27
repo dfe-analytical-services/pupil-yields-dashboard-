@@ -103,8 +103,7 @@ la_lad_lookup <- read.csv("data/la_lad_hierarchy.csv", stringsAsFactors = F) %>%
   filter(
     status == "live" | date_of_termination >= as.Date("2023-03-31"),
     date_of_introduction <= as.Date("2023-03-31") | is.na(date_of_introduction)
-  ) %>%
-  rbind(data.frame(lad_code='x', lad_name='Cardiff', date_of_introduction=NA, date_of_termination=NA, status='live', new_la_code='x', la_name='Cardiff', old_la_code='x'))
+  )
 
 # Read in the data
 df_py <- read_data()
