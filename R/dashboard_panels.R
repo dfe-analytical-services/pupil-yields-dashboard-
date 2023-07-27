@@ -124,7 +124,8 @@ dashboard_panel <- function() {
           tabsetPanel(
             id = "tabsetpanels",
             tabPanel(
-              "Headlines",
+              value = "Headlines",
+              title = "Headlines",
               gov_row(
                 column(
                   width = 12,
@@ -206,7 +207,8 @@ dashboard_panel <- function() {
               )
             ),
             tabPanel(
-              "Averages",
+              value = "Averages",
+              title = "Averages",
               fluidRow(
                 column(
                   width = 12,
@@ -243,7 +245,8 @@ dashboard_panel <- function() {
               )
             ),
             tabPanel(
-              "SEND",
+              value = "SEND",
+              title = "SEND",
               gov_row(
                 column(
                   width = 12,

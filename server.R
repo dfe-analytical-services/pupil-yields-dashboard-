@@ -340,17 +340,17 @@ server <- function(input, output, session) {
    #actionLinks
   observeEvent(input$linkHeadlinesTab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
-    updateTabsetPanel(session, "tabs", selected = "Headlines")
+    updateTabsetPanel(session, "tabsetpanels", selected = "Headlines")
  })
   
   observeEvent(input$linkAveragesTab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
-    updateTabsetPanel(session, "tabs", selected = "Averages")
+    updateTabsetPanel(session, "tabsetpanels", selected = "Averages")
   })
   
   observeEvent(input$linkSENDTab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
-    updateTabsetPanel(session, "tabs", selected = "SEND")
+    updateTabsetPanel(session, "tabsetpanels", selected = "SEND")
   })
   
   
