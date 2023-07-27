@@ -84,5 +84,10 @@ read_data <- function(file = "data/PYJuly.csv") {
 
 read_ehcp <- function() {
   read.csv("data/EHCPJuly.csv", stringsAsFactors = FALSE) %>% 
-    mutate(AcademicYear=paste(substr(AcademicYear, 1, 4), substr(AcademicYear, 5, 6), sep = "/"))
+    mutate(
+      AcademicYear = if_else(
+        AcademicYear == 'Total', 'Total',
+        paste(substr(AcademicYear, 1, 4), substr(AcademicYear, 5, 6), sep = "/")
+        )
+    )
 }
