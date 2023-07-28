@@ -267,6 +267,7 @@ dashboard_panel <- function() {
               gov_row(
                 column(
                   width = 12,
+                  h2("Pupils with special educational needs"),
                   selectizeInput(
                     "send_year",
                     label = "Choose a Year",
@@ -276,7 +277,8 @@ dashboard_panel <- function() {
                   p(" "),
                   valueBoxOutput("send_box_1", width = 6),
                   valueBoxOutput("send_box_3", width = 6),
-                  p(" ")
+                  p("Proportion of pupils living in the properties completed up to the selected academic year that required Special Education Needs (SEN support) or had Education, Health, and Care Plans (EHCPs).
+")
                 )
               ),
               gov_row(
