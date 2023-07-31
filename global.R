@@ -136,7 +136,7 @@ filter_list <- data.frame(
 
 choiceseducation_type <- unique(df_py$education_type) %>% sort()
 
-choicesPhase <- c("Early Years", "Primary", "Secondary", "Post-16", "SP/Alternative")
+choicesPhase <- c("Early Years", "Primary", "Secondary", "Post-16", "Special Schools/AP")
 df_py$education_phase <- factor(df_py$education_phase, levels = choicesPhase)
 
 # choicesaffordability <- unique(df_py$affordability)
