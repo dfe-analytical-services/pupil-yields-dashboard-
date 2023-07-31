@@ -262,6 +262,16 @@ dashboard_panel <- function() {
               )
             ),
             tabPanel(
+              value = "Post completion time series",
+              title = "Post completion time series",
+              fluidRow(
+                column(
+                  width = 12,
+                  h2("Pupil Yield post completion"),
+                )
+              )
+            ),
+            tabPanel(
               value = "SEND",
               title = "Special Educational Needs and Disability",
               gov_row(
