@@ -37,7 +37,7 @@ homepage_panel <- function() {
                   p("This tab displays the average pupil yield factor each year after developments have completed, for all developments or only developments completed in certain academic years.  This will show where pupil yield peaks post development."), 
                   strong("Note:"), ("the sample size reduces each year post completion and so care should be taken when using yields furthest from completion."),
                   h4(actionLink("linkSENDTab", "Special Educational Needs and Disability")),
-                  p("This tab shows the proportion of pupils living in the properties completed up to the selected academic year that required Special Education Needs (SEN support) or had Education, Health, and Care Plans (EHCPs)."),
+                  p("This tab shows the proportion of pupils living in the properties completed up to the selected academic year that required Special Education Needs (SEN) support or had Education, Health and Care Plans (EHCPs)."),
                   ),
                 br()
               )
@@ -277,7 +277,7 @@ dashboard_panel <- function() {
                   p(" "),
                   valueBoxOutput("send_box_1", width = 6),
                   valueBoxOutput("send_box_3", width = 6),
-                  p("Proportion of pupils living in the properties completed up to the selected academic year that required Special Education Needs (SEN support) or had Education, Health, and Care Plans (EHCPs).
+                  p("Proportion of pupils living in the properties completed up to the selected academic year that required Special Education Needs (SEN) support or had Education, Health and Care Plans (EHCPs).
 ")
                 )
               ),
