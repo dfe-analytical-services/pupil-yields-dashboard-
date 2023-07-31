@@ -201,7 +201,7 @@ dashboard_panel <- function() {
                   width = 12,
                   paste("Download the underlying data for this dashboard:"), br(),
                   downloadButton(
-                    outputId = "download_headline_data",
+                    outputId = "download_headlines_data",
                     label = "Download data",
                     icon = shiny::icon("download"),
                     class = "downloadButton"
@@ -311,7 +311,7 @@ technical_panel <- function() {
       gov_row(
         column(
           width = 12,
-          h1("Technical Details"),
+          h1("Technical Notes"),
           h2("Data Sources"),
           p("Data for this project were obtained from the Ordnance Survey (OS), the Valuation Office Agency (VOA) via the Office for National Statistics (ONS), and the Department for Education’s (DfE) National Pupil Database (NPD). Each data source and its use are described in the relevant sections below."),
           h2("Properties - OS New Build Data"),

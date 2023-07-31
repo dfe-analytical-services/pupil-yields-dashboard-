@@ -62,7 +62,7 @@ support_links <- function() {
           h2("Find more information on the data"),
           "The data displayed in the dashboard can be downloaded from the Dashboard tab. This is not a full set of underlying data that feeds the calculation, which is subject to data protection rules. ",
           br(),
-          br("A summary of  methodological information can be found in the Technical tab. Full details of the methods used are available on request from ",
+          br("A summary of  methodological information can be found in the Technical Notes tab. Full details of the methods used are available on request from ",
           a(href = "mailto:Pupil.Yields@education.gov.uk", "Pupil.Yields@education.gov.uk", .noWS = c("after")),
           ".",
           br(),

@@ -24,7 +24,7 @@ create_bar_headline <- function(df, inputArea, xaxis, breakdown) {
     ) +
     ylim(0, max(c(0.6, df$pupil_yield * 1.02))) +
     xlab(xaxis$name) +
-    ylab("Pupil yield")
+    ylab("Pupil Yield")
 }
 
 create_py_time_period <- function(dfPY) {
@@ -37,13 +37,13 @@ create_py_time_period <- function(dfPY) {
       y = pupil_yield,
       group = tenure,
       text = paste0(
-        "<i>Pupil yield</i>: ", pupil_yield,
+        "<i>Pupil Yield</i>: ", pupil_yield,
         "<br><b>Financial year</b>: ", time_period
       )
     )
   ) +
-    geom_line(aes(color = "Yearly pupil yield")) +
-    geom_hline(aes(yintercept = mean_py, color = "Mean pupil yield"), linetype = "dashed") +
+    geom_line(aes(color = "Yearly Pupil Yield")) +
+    geom_hline(aes(yintercept = mean_py, color = "Mean Pupil Yield"), linetype = "dashed") +
     scale_colour_manual(values = dfe_palette) +
     theme_classic() +
     theme(
