@@ -80,7 +80,7 @@ server <- function(input, output, session) {
         names_from = reactive_xaxis()$colid,
         values_from = "pupil_yield"
       )
-    colnames(df)[1:3] <- c("Financial Year", "Local authority", reactive_breakdown()$name)
+    colnames(df)[1:3] <- c("Academic Year", "Local authority", reactive_breakdown()$name)
     return(df)
   })
 
@@ -95,7 +95,7 @@ server <- function(input, output, session) {
   output$table_timeseries <- renderTable({
     df <- reactivePYtime_period() %>%
       select(time_period, la_name, education_phase, number_of_pupils, completed_properties_in_fy, pupil_yield)
-    colnames(df) <- c("Financial year", "Local authority", "School phase", "# pupils", "Completed properties", "Pupil yield")
+    colnames(df) <- c("Academic year", "Local authority", "School phase", "# pupils", "Completed properties", "Pupil yield")
     return(df)
   })
 
