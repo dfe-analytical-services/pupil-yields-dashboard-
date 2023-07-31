@@ -7,8 +7,8 @@ homepage_panel <- function() {
           12,
           h1("Estimating Pupil Yield from Housing Development in England"),
           p("DfE has worked with the Office for National Statistics (ONS) to develop a recommended methodology for estimating pupil yield from housing development, to assist local authorities demonstrating the need for education facilities during local plan preparation and the consideration of planning applications. There are technical notes explaining the processes employed in preparing pupil yield data, sitting alongside new guidance, so that local authorities will be able to replicate our methodology when producing similar local pupil yield data in the future."),
-          p("The Pupil Yield Dashboard provides pupil yield factors for each local authority in England, at county, unitary, and district level (where applicable). Pupil yield factors can be displayed by education type (mainstream or special), phase (early years, primary, secondary and post-16) and filtered according to housing type (flats/houses), tenure (market/affordable) and size (bedroom numbers). Alongside headline figures for each local authority, there is a graph showing annual pupil yield factors since 2008, and how pupil yield develops over time."),
-          p("The technical notes with this dashboard are provided for local authorities with a responsibility for providing sufficient school places under the Education Act 1996 – principally analysts/data scientists involved in pupil forecasting and other population modelling."),
+          p("The Pupil Yield Dashboard provides pupil yield factors for each local authority in England, at county, unitary, and district level (where applicable). They can be displayed by education type (mainstream or special), phase (early years, primary, secondary and post-16) and filtered according to housing type (flats/houses), tenure (market/affordable) and size (bedroom numbers). Alongside headline figures for each local authority, there is a graph showing annual pupil yield factors since 2008, and how pupil yield develops over time."),
+          p("Pupil yield factors are the number of pupils living in the properties divided by the number of completed properties (see technical notes for more details). The technical notes with this dashboard are provided for local authorities with a responsibility for providing sufficient school places under the Education Act 1996 – principally analysts/data scientists involved in pupil forecasting and other population modelling."),
           br(),
           br()
         ),
@@ -53,7 +53,7 @@ homepage_panel <- function() {
 dashboard_panel <- function() {
   tabPanel(
     value = "dashboard",
-    "Pupil Yields",
+    "Pupil Yields Dashboard",
 
     # Define UI for application that draws a histogram
 
@@ -306,7 +306,7 @@ dashboard_panel <- function() {
 
 technical_panel <- function() {
   tabPanel(
-    "Technical",
+    "Technical Notes",
     gov_main_layout(
       gov_row(
         column(
