@@ -2555,7 +2555,6 @@ AcademicYear,LTLA22NM,SENprovision_Name,geographic_level,SEN_Type_Count,TotalPup
 201920,Cannock Chase,SEN support,District,156,1800,9
 201920,Canterbury,EHCP,District,50,826,6
 201920,Canterbury,SEN support,District,107,826,13
-201920,Cardiff,SEN support,District,2,31,6
 201920,Carlisle,EHCP,District,58,1593,4
 201920,Carlisle,SEN support,District,135,1593,8
 201920,Castle Point,EHCP,District,14,322,4
@@ -3172,8 +3171,6 @@ AcademicYear,LTLA22NM,SENprovision_Name,geographic_level,SEN_Type_Count,TotalPup
 202021,Cannock Chase,SEN support,District,173,2111,8
 202021,Canterbury,EHCP,District,57,1005,6
 202021,Canterbury,SEN support,District,97,1005,10
-202021,Cardiff,EHCP,District,1,55,2
-202021,Cardiff,SEN support,District,4,55,7
 202021,Carlisle,EHCP,District,77,1851,4
 202021,Carlisle,SEN support,District,173,1851,9
 202021,Castle Point,EHCP,District,15,339,4
@@ -3790,8 +3787,6 @@ AcademicYear,LTLA22NM,SENprovision_Name,geographic_level,SEN_Type_Count,TotalPup
 202122,Cannock Chase,SEN support,District,222,2324,10
 202122,Canterbury,EHCP,District,66,1124,6
 202122,Canterbury,SEN support,District,123,1124,11
-202122,Cardiff,EHCP,District,1,98,1
-202122,Cardiff,SEN support,District,13,98,13
 202122,Carlisle,EHCP,District,94,2033,5
 202122,Carlisle,SEN support,District,184,2033,9
 202122,Castle Point,EHCP,District,13,325,4
