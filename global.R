@@ -160,7 +160,7 @@ choices <- list(
   education_phase = choicesPhase,
   housing = choiceshousing,
   tenure = choicestenure,
-  number_of_bedrooms = choicesnumber_beds,
+  number_of_bedrooms = choicesnumber_beds
   
 )
 
@@ -182,7 +182,7 @@ choicesLADspc <- df_pc %>%
   sort()
 
 choicesYearspc <- unique(df_pc$time_period) %>% sort(decreasing = TRUE)
-df_py$time_period <- factor(df_pc$time_period, levels = choicesYears %>% sort())
+df_pc$time_period <- factor(df_pc$time_period, levels = choicesYearspc %>% sort())
 
 
 filter_listpc <- data.frame(
@@ -194,15 +194,15 @@ filter_listpc <- data.frame(
 choiceseducation_typepc <- unique(df_pc$education_type) %>% sort()
 
 choicesPhasepc <- c("Early Years", "Primary", "Secondary", "Post-16", "SP/Alternative")
-df_pc$education_phasepc <- factor(df_pc$education_phase, levels = choicesPhase)
+df_pc$education_phasepc <- factor(df_pc$education_phase, levels = choicesPhasepc)
 
 choicesYearsAfterCompletion <- unique(df_pc$years_after_completion) %>% sort(decreasing = TRUE)
-df_py$years_after_completion <- factor(df_pc$years_after_completion, levels = choicesYearsAfterCompletion %>% sort())
+df_pc$years_after_completion <- factor(df_pc$years_after_completion, levels = choicesYearsAfterCompletion %>% sort())
 
 choicespc <- list(
-  education_type = choiceseducation_type,
-  education_phase = choicesPhase,
-  years_after_completion = choicesyearspc
+  education_type = choiceseducation_typepc,
+  education_phase = choicesPhasepc,
+  years_after_completion = choicesYearspc
 
 )
 

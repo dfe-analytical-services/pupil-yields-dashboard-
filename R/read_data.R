@@ -101,31 +101,32 @@ dfpc$time_period <- paste(
   substr(dfpc$time_period, 5, 6),
   sep = "/"
 )
-df_meanspc <- dfpc %>%
-  summarise(
-    pupil_yield = mean(pupil_yield),
-    .by = c(education_phase, la_name, education_type, geographic_level, tenure, housing, number_of_bedrooms, years_after_completion)
-  ) %>%
-  mutate(
-    time_period = "All",
-    completed_properties_in_ay = NA,
-    number_of_pupils = NA
-  ) %>%
-  select(
-    time_period,
-    la_name,
-    tenure,
-    housing,
-    number_of_bedrooms,
-    education_phase,
-    education_type,
-    geographic_level,
-    number_of_pupils,
-    completed_properties_in_ay,
-    years_after_completion,
-    pupil_yield
-  )
-dfpc <- dfpc %>% rbind(df_meanspc)
+#df_meanspc <- dfpc %>%
+ # summarise(
+    #pupil_yield = mean(pupil_yield),
+    #.by = c(education_phase, la_name, education_type, geographic_level, tenure, housing, number_of_bedrooms, years_after_completion)
+#  ) %>%
+#  mutate(
+   # time_period = "All",
+   # completed_properties_in_ay = NA,
+   # number_of_pupils = NA
+ # ) %>%
+ # select(
+  #  time_period,
+   # la_name,
+    #tenure,
+    #housing,
+    #number_of_bedrooms,
+    #education_phase,
+    #education_type,
+    #geographic_level,
+    #number_of_pupils,
+    #completed_properties_in_ay,
+    #scheme_ids,
+    #years_after_completion,
+    #pupil_yield
+  #)
+#dfpc <- dfpc %>% rbind(df_meanspc)
 
 dfpc <- dfpc %>%
   select(

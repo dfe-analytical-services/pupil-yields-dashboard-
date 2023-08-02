@@ -284,7 +284,7 @@ dashboard_panel <- function() {
                       selectizeInput(
                         "education.phase",
                         label = "Choose an school phase",
-                        choices = choicesPC$education_phase,
+                        choices = choicespc$education_phase,
                         selected = 'Primary'
                       )
                     ),
@@ -293,7 +293,7 @@ dashboard_panel <- function() {
                       selectizeInput(
                         "education.type",
                         label = "Choose an education type",
-                        choices = choicesPC$education_type,
+                        choices = choicespc$education_type,
                         selected = 'Mainstream'
                       )
                     )
