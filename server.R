@@ -102,6 +102,27 @@ server <- function(input, output, session) {
   output$timeseries_caption <- renderUI({
     tags$p("This chart shows the yearly pupil yeild and average pupil yield by school phase as ", tolower(input$timeseries.phase), " and housing type as ", tolower(input$timeseries.housing), ". ")
   })
+  
+  #post completion tab
+  
+  output$PC_data <- renderUI({
+    if (input$timetab_toggle == "Chart") {
+      plotlyOutput("linePCtime_period")
+    } else {
+      tableOutput("table_timeseries")
+    }
+  })
+  
+  #output$table_PC <- renderTable({
+    #df <- reactivePCtime_period() %>%
+      #select(time_period, la_name, education_phase, number_of_pupils, completed_properties_in_fy, pupil_yield)
+    #colnames(df) <- c("Financial year", "Local authority", "School phase", "# pupils", "Completed properties", "Pupil yield")
+    #return(df)
+  #})
+  
+  output$PC_caption <- renderUI({
+    tags$p("This chart shows the yearly pupil yeild and average pupil yield by school phase as ", tolower(input$timeseries.phase), " and housing type as ", tolower(input$timeseries.housing), ". ")
+  })
 
   observeEvent(input$cookie_consent, {
     msg <- list(
@@ -177,6 +198,15 @@ server <- function(input, output, session) {
     )
   })
 
+  reactivePC <- reactive({
+    df_PC %>% filter(
+      la_name == reactive_area(),
+      education_phase == input$education.phase,
+      education_type == input$education.type
+    )
+  })
+  
+  
   reactive_xaxis <- reactive({
     filter_list %>% filter(name == input$select_xaxis)
   })
@@ -270,8 +300,16 @@ server <- function(input, output, session) {
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
 
+  # Render time_period line chart of post completion
+  output$linePC <- renderPlotly({
+    ggplotly(create_PC_time_period(reactivePCtime_period()),
+             tooltip = c("text")
+    ) %>%
+      config(displayModeBar = F) %>%
+      layout(legend = list(orientation = "h", x = 0, y = -0.2))
+  })
   reactiveBenchmark <- reactive({
-    df_py %>%
+    df_pc %>%
       filter(
         local_authority %in% c(input$selectLA, input$selectBenchLAs),
         education_phase == input$selecteducation_phase,
@@ -318,6 +356,13 @@ server <- function(input, output, session) {
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
       write.csv(df_py, file)
+    }
+  )
+  
+  output$download_pc_data <- downloadHandler(
+    filename = "post_completion_underlying_data.csv",
+    content = function(file) {
+      write.csv(df_pc, file)
     }
   )
   

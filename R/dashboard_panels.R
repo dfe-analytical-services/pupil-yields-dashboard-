@@ -268,6 +268,49 @@ dashboard_panel <- function() {
                 column(
                   width = 12,
                   h2("Pupil Yield post completion"),
+                  #p("This is the standard paragraph style for adding guiding info around data content."),
+                  column(
+                    width = 12,
+                    radioGroupButtons(
+                      "timetab_toggle",
+                      label = NULL,
+                      choices = c("Chart", "Table"),
+                      selected = "Chart"
+                    ),
+                    #uiOutput("PC_data"),
+                    #uiOutput("PC_captionpc"),
+                    column(
+                      width = 4,
+                      selectizeInput(
+                        "education.phase",
+                        label = "Choose an school phase",
+                        choices = choicesPC$education_phase,
+                        selected = 'Primary'
+                      )
+                    ),
+                    column(
+                      width = 4,
+                      selectizeInput(
+                        "education.type",
+                        label = "Choose an education type",
+                        choices = choicesPC$education_type,
+                        selected = 'Mainstream'
+                      )
+                    )
+                  ),
+                  gov_row(
+                    column(
+                      width = 12,
+                      tags$hr(),
+                      paste("Download the underlying data for this dashboard:"), br(),
+                      downloadButton(
+                        outputId = "download_pc_data",
+                        label = "Download data",
+                        icon = shiny::icon("download"),
+                        class = "downloadButton"
+                      )
+                    )
+                  )
                 )
               )
             ),

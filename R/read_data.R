@@ -92,19 +92,19 @@ read_ehcp <- function() {
     )
 }
 #reads in post_completion data
-post_completion <- function(file = "data/post_completion.csv") {
+read_pc <- function(file = "data/post_completion.csv") {
   # This reads in an example file. For the purposes of this demo, we're using the
   # latest test data.
   dfpc <- read.csv(file) # %>%
-dfpc$time_periodpc <- paste(
-  substr(dfpc$time_periodpc, 1, 4),
-  substr(dfpc$time_periodpc, 5, 6),
+dfpc$time_period <- paste(
+  substr(dfpc$time_period, 1, 4),
+  substr(dfpc$time_period, 5, 6),
   sep = "/"
 )
 df_meanspc <- dfpc %>%
   summarise(
     pupil_yield = mean(pupil_yield),
-    .by = c(education_phase, la_name, education_type, geographic_level, tenure, housing, number_of_bedrooms)
+    .by = c(education_phase, la_name, education_type, geographic_level, tenure, housing, number_of_bedrooms, years_after_completion)
   ) %>%
   mutate(
     time_period = "All",
@@ -125,7 +125,7 @@ df_meanspc <- dfpc %>%
     years_after_completion,
     pupil_yield
   )
-dfpc <- dfpc %>% rbind(df_means)
+dfpc <- dfpc %>% rbind(df_meanspc)
 
 dfpc <- dfpc %>%
   select(

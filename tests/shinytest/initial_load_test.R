@@ -18,7 +18,8 @@ inputs <- c(
 outputs <- c(
   "bar_headlines",
   "headline_title",
-  "linePYtime_period"
+  "linePYtime_period",
+  "line_PC"
 )
 
 app$snapshot(list(input = inputs, output = outputs))
