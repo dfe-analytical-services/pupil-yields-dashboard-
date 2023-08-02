@@ -108,6 +108,16 @@ la_lad_lookup <- read.csv("data/la_lad_hierarchy.csv", stringsAsFactors = F) %>%
 # Read in the data
 df_py <- read_data()
 df_ehcp <- read_ehcp()
+
+# Create clean versions of the file for download--------------
+df_py_download <- read_data()
+df_ehcp_download <- read_ehcp()
+
+# renames the columns of the old data set using the lookup table
+df_py_download <- data.table::setnames(df_py_download, old = metadata_PY$programmer_friendly_names, new = metadata_PY$user_friendly_name, skip_absent = TRUE)
+df_ehcp_download <- data.table::setnames(df_ehcp_download, old = metadata_EHCP$programmer_friendly_names, new = metadata_EHCP$user_friendly_name, skip_absent = TRUE)
+
+
 # Get geographical levels from data
 
 df_py$education_phase <- factor(df_py$education_phase, levels = )

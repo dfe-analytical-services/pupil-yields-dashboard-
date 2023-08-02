@@ -91,3 +91,13 @@ read_ehcp <- function() {
         )
     )
 }
+
+#read in metadata to get variable names for files for download--------------
+metadata_PY <-  read.csv("data/PYMetadata.csv", encoding = "UTF-8")
+metadata_EHCP <- read.csv("data/EHCPMetadata.csv", encoding = "UTF-8")
+
+
+
+
+
+

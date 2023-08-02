@@ -1,0 +1,12 @@
+programmer_friendly_names,user_friendly_names
+time_period,Academic Year
+geographic_level,Geographic Level
+la_name,LA/District/County/Unitary Name
+education_phase,Education Phase
+education_type,Education Type
+tenure,Tenure Type
+housing,Housing Type
+number_of_bedrooms,Number of bedrooms
+number_of_pupils,Number of pupils
+completed_properties_in_fy,Number of completed properties
+pupil_yield,Pupil Yield
