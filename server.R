@@ -369,6 +369,11 @@ server <- function(input, output, session) {
     updateTabsetPanel(session, "tabsetpanels", selected = "Averages")
   })
   
+  observeEvent(input$linkPCTab, {
+    updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
+    updateTabsetPanel(session, "tabsetpanels", selected = "Post completion time series")
+  })
+  
   observeEvent(input$linkSENDTab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
     updateTabsetPanel(session, "tabsetpanels", selected = "SEND")

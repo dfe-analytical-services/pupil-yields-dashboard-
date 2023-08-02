@@ -33,7 +33,7 @@ homepage_panel <- function() {
                   p("This tab displays the average pupil yield factor for each combination of breakdowns (school type, housing type, bedrooms, and tenure) for a specific academic year or all years together. "),
                   h4(actionLink("linkAveragesTab", "Annual time series")),
                   p("This tab displays the average cumulative pupil yield factor over time by school phase and housing type. This will show where additional yield has sped up or slowed down by looking at the slope of the curve. Data can be interrogated further on the headlines tab if required."),
-                  h4("Post completion time series"),
+                  h4(actionLink("linkPCTab", "Post completion time series- COMING SOON")),
                   p("This tab displays the average pupil yield factor each year after developments have completed, for all developments or only developments completed in certain academic years.  This will show where pupil yield peaks post development."), 
                   strong("Note:"), ("the sample size reduces each year post completion and so care should be taken when using yields furthest from completion."),
                   h4(actionLink("linkSENDTab", "Special Educational Needs and Disability")),
@@ -267,7 +267,7 @@ dashboard_panel <- function() {
               fluidRow(
                 column(
                   width = 12,
-                  h2("Pupil Yield post completion"),
+                  h2("Pupil Yield post completion- COMING SOON"),
                 )
               )
             ),
