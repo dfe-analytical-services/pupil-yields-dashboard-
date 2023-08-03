@@ -100,7 +100,7 @@ server <- function(input, output, session) {
   })
 
   output$timeseries_caption <- renderUI({
-    tags$p("This chart shows the cumulative pupil yield by school phase as ", tolower(input$timeseries.phase), " and housing type as ", tolower(input$timeseries.housing), ". ")
+    tags$p("This chart shows the cumulative Pupil Yield for school phase set to ", tolower(input$timeseries.phase), " and housing type set to ", tolower(input$timeseries.housing),". ")
   })
 
   observeEvent(input$cookie_consent, {

@@ -37,7 +37,7 @@ create_py_time_period <- function(dfPY) {
       y = pupil_yield,
       group = tenure,
       text = paste0(
-        "<i>Pupil Yield</i>: ", pupil_yield,
+        "<i>Pupil Yield</i>: ", round(pupil_yield, 2),
         "<br><b>Academic year</b>: ", time_period
       )
     )
