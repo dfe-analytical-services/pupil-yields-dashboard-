@@ -30,13 +30,13 @@ homepage_panel <- function() {
                 tags$div(
                   h3("Tabs in the dashboard"),
                   h4(actionLink("linkHeadlinesTab", "Headlines")),
-                  p("This tab displays the average pupil yield factor for each combination of breakdowns (school type, housing type, bedrooms, and tenure) for a specific academic year or all years together. "),
-                  h4(actionLink("linkAveragesTab", "Annual time series")),
-                  p("This tab displays the average cumulative pupil yield factor over time by school phase and housing type. This will show where additional yield has sped up or slowed down by looking at the slope of the curve. Data can be interrogated further on the headlines tab if required."),
+                  p("This tab displays the average pupil yield factor for each combination of breakdowns (school type, housing type, bedrooms, and tenure) for a specific academic year."),
+                  h4(actionLink("linkAveragesTab", "Cumulative time series")),
+                  p("This tab displays the cumulative pupil yield factor over time by school phase and housing type. This will show where additional yield has sped up or slowed down by looking at the slope of the curve. Data can be interrogated further on the headlines tab if required."),
                   h4(actionLink("linkPCTab", "Post completion time series- COMING SOON")),
                   p("This tab displays the average pupil yield factor each year after developments have completed, for all developments or only developments completed in certain academic years.  This will show where pupil yield peaks post development."), 
                   strong("Note:"), ("the sample size reduces each year post completion and so care should be taken when using yields furthest from completion."),
-                  h4(actionLink("linkSENDTab", "Special Educational Needs and Disability")),
+                  h4(actionLink("linkSENDTab", "Special Educational Needs and Disabilities")),
                   p("This tab shows the proportion of pupils living in the properties completed up to the selected academic year that required Special Education Needs (SEN) support or had Education, Health and Care Plans (EHCPs)."),
                   ),
                 br()
@@ -211,11 +211,11 @@ dashboard_panel <- function() {
             ),
             tabPanel(
               value = "Averages",
-              title = "Averages",
+              title = "Cumulative time series",
               fluidRow(
                 column(
                   width = 12,
-                  h2("Pupil Yield showing peak and average"),
+                  h2("Pupil Yield over time as the number of completed properties increases"),
                   #p("This is the standard paragraph style for adding guiding info around data content."),
                   column(
                     width = 12,
@@ -273,11 +273,11 @@ dashboard_panel <- function() {
             ),
             tabPanel(
               value = "SEND",
-              title = "Special Educational Needs and Disability",
+              title = "Special Educational Needs and Disabilities",
               gov_row(
                 column(
                   width = 12,
-                  h2("Pupils with special educational needs"),
+                  h2("Pupils with Special Educational Needs and Disabilities"),
                   selectizeInput(
                     "send_year",
                     label = "Choose a Year",
