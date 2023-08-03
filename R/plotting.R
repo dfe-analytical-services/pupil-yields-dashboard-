@@ -43,7 +43,7 @@ create_py_time_period <- function(dfPY) {
     )
   ) +
     geom_line(aes(color = "Pupil Yield for schemes completed up to the start of the academic year")) +
-    geom_hline(aes(yintercept = mean_py, color = "Average pupil yield across the whole sample"), linetype = "dashed") +
+    geom_hline(aes(yintercept = mean_py, color = "Average Pupil Yield across the whole sample"), linetype = "dashed") +
     scale_colour_manual(values = dfe_palette) +
     theme_classic() +
     theme(
