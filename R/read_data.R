@@ -95,25 +95,27 @@ read_ehcp <- function() {
 read_pc <- function(file = "data/post_completion.csv") {
   # This reads in an example file. For the purposes of this demo, we're using the
   # latest test data.
-  dfpc <- read.csv(file) # %>%
-dfpc$time_period <- paste(
-  substr(dfpc$time_period, 1, 4),
-  substr(dfpc$time_period, 5, 6),
-  sep = "/"
-)
+  dfpc <- read.csv(file) %>%
+    mutate(
+      time_period = if_else(
+        time_period == 'All', 'All',
+        paste(substr(time_period, 1, 4), substr(time_period, 5, 6), sep = "/")
+      )
+    )
+  
 #df_meanspc <- dfpc %>%
- # summarise(
-    #pupil_yield = mean(pupil_yield),
+  #summarise(
+   # pupil_yield = mean(pupil_yield),
     #.by = c(education_phase, la_name, education_type, geographic_level, tenure, housing, number_of_bedrooms, years_after_completion)
-#  ) %>%
-#  mutate(
-   # time_period = "All",
-   # completed_properties_in_ay = NA,
-   # number_of_pupils = NA
- # ) %>%
- # select(
-  #  time_period,
-   # la_name,
+  #) %>%
+  #mutate(
+    #time_period = "All",
+    #completed_properties_in_ay = NA,
+    #number_of_pupils = NA
+  #) %>%
+  #select(
+    #time_period,
+    #la_name,
     #tenure,
     #housing,
     #number_of_bedrooms,
@@ -122,11 +124,10 @@ dfpc$time_period <- paste(
     #geographic_level,
     #number_of_pupils,
     #completed_properties_in_ay,
-    #scheme_ids,
     #years_after_completion,
     #pupil_yield
   #)
-#dfpc <- dfpc %>% rbind(df_meanspc)
+#dfpc <- dfpc %>% rbind(df_means)
 
 dfpc <- dfpc %>%
   select(
