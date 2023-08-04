@@ -238,7 +238,7 @@ server <- function(input, output, session) {
       tolower(paste0(
         reactive_filters()$name[1], " set to ", input$filter1, ", ",
         reactive_filters()$name[2], " set to ", input$filter2, " and ",
-        reactive_filters()$name[3], " set to ", input$filter3, " for ",
+        reactive_filters()$name[3], " set to ", input$filter3, " for properties completed up to ",
         ifelse(input$select_year == "All", "all years", input$select_year), ". "
       ))
     ))
