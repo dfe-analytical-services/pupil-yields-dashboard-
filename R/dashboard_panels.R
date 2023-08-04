@@ -277,8 +277,8 @@ dashboard_panel <- function() {
                       choices = c("Chart", "Table"),
                       selected = "Chart"
                     ),
-                    #uiOutput("PC_data"),
-                    #uiOutput("PC_captionpc"),
+                    uiOutput("pc_data"),
+                    uiOutput("pc_caption"),
                     column(
                       width = 4,
                       selectizeInput(

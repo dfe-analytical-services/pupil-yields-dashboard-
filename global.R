@@ -201,8 +201,7 @@ df_pc$years_after_completion <- factor(df_pc$years_after_completion, levels = ch
 
 choicespc <- list(
   education_type = choiceseducation_typepc,
-  education_phase = choicesPhasepc,
-  years_after_completion = choicesYearspc
+  education_phase = choicesPhasepc
 
 )
 
