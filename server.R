@@ -312,21 +312,21 @@ server <- function(input, output, session) {
   output$download_headlines_data <- downloadHandler(
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
-      write.csv(df_py_download, file)
+      write.csv(df_py_download, file ,row.names = FALSE)
     }
   )
   
   output$download_averages_data <- downloadHandler(
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
-      write.csv(df_py_download, file)
+      write.csv(df_py_download, file ,row.names = FALSE)
     }
   )
   
   output$download_send_data <- downloadHandler(
     filename = "ehcp_underlying_data.csv",
     content = function(file) {
-      write.csv(df_ehcp_download, file)
+      write.csv(df_ehcp_download, file ,row.names = FALSE)
     }
   )
   
