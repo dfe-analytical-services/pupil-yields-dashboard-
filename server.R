@@ -229,6 +229,15 @@ server <- function(input, output, session) {
       )
     }
   })
+  
+  observeEvent(input$reset_headline_input,{
+    updateSelectizeInput(
+      session,
+      "select_xaxis",
+      selected="School phase"
+    )
+  })
+  
   output$headlines_title <- renderUI(
     h2(paste0("Pupil Yield is split by ", input$select_xaxis, " and ", input$select_breakdown, ""))
   )
