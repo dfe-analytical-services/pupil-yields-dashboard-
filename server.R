@@ -349,28 +349,28 @@ server <- function(input, output, session) {
   output$download_headlines_data <- downloadHandler(
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
-      write.csv(df_py, file)
+      write.csv(df_py, file ,row.names = FALSE)
     }
   )
   
   output$download_averages_data <- downloadHandler(
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
-      write.csv(df_py, file)
+      write.csv(df_py, file ,row.names = FALSE)
     }
   )
   
   output$download_pc_data <- downloadHandler(
     filename = "post_completion_underlying_data.csv",
     content = function(file) {
-      write.csv(df_pc, file)
+      write.csv(df_pc, file, row.names = FALSE)
     }
   )
   
   output$download_send_data <- downloadHandler(
     filename = "ehcp_underlying_data.csv",
     content = function(file) {
-      write.csv(df_ehcp, file)
+      write.csv(df_ehcp, file ,row.names = FALSE)
     }
   )
   
