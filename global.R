@@ -163,15 +163,6 @@ choicestenure <- c("All", unique(df_py$tenure) %>% sort()) %>% unique()
 
 choicesnumber_beds <- c("All", unique(df_py$number_of_bedrooms) %>% sort()) %>% unique()
 
-choices <- list(
-  education_type = choiceseducation_type,
-  education_phase = choicesPhase,
-  housing = choiceshousing,
-  tenure = choicestenure,
-  number_of_bedrooms = choicesnumber_beds
-)
-
-
 dfe_palette <- c("#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1")
 
 technical_table <- read.csv("data/TechnicalTable.csv")
