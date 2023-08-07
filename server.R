@@ -236,6 +236,25 @@ server <- function(input, output, session) {
       "select_xaxis",
       selected="School phase"
     )
+    updateSelectizeInput(
+      session,
+      "select_breakdown",
+      selected="School type"
+    )
+    updateSelectizeInput(
+      session,
+      "select_year",
+      selected = "2021/22" 
+    )
+    for (i in 1:4) {
+      updateSelectizeInput(
+        session,
+        paste0("filter", i),
+        label = reactive_filters()$name[i],
+        choices = choices[reactive_filters()$colid[i]][[1]],
+        selected = reactive_filters()$default[i]
+      )
+    }
   })
   
   output$headlines_title <- renderUI(
