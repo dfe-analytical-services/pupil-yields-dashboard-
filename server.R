@@ -208,11 +208,7 @@ server <- function(input, output, session) {
   observeEvent(
     input$select_xaxis,
     {
-      choices_update <- filter_list %>% filter(
-        name != input$select_xaxis #, 
-#        !(name %in% c("Housing type", "Tenure", "Early years uplift"))
-        ) %>% 
-        pull(name)
+      choices_update <- filter_list %>% filter(name != input$select_xaxis) %>% pull(name)
       updateSelectizeInput(
         session, "select_breakdown",
         choices = choices_update,
