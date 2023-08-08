@@ -233,15 +233,17 @@ server <- function(input, output, session) {
   })
   
   observeEvent(c(reactive_filters(), choices()), {
-    for (i in 1:4) {
+    for (i in 1:3) {
       cat("=============================", fill = TRUE)
+      message(paste0("Updating filter ",i," to ", reactive_filters()$name[i]))
       updateSelectizeInput(
         session,
         paste0("filter", i),
         label = reactive_filters()$name[i],
-        choices = choices()[reactive_filters()$colid[i]][[1]],
+        choices = choices()[reactive_filters()$colid[i][[1]]],
         selected = reactive_filters()$default[i]
       )
+      message(paste0("Updated filter ",i," to ", reactive_filters()$name[i]))
     }
   })
   

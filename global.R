@@ -149,17 +149,9 @@ choiceseducation_type <- unique(df_py$education_type) %>% sort()
 choicesPhase <- c("Early Years", "Primary", "Secondary", "Post-16", "Special Schools/AP")
 df_py$education_phase <- factor(df_py$education_phase, levels = choicesPhase)
 
-# choicesaffordability <- unique(df_py$affordability)
+choiceshousing <- c("All", levels(df_py$housing)) %>% unique()
 
-choicesnumber_developments <- c("All", unique(df_py$number_developments) %>% sort()) %>% unique()
-
-# choicesrurality <- unique(df_py$rurality)
-
-choiceshousing <- c("All", unique(df_py$housing) %>% sort()) %>% unique()
-
-choicestenure <- c("All", unique(df_py$tenure) %>% sort()) %>% unique()
-
-# choiceshimidlow <- unique(df_py$himidlow)
+choicestenure <- c("All", levels(df_py$tenure)) %>% unique()
 
 choicesnumber_beds <- c("All", unique(df_py$number_of_bedrooms) %>% sort()) %>% unique()
 
