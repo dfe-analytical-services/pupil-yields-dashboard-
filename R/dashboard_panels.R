@@ -113,6 +113,8 @@ dashboard_panel <- function() {
           width = 12,
           tabsetPanel(
             id = "tabsetpanels",
+
+# Headlines panel ---------------------------------------------------------
             tabPanel(
               value = "Headlines",
               title = "Headlines",
@@ -221,14 +223,15 @@ dashboard_panel <- function() {
                 )
               )
             ),
+
+# Cumulative time-series --------------------------------------------------
             tabPanel(
               value = "Averages",
               title = "Cumulative time series",
               fluidRow(
                 column(
                   width = 12,
-                  h2("Pupil Yield over time as the number of completed properties increases"),
-                  #p("This is the standard paragraph style for adding guiding info around data content."),
+                  uiOutput("timeseries_title"),
                   column(
                     width = 12,
                     radioGroupButtons(

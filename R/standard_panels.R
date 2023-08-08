@@ -6,37 +6,37 @@ a11y_panel <- function() {
         column(
           width = 12,
           h1("Accessibility statement"),
-          h2("Using this dashboard"),
-          br("This R-shiny dashboard is run by Department for Education (DfE). We follow the recommendations of the WCAG 2.1 requirements. "),
-          br("We want as many people as possible to be able to use the report by:"),
-          tags$div(tags$ul(
-            tags$li("Navigating most of the dashboard using keyboard and speech recognition software"),
-            tags$li("Use most of the dashboard using a screen reader (including the most recent version of JAWS)"),
-            tags$li("Using assistive technologies such as ZoomText and Fusion"),
-            tags$li("Using different platforms including laptops, tablets and mobile phones"),
-            tags$li("Zoom in up to 300% without the text spilling off the screen")
-          )),
+          br("This accessibility statement applies to the Further Education Outcomes Industry Dashboard.
+            This application is run by the Department for Education. We want as many people as possible to be able to use this application,
+            and have actively developed this application with accessibilty in mind."),
           h2("WCAG 2.1 compliance"),
-          br("We follow the reccomendations of the ", a(href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements. ", onclick = "ga('send', 'event', 'click', 'link', 'IKnow', 1)"), "This application has been checked using the ", a(href = "https://github.com/ewenme/shinya11y", "Shinya11y tool "), ", which did not detect accessibility issues.
-             This application also fully passes the accessibility audits checked by the ", a(href = "https://developers.google.com/web/tools/lighthouse", "Google Developer Lighthouse tool"), ". This means that this application:"),
+          br(
+            "We follow the reccomendations of the ", a(style = "color:#007fb0", href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements. ", onclick = "ga('send', 'event', 'click', 'link', 'IKnow', 1)"), "This application has been checked using the ", a(style = "color:#007fb0", href = "https://github.com/ewenme/shinya11y", "Shinya11y tool "), ", which did not detect accessibility issues.
+             Each page in this application has been audited for accessiblity with the page-snapshot functionality in the ",
+            a(style = "color:#007fb0", href = "https://developers.google.com/web/tools/lighthouse", "Google Developer Lighthouse tool"),
+            ". Primarily due to the current limitations of the R packages used to create this application, it does not fully pass the accessibility auditing. ",
+            "The reasons for this are outlined in the limitations section below.",
+            "This app does however follow the following guidelines:"
+          ),
           tags$div(tags$ul(
             tags$li("uses colours that have sufficient contrast"),
             tags$li("allows you to zoom in up to 300% without the text spilling off the screen"),
             tags$li("has its performance regularly monitored, with a team working on any feedback to improve accessibility for all users")
           )),
           h2("Limitations"),
-          br("We recognise that there are still potential issues with accessibility in this application, but we will continue
-             to review updates to technology available to us to keep improving accessibility for all of our users."),
-          ## tags$div(tags$ul(
-          ##  tags$li("List"),
-          ##  tags$li("known"),
-          ##  tags$li("limitations, e.g."),
-          ##  tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)")
-          ## )),
+          br(
+            "We recognise that there are still issues with accessibility in this application, but we will continue
+             to review updates to technology available to us to keep improving accessibility for all of our users." # For example, these
+          ),
+          tags$div(tags$ul(
+            tags$li("some elements fail to have the appropriate aria tags"),
+            tags$li("some table header ids are not assigned correctly"),
+            tags$li("some image elements do not have an alt attributes (note that where this is the case, those images are primarily for presentation )")
+          )),
           h2("Browser compatibility"),
           br("The browsers used were Edge Chromium and Chrome as these are standard in the DfE and its agencies. The operating system used was Windows."),
-          br("This statement was prepared on 4th May 2023."),
-          br("This statement was last updated on 4th May 2023."),
+          br("This statement was prepared on 8th August 2023."),
+          br("This statement was last updated on 8th August 2023."),
           h2("Feedback"),
           br(
             "If you have any feedback on how we could further improve the accessibility of this application, please contact",

@@ -158,7 +158,7 @@ server <- function(input, output, session) {
       input$selectLAD
     }
   })
-
+  
   reactive_headlines <- reactive({
     headlines <- df_py %>% filter(
       la_name == reactive_area(),
@@ -204,6 +204,8 @@ server <- function(input, output, session) {
       )
     }
   )
+
+# Headlines server scripts ------------------------------------------------
 
   observeEvent(
     input$select_xaxis,
@@ -275,8 +277,9 @@ server <- function(input, output, session) {
   })
   
   output$headlines_title <- renderUI(
-    h2(paste0("Pupil Yield is split by ", input$select_xaxis, " and ", input$select_breakdown, ""))
+    h2(paste0("Pupil Yield is split by ", input$select_xaxis, " and ", input$select_breakdown, " for ", reactive_area()))
   )
+  
   output$headlines_caption <- renderUI(
     p(paste0(
       "This chart shows Pupil Yields for ",
@@ -306,6 +309,13 @@ server <- function(input, output, session) {
       )
   })
 
+
+# Timeseries server scripts -----------------------------------------------
+  
+  output$timeseries_title <- renderUI(
+    h2(paste0("Pupil Yield over time as the number of completed properties increases for ", reactive_area()))
+  )
+
   # Render time_period line chart of pupil yield
   output$linePYtime_period <- renderPlotly({
     ggplotly(create_py_time_period(reactivePYtime_period()),
@@ -315,44 +325,7 @@ server <- function(input, output, session) {
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
 
-  reactiveBenchmark <- reactive({
-    df_py %>%
-      filter(
-        local_authority %in% c(input$selectLA, input$selectBenchLAs),
-        education_phase == input$selecteducation_phase,
-        time_period == max(time_period, na.rm = TRUE)
-      )
-  })
 
-  output$colBenchmark <- renderPlotly({
-    ggplotly(
-      plotAvgRevBenchmark(reactiveBenchmark()) %>%
-        config(displayModeBar = F),
-      height = 420
-    )
-  })
-
-  output$tabBenchmark <- renderDataTable({
-    datatable(
-      reactiveBenchmark() %>%
-        select(
-          Area = local_authority,
-          `Average Revenue Balance (£)` = average_revenue_balance,
-          `Total Revenue Balance (£m)` = total_revenue_balance_million
-        ),
-      options = list(
-        scrollX = TRUE,
-        paging = FALSE
-      )
-    )
-  })
-
-  observeEvent(input$link_to_app_content_tab, {
-    updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
-  })
-
-
-  
   # Download the underlying data button- downloads version of data with user friendly headings created in global.r
   output$download_headlines_data <- downloadHandler(
     filename = "pupil_yield_underlying_data.csv",
