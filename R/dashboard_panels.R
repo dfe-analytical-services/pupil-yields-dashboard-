@@ -202,6 +202,12 @@ dashboard_panel <- function() {
                   )
               ),
               gov_row(
+                column(
+                  12,
+                  checkboxInput("agg_beds", "Aggregate bedroom numbers")
+                )
+              ),
+              gov_row(
                 tags$hr(),
                 column(
                   width = 12,

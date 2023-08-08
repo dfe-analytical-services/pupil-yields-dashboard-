@@ -160,13 +160,18 @@ server <- function(input, output, session) {
   })
 
   reactive_headlines <- reactive({
-    df_py %>% filter(
+    headlines <- df_py %>% filter(
       la_name == reactive_area(),
       time_period == input$select_year,
       get(reactive_filters()$colid[1]) == input$filter1,
       get(reactive_filters()$colid[2]) == input$filter2,
       get(reactive_filters()$colid[3]) == input$filter3
     )
+    if(input$agg_beds){
+      headlines %>% filter(!number_of_bedrooms %in% c("2","3"))
+    } else {
+      headlines %>% filter(!number_of_bedrooms %in% c("2+","3+"))
+    }
   })
 
   reactivePYtime_period <- reactive({
@@ -200,7 +205,6 @@ server <- function(input, output, session) {
     }
   )
 
-
   observeEvent(
     input$select_xaxis,
     {
@@ -217,14 +221,29 @@ server <- function(input, output, session) {
     }
   )
 
-  observeEvent(reactive_filters(), {
+  choices <- reactive({
+    if(input$agg_beds){
+      choicesnumber_beds <- c("All", "1", "2+", "3+", "4+")
+    } else {
+      choicesnumber_beds <- c("All", "1", "2", "3", "4+")
+    }
+    list(
+      education_type = choiceseducation_type,
+      education_phase = choicesPhase,
+      housing = choiceshousing,
+      tenure = choicestenure,
+      number_of_bedrooms = choicesnumber_beds
+    )
+  })
+  
+  observeEvent(c(reactive_filters(), choices()), {
     for (i in 1:4) {
       cat("=============================", fill = TRUE)
       updateSelectizeInput(
         session,
         paste0("filter", i),
         label = reactive_filters()$name[i],
-        choices = choices[reactive_filters()$colid[i]][[1]],
+        choices = choices()[reactive_filters()$colid[i]][[1]],
         selected = reactive_filters()$default[i]
       )
     }
