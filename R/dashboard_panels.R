@@ -196,6 +196,12 @@ dashboard_panel <- function() {
                 )
               ),
               gov_row(
+                column(
+                  12,
+                  actionButton("reset_headline_input", "Reset filters")
+                  )
+              ),
+              gov_row(
                 tags$hr(),
                 column(
                   width = 12,
