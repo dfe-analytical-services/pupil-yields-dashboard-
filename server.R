@@ -208,11 +208,7 @@ server <- function(input, output, session) {
   observeEvent(
     input$select_xaxis,
     {
-      choices_update <- filter_list %>% filter(
-        name != input$select_xaxis #, 
-#        !(name %in% c("Housing type", "Tenure", "Early years uplift"))
-        ) %>% 
-        pull(name)
+      choices_update <- filter_list %>% filter(name != input$select_xaxis) %>% pull(name)
       updateSelectizeInput(
         session, "select_breakdown",
         choices = choices_update,
@@ -270,7 +266,7 @@ server <- function(input, output, session) {
         session,
         paste0("filter", i),
         label = reactive_filters()$name[i],
-        choices = choices[reactive_filters()$colid[i]][[1]],
+        choices = choices()[reactive_filters()$colid[i]][[1]],
         selected = reactive_filters()$default[i]
       )
     }

@@ -149,8 +149,8 @@ dashboard_panel <- function() {
                   selectizeInput(
                     inputId = "select_breakdown",
                     label = "Choose next breakdown variable",
-                    choices = filter_list %>% filter(!(name %in% c("Housing type", "Tenure"))) %>% pull(name),
-                    selected = "Housing type"
+                    choices = filter_list %>% pull(name),
+                    selected = "School type"
                   )
                 ),
                 column(
@@ -172,8 +172,8 @@ dashboard_panel <- function() {
                   width = 4,
                   selectizeInput(
                     inputId = "filter1",
-                    label = "Choose a Phase:",
-                    choices = choicesPhase,
+                    label = "Choose number of bedrooms:",
+                    choices = choices_default$number_of_bedrooms,
                     selected = "All"
                   )
                 ),
@@ -181,16 +181,16 @@ dashboard_panel <- function() {
                   width = 4,
                   selectizeInput(
                     inputId = "filter2",
-                    choices = choiceseducation_type,
-                    label = "Choose an Education Type:",
+                    choices = choices_default$housing,
+                    label = "Choose a housing type:",
                     selected = "All"
                   )
                 ),
                 column(
                   width = 4,
                   selectizeInput("filter3",
-                    "Choose a Housing Type:",
-                    choices = choiceshousing,
+                    "Choose a tenure:",
+                    choices = choices_default$tenure,
                     selected = "All"
                   )
                 )
@@ -198,13 +198,13 @@ dashboard_panel <- function() {
               gov_row(
                 column(
                   12,
-                  actionButton("reset_headline_input", "Reset filters")
-                  )
+                  checkboxInput("agg_beds", "Aggregate bedroom numbers")
+                )
               ),
               gov_row(
                 column(
                   12,
-                  checkboxInput("agg_beds", "Aggregate bedroom numbers")
+                  actionButton("reset_headline_input", "Reset filters")
                 )
               ),
               gov_row(
