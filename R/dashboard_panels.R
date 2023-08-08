@@ -244,7 +244,7 @@ dashboard_panel <- function() {
                       selectizeInput(
                         "timeseries.phase",
                         label = "Choose a school phase",
-                        choices = choices$education_phase,
+                        choices = choices_default$education_phase,
                         selected = 'Primary'
                       )
                     ),
@@ -253,7 +253,7 @@ dashboard_panel <- function() {
                       selectizeInput(
                         "timeseries.housing",
                         label = "Choose a housing type",
-                        choices = choices$housing
+                        choices = choices_default$housing
                       )
                     )
                   ),
