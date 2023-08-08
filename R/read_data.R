@@ -77,7 +77,12 @@ read_data <- function(file = "data/PYJuly.csv") {
       time_period, geographic_level, la_name, education_phase, education_type, tenure, housing,
       number_of_bedrooms, number_of_pupils, completed_properties_in_fy, pupil_yield
     ) %>%
-    arrange(time_period, geographic_level, la_name, education_phase, education_type, tenure, housing, number_of_bedrooms)
+    arrange(time_period, geographic_level, la_name, education_phase, education_type, tenure, housing, number_of_bedrooms) %>%
+    mutate(
+      tenure=factor(tenure,levels=c("Affordable", "Market", "All")),
+      housing=factor(housing,levels=c("Flats", "Houses", "All"))
+    )
+  
 
   return(df)
 }
