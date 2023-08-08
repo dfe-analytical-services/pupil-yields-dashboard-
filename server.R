@@ -266,7 +266,7 @@ server <- function(input, output, session) {
         session,
         paste0("filter", i),
         label = reactive_filters()$name[i],
-        choices = choices[reactive_filters()$colid[i]][[1]],
+        choices = choices()[reactive_filters()$colid[i]][[1]],
         selected = reactive_filters()$default[i]
       )
     }
