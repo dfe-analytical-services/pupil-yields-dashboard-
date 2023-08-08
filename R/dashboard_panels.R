@@ -282,17 +282,20 @@ dashboard_panel <- function() {
               fluidRow(
                 column(
                   width = 12,
-                  h2("Pupil Yield post completion- COMING SOON"),
+                  uiOutput("postcompletion_title"),
+                  tags$b("The post-completion reporting is currently being prepared and will be provided here soon."),
                 )
               )
             ),
+
+# SEND panel --------------------------------------------------------------
             tabPanel(
               value = "SEND",
               title = "Special Educational Needs and Disabilities",
               gov_row(
                 column(
                   width = 12,
-                  h2("Pupils with Special Educational Needs and Disabilities"),
+                  uiOutput("send_title"),
                   selectizeInput(
                     "send_year",
                     label = "Choose a Year",

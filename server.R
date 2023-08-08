@@ -352,8 +352,19 @@ server <- function(input, output, session) {
 
 
 
-  # SEND Value boxes --------------------------------------------------------
+# Post completion tab scripts ---------------------------------------------
 
+  output$postcompletion_title <- renderUI(
+    h2(paste0("Pupil Yield post completion for ", reactive_area()))
+  )
+  
+
+# SEND server scripts -----------------------------------------------------
+
+  output$send_title <- renderUI(
+    h2(paste0("Pupils with Special Educational Needs and Disabilities for ", reactive_area()))
+  )
+  
   ehcp_lines <- reactive({
     df_ehcp %>% 
       filter(
