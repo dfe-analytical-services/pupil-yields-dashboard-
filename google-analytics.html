@@ -10,18 +10,54 @@ The tracking number below MUST be replaced with a unique number, contact the sta
 */
     gtag('config', 'G-Z6KTV2YV04');
   
-  $(document).on('change', 'select#selectPhase', function(e) {
-    gtag('event', 'select phase', {'event_category' : 'choose Phase',
-    'event_label' : document.querySelector('select#selectPhase').value
+  $(document).on('change', 'select#geographic_level_choice', function(e) {
+    gtag('event', 'select geographic level', {'event_category' : 'geography',
+    'event_label' : document.querySelector('select#geographic_level_choice').value
     });
   });
   
-  $(document).on('change', 'select#selectArea', function(e) {
-    gtag('event', 'select area', {'event_category' : 'choose Area',
-    'event_label' : document.querySelector('select#selectArea').value
+  $(document).on('change', 'select#selectLA', function(e) {
+    gtag('event', 'select local authority', {'event_category' : 'geography',
+    'event_label' : document.querySelector('select#selectLA').value
+    });
+  });
+
+  $(document).on('change', 'select#selectLAD', function(e) {
+    gtag('event', 'select local authority district', {'event_category' : 'geography',
+    'event_label' : document.querySelector('select#selectLAD').value
     });
   });
   
+  $(document).on('change', 'select#select_xaxis', function(e) {
+    gtag('event', 'breakdown 1 - xaxis', {'event_category' : 'breakdowns',
+    'event_label' : document.querySelector('select#select_xaxis').value
+    });
+  });
+
+  $(document).on('change', 'select#select_breakdown', function(e) {
+    gtag('event', 'breakdown 2 - groups', {'event_category' : 'breakdowns',
+    'event_label' : document.querySelector('select#select_breakdown').value
+    });
+  });
+
+  $(document).on('change', 'select#filter1', function(e) {
+    gtag('event', 'filter 1', {'event_category' : 'filters',
+    'event_label' : document.querySelector('select#filter1').value
+    });
+  });
+
+  $(document).on('change', 'select#filter2', function(e) {
+    gtag('event', 'filter 1', {'event_category' : 'filters',
+    'event_label' : document.querySelector('select#filter2').value
+    });
+  });
+
+  $(document).on('change', 'select#filter3', function(e) {
+    gtag('event', 'filter 1', {'event_category' : 'filters',
+    'event_label' : document.querySelector('select#filter3').value
+    });
+  });
+
   $(document).on('click', 'ul#navlistPanel', function(e) {
     gtag('event', 'navlistPanel', {'event_category' : 'navbar click',
     'event_label' : document.querySelector('ul#navlistPanel > li.active > a').getAttribute('data-value')
