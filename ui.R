@@ -65,14 +65,14 @@ ui <- function(input, output, session) {
         href = "dfefavicon.png"
       ),
       # Add title for browser tabs
-      tags$title("Pupil Yields")
+      tags$title("Pupil Yield Data Dashboard")
     ),
     tags$html(lang = "en"),
     # Add meta description for search engines
     meta() %>%
       meta_general(
-        application_name = "Pupil Yields",
-        description = "Pupil Yields",
+        application_name = "Pupil Yield Data Dashboard",
+        description = "DfE produced data dashboard providing estimates of the pupil yield from housing developments in unitary authorities and local authority districts across England",
         robots = "index,follow",
         generator = "R-Shiny",
         subject = "stats development",
@@ -104,7 +104,7 @@ ui <- function(input, output, session) {
     shinyGovstyle::header(
       main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
-      secondary_text = "Pupil Yields",
+      secondary_text = "Pupil Yield Data Dashboard",
       logo = "images/DfE_logo_landscape.png",
       logo_width = 150,
       logo_height = 32
