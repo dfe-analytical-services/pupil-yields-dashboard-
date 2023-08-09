@@ -41,7 +41,7 @@ a11y_panel <- function() {
           h2("Feedback"),
           p(
             "If you have any feedback on how we could further improve the accessibility of this application, please contact",
-            a(href = "mailto:sylvia.williams@education.gov.uk", "sylvia.williams@education.gov.uk")
+            a(href = "mailto:pupil.yields@education.gov.uk", "Pupil.Yields@education.gov.uk")
           )
         )
       )
