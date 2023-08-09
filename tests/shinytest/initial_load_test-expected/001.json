@@ -1,6 +1,14 @@
 {
   "input": {
-
+    "filter1": "All",
+    "filter2": "All",
+    "filter3": "All",
+    "navlistPanel": "Homepage",
+    "select_breakdown": "School type",
+    "select_xaxis": "School phase",
+    "select_year": "2021/22",
+    "selectLA": "Barking and Dagenham",
+    "tabsetpanels": "Headlines"
   },
   "output": {
 

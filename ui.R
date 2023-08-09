@@ -56,14 +56,43 @@
 
 
 
-ui <- function(input, output, session){
+ui <- function(input, output, session) {
   fluidPage(
-    title = tags$head(tags$link(
-      rel = "shortcut icon",
-      href = "dfefavicon.png"
-    )),
+    # use_tota11y(),
+    title = tags$head(
+      tags$link(
+        rel = "shortcut icon",
+        href = "dfefavicon.png"
+      ),
+      # Add title for browser tabs
+      tags$title("Pupil Yield Data Dashboard")
+    ),
+    tags$html(lang = "en"),
+    # Add meta description for search engines
+    meta() %>%
+      meta_general(
+        application_name = "Pupil Yield Data Dashboard",
+        description = "DfE produced data dashboard providing estimates of the pupil yield from housing developments in unitary authorities and local authority districts across England",
+        robots = "index,follow",
+        generator = "R-Shiny",
+        subject = "stats development",
+        rating = "General",
+        referrer = "no-referrer"
+      ),
     shinyjs::useShinyjs(),
+    customDisconnectMessage(),
     useShinydashboard(),
+    # Setting up cookie consent based on a cookie recording the consent:
+    # https://book.javascript-for-r.com/shiny-cookies.html
+    tags$head(
+      tags$script(
+        src = paste0(
+          "https://cdn.jsdelivr.net/npm/js-cookie@rc/",
+          "dist/js.cookie.min.js"
+        )
+      ),
+      tags$script(src = "cookie-consent.js")
+    ),
     tags$head(includeHTML(("google-analytics.html"))),
     tags$head(
       tags$link(
@@ -73,19 +102,18 @@ ui <- function(input, output, session){
       )
     ),
     shinyGovstyle::header(
-      main_text = "DfE",
+      main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
-      secondary_text = "DfE Shiny Template",
-      logo = "images/DfE_logo.png"
+      secondary_text = "Pupil Yield Data Dashboard",
+      logo = "images/DfE_logo_landscape.png",
+      logo_width = 150,
+      logo_height = 32
     ),
     shinyGovstyle::banner(
       "beta banner",
       "beta",
       paste0(
-        "This Dashboard is in beta phase and we are still reviewing performance and reliability. ",
-        "In case of slowdown or connection issues due to high demand, we have produced two instances of this site which can be accessed at the following links: ",
-        "<a href=", site_primary, " id='link_site_1'>Site 1</a> and ",
-        "<a href=", site_overflow, " id='link_site_2'>Site 2</a>."
+        "This Dashboard is in beta phase and we are still reviewing performance and reliability. "
       )
     ),
     shiny::navlistPanel(
@@ -95,6 +123,7 @@ ui <- function(input, output, session){
       well = FALSE,
       homepage_panel(),
       dashboard_panel(),
+      technical_panel(),
       a11y_panel(),
       support_links()
     ),

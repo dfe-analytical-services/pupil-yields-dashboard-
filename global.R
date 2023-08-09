@@ -19,11 +19,16 @@ shhh(library(shinydashboard))
 shhh(library(shinyWidgets))
 shhh(library(shinyGovstyle))
 shhh(library(dplyr))
+shhh(library(tidyr))
 shhh(library(ggplot2))
 shhh(library(plotly))
 shhh(library(DT))
 shhh(library(xfun))
-shhh(library(tidyr))
+shhh(library(metathis))
+shhh(library(shinyalert))
+shhh(library(checkmate))
+shhh(library(stringr))
+# shhh(library(shinya11y))
 
 # Functions ---------------------------------------------------------------------------------
 
@@ -44,12 +49,16 @@ tidy_code_function <- function() {
   message("App scripts")
   message("----------------------------------------")
   app_scripts <- eval(styler::style_dir(recursive = FALSE)$changed)
+  message("R scripts")
+  message("----------------------------------------")
+  r_scripts <- eval(styler::style_dir("R/")$changed)
   message("Test scripts")
   message("----------------------------------------")
   test_scripts <- eval(styler::style_dir("tests/", filetype = "r")$changed)
-  script_changes <- c(app_scripts, test_scripts)
+  script_changes <- c(app_scripts, r_scripts, test_scripts)
   return(script_changes)
 }
+
 
 # Source scripts ---------------------------------------------------------------------------------
 
@@ -76,31 +85,85 @@ appLoadingCSS <- "
 }
 "
 
-site_primary <- "https://department-for-education.shinyapps.io/dfe-shiny-template/"
+site_primary <- "https://department-for-education.shinyapps.io/pupil-yields-dashboard/"
 site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
+sites_list <- c(site_primary) # We can add further mirrors where necessary. Each one can generally handle about 2,500 users simultaneously
+ees_pub_name <- "Statistical publication" # Update this with your parent publication name (e.g. the EES publication)
+ees_publication <- "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-yield-from-housing-developments/" # Update with parent publication link
+google_analytics_key <- "Z967JJVQQX"
 
-source("R/support_links.R")
 source("R/read_data.R")
 
+la_lad_lookup <- read.csv("data/la_lad_hierarchy.csv", stringsAsFactors = F) %>%
+  mutate(
+    la_name = gsub(",", "", la_name),
+    lad_name = gsub(",", "", lad_name),
+    date_of_introduction = as.Date(date_of_introduction),
+    date_of_termination = as.Date(date_of_termination)
+  ) %>%
+  filter(
+    status == "live" | date_of_termination >= as.Date("2023-03-31"),
+    date_of_introduction <= as.Date("2023-03-31") | is.na(date_of_introduction)
+  )
+
 # Read in the data
-dfRevBal <- read_revenue_data()
+df_py <- read_data()
+df_ehcp <- read_ehcp()
+
+# Create clean versions of the file for download--------------
+df_py_download <- read_data()
+df_ehcp_download <- read_ehcp()
+
+# renames the columns of the old data set using the lookup table
+df_py_download <- data.table::setnames(df_py_download, old = metadata_PY$programmer_friendly_names, new = metadata_PY$user_friendly_name, skip_absent = TRUE)
+df_ehcp_download <- data.table::setnames(df_ehcp_download, old = metadata_EHCP$programmer_friendly_names, new = metadata_EHCP$user_friendly_name, skip_absent = TRUE)
+
+
 # Get geographical levels from data
 
+df_py$education_phase <- factor(df_py$education_phase, levels = )
 
-choicesLAs <- unique(dfRevBal$local_authority)
+choicesgeographic_level <- c("England", "County/Unitary", "District")
+choicesLAs <- df_py %>%
+  filter(geographic_level == "County/Unitary" | la_name == "Cardiff") %>%
+  pull(la_name) %>%
+  unique() %>%
+  sort()
+choicesLADs <- df_py %>%
+  filter(geographic_level == "District") %>%
+  pull(la_name) %>%
+  unique() %>%
+  sort()
 
-choicesPhase <- unique(dfRevBal$phase_type)
-
-choicesaffordability <- unique(dfRevBal$affordability)
-
-choicesnumber_developments <- unique(dfRevBal$number_developments)
-
-choicesrurality <- unique(dfRevBal$rurality)
-
-choiceshousing_type <- unique(dfRevBal$housing_type)
-
-choiceshimidlow <- unique(dfRevBal$himidlow)
-
-choicesnumber_beds <- unique(dfRevBal$number_beds)
+choicesYears <- unique(df_py$time_period) %>% sort(decreasing = TRUE)
+df_py$time_period <- factor(df_py$time_period, levels = choicesYears %>% sort())
 
 
+filter_list <- data.frame(
+  name = c("School phase", "School type", "Number of bedrooms", "Housing type", "Tenure"),
+  colid = c("education_phase", "education_type", "number_of_bedrooms", "housing", "tenure"),
+  default = c("Primary", "Mainstream", "All", "All", "All")
+)
+
+choiceseducation_type <- unique(df_py$education_type) %>% sort()
+
+choicesPhase <- c("Early Years", "Primary", "Secondary", "Post-16", "Special Schools/AP")
+df_py$education_phase <- factor(df_py$education_phase, levels = choicesPhase)
+
+choiceshousing <- c("All", levels(df_py$housing)) %>% unique()
+
+choicestenure <- c("All", levels(df_py$tenure)) %>% unique()
+
+choicesnumber_beds <- c("All", unique(df_py$number_of_bedrooms) %>% sort()) %>% unique()
+
+choices_default <- list(
+  education_type = choiceseducation_type,
+  education_phase = choicesPhase,
+  housing = choiceshousing,
+  tenure = choicestenure,
+  number_of_bedrooms = choicesnumber_beds
+)
+
+dfe_palette <- c("#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1")
+
+technical_table <- read.csv("data/TechnicalTable.csv")
