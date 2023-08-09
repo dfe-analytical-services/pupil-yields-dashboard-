@@ -1285,6 +1285,21 @@
       ],
       "Hash": "fd889b32caa37b8ed9b1e9e7ef1564bc"
     },
+    "shinya11y": {
+      "Package": "shinya11y",
+      "Version": "0.0.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "ewenme",
+      "RemoteRepo": "shinya11y",
+      "RemoteRef": "master",
+      "RemoteSha": "4f17db8f0c06e7332258e6c499e3c4af36fd4a17",
+      "Requirements": [
+        "shiny"
+      ],
+      "Hash": "09d457c4fa211ee51a6621b884a3a5b1"
+    },
     "shinyalert": {
       "Package": "shinyalert",
       "Version": "3.0.0",

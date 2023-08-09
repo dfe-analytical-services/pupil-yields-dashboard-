@@ -135,7 +135,7 @@ dashboard_panel <- function() {
               gov_row(
                 column(
                   12,
-                  tags$h2("Choose the chart breakdowns here:")
+                  tags$h3("Choose the chart breakdowns here:")
                 ),
                 column(
                   width = 4,
@@ -168,7 +168,7 @@ dashboard_panel <- function() {
               gov_row(
                 column(
                   12,
-                  tags$h2("Choose the chart filters here:"),
+                  tags$h3("Choose the chart filters here:"),
                 ),
                 column(
                   width = 4,

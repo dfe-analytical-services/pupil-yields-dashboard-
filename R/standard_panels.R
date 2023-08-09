@@ -6,16 +6,18 @@ a11y_panel <- function() {
         column(
           width = 12,
           h1("Accessibility statement"),
-          br("This accessibility statement applies to the Further Education Outcomes Industry Dashboard.
-            This application is run by the Department for Education. We want as many people as possible to be able to use this application,
+          p("This accessibility statement applies to the Department for Education's Pupil Yields Dashboard. We want as many people as possible to be able to use this application,
             and have actively developed this application with accessibilty in mind."),
           h2("WCAG 2.1 compliance"),
-          br(
-            "We follow the reccomendations of the ", a(style = "color:#007fb0", href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements. ", onclick = "ga('send', 'event', 'click', 'link', 'IKnow', 1)"), "This application has been checked using the ", a(style = "color:#007fb0", href = "https://github.com/ewenme/shinya11y", "Shinya11y tool "), ", which did not detect accessibility issues.
-             Each page in this application has been audited for accessiblity with the page-snapshot functionality in the ",
+          p(
+            "We follow the reccomendations of the ", 
+            a(style = "color:#007fb0", href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements. ", onclick = "ga('send', 'event', 'click', 'link', 'IKnow', 1)"), 
+            "This application has been checked using the ", a(style = "color:#007fb0", href = "https://github.com/ewenme/shinya11y", "Shinya11y tool "), 
+            ", which detected a small number of accessibility issues as outlined below. Each page in this application has been audited for accessiblity with the page-snapshot functionality in the ",
             a(style = "color:#007fb0", href = "https://developers.google.com/web/tools/lighthouse", "Google Developer Lighthouse tool"),
-            ". Primarily due to the current limitations of the R packages used to create this application, it does not fully pass the accessibility auditing. ",
-            "The reasons for this are outlined in the limitations section below.",
+            ". This application does not fully pass the accessibility auditing, partially due to limitations in the software (R-Shiny) used to produce the dashboard. ",
+            "Specific reasons for this are outlined in the limitations section below, whilst to mitigate the accessibility challenges here, we also provide the", 
+            tags$a(href="https://explore-education-statistics.service.gov.uk/find-statistics/pupil-yield-from-housing-developments","underlying data via the DfE Explore Education Statistics platform"), ". ",
             "This app does however follow the following guidelines:"
           ),
           tags$div(tags$ul(
@@ -24,7 +26,7 @@ a11y_panel <- function() {
             tags$li("has its performance regularly monitored, with a team working on any feedback to improve accessibility for all users")
           )),
           h2("Limitations"),
-          br(
+          p(
             "We recognise that there are still issues with accessibility in this application, but we will continue
              to review updates to technology available to us to keep improving accessibility for all of our users." # For example, these
           ),
@@ -34,11 +36,10 @@ a11y_panel <- function() {
             tags$li("some image elements do not have an alt attributes (note that where this is the case, those images are primarily for presentation )")
           )),
           h2("Browser compatibility"),
-          br("The browsers used were Edge Chromium and Chrome as these are standard in the DfE and its agencies. The operating system used was Windows."),
-          br("This statement was prepared on 8th August 2023."),
-          br("This statement was last updated on 8th August 2023."),
+          p("The browsers used were Edge Chromium and Chrome as these are standard in the DfE and its agencies. The operating system used was Windows."),
+          p("This statement was prepared and last updated on 8th August 2023."),
           h2("Feedback"),
-          br(
+          p(
             "If you have any feedback on how we could further improve the accessibility of this application, please contact",
             a(href = "mailto:sylvia.williams@education.gov.uk", "sylvia.williams@education.gov.uk")
           )
