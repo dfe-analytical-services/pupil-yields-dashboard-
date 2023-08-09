@@ -53,7 +53,7 @@ homepage_panel <- function() {
 dashboard_panel <- function() {
   tabPanel(
     value = "dashboard",
-    "Pupil Yields Dashboard",
+    "Pupil Yield Dashboard",
 
     # Define UI for application that draws a histogram
 

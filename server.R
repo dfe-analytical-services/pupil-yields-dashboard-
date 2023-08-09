@@ -76,9 +76,11 @@ server <- function(input, output, session) {
   output$table_headlines <- renderTable({
     df <- reactive_headlines() %>%
       select(time_period, la_name, reactive_xaxis()$colid, reactive_breakdown()$colid, "pupil_yield") %>%
+      mutate(pupil_yield=str_trim(format(pupil_yield,digits=2,nsmall=2))) %>%
       pivot_wider(
         names_from = reactive_xaxis()$colid,
-        values_from = "pupil_yield"
+        values_from = "pupil_yield",
+        values_fill = 'z'
       )
     colnames(df)[1:3] <- c("Academic Year", "Local authority", reactive_breakdown()$name)
     return(df)
