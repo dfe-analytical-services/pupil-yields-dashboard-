@@ -333,7 +333,7 @@ dashboard_panel <- function() {
 
 technical_panel <- function() {
   tabPanel(
-    value='technical',
+    value = "technical",
     "Technical Notes",
     gov_main_layout(
       gov_row(
