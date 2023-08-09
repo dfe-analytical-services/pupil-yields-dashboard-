@@ -16,19 +16,55 @@ inputs <- c(
 )
 
 outputs <- c(
-  "bar_headlines",
   "headline_title",
-  "linePYtime_period"
+  "table_headlines",
+  "bar_headlines",
+  "headlines_caption",
+  "timeseries_title",
+  "table_timeseries",
+  "linePYtime_period",
+  "timeseries_caption",
+  "postcompletion_title",
+  "send_title",
+  "send_box_1",
+  "send_box_3",
+  "technicaltable"
 )
 
+message("Initial snapshot")
 app$snapshot(list(input = inputs, output = outputs))
 
+message("Default dashboard snapshot (i.e. headlines)")
 app$setInputs(navlistPanel = "dashboard")
 app$snapshot(list(input = inputs, output = outputs))
 
-app$setInputs(navlistPanel = "dashboard", select_xaxis = "School type")
+message("Set x-axis to tenure")
+app$setInputs(select_xaxis = "Tenure")
 app$snapshot(list(input = inputs, output = outputs))
 
+message("Set x-axis to number of bedrooms")
+app$setInputs(select_xaxis = "Number of bedrooms")
+app$snapshot(list(input = inputs, output = outputs))
 
-app$setInputs(navlistPanel = "Technical")
+message("Set breakdown to housing type")
+app$setInputs(select_breakdown = "Housing type")
+app$snapshot(list(input = inputs, output = outputs))
+
+message("Set breakdown to school type")
+app$setInputs(select_breakdown = "School type")
+app$snapshot(list(input = inputs, output = outputs))
+
+message("Switch to time series tab")
+app$setInputs(tabsetpanels = "Averages")
+app$snapshot(list(input = inputs, output = outputs))
+
+message("Switch to post-completion tab")
+app$setInputs(tabsetpanels = "post-completion")
+app$snapshot(list(input = inputs, output = outputs))
+
+message("Switch to SEND tab")
+app$setInputs(tabsetpanels = "SEND")
+app$snapshot(list(input = inputs, output = outputs))
+
+app$setInputs(navlistPanel = "technical")
 app$snapshot(list(input = inputs, output = outputs))

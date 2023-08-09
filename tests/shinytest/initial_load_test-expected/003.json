@@ -1,15 +1,13 @@
 {
   "input": {
-    "filter1": "All",
+    "filter1": "Primary",
     "filter2": "All",
     "filter3": "All",
-    "filter4": "Off",
     "navlistPanel": "dashboard",
-    "select_breakdown": "School phase",
-    "select_xaxis": "School type",
-    "select_year": "All",
-    "selectArea": "Unitary",
-    "selectLA": "LA1 Rural",
+    "select_breakdown": "School type",
+    "select_xaxis": "Tenure",
+    "select_year": "2021/22",
+    "selectLA": "Barking and Dagenham",
     "tabsetpanels": "Headlines"
   },
   "output": {
@@ -18,138 +16,43 @@
         "data": [
           {
             "orientation": "v",
-            "width": 0.18,
-            "base": 0,
-            "x": 0.64,
-            "y": 0.07705274605764,
-            "text": "<i>Pupil Yield<\/i>: 0.08<br><b>School type<\/b>: Mainstream<br><b>School phase<\/b>: Early Years",
+            "width": [
+              0.89999999999999991,
+              0.90000000000000036,
+              0.90000000000000013
+            ],
+            "base": [
+              0,
+              0,
+              0
+            ],
+            "x": [
+              1,
+              3,
+              2
+            ],
+            "y": [
+              0.335596799,
+              0.252768838,
+              0.22550488699999999
+            ],
+            "text": [
+              "<i>Pupil Yield<\/i>: 0.34<br><b>Tenure<\/b>: Affordable<br><b>School type<\/b>: Mainstream",
+              "<i>Pupil Yield<\/i>: 0.25<br><b>Tenure<\/b>: All<br><b>School type<\/b>: Mainstream",
+              "<i>Pupil Yield<\/i>: 0.23<br><b>Tenure<\/b>: Market<br><b>School type<\/b>: Mainstream"
+            ],
             "type": "bar",
             "textposition": "none",
             "marker": {
               "autocolorscale": false,
               "color": "rgba(18,67,109,1)",
               "line": {
-                "width": 1.88976377952756,
+                "width": 1.8897637795275593,
                 "color": "transparent"
               }
             },
-            "name": "Early Years",
-            "legendgroup": "Early Years",
-            "showlegend": true,
-            "xaxis": "x",
-            "yaxis": "y",
-            "hoverinfo": "text",
-            "frame": null
-          },
-          {
-            "orientation": "v",
-            "width": 0.18,
-            "base": 0,
-            "x": 0.82,
-            "y": 0.308402585410896,
-            "text": "<i>Pupil Yield<\/i>: 0.31<br><b>School type<\/b>: Mainstream<br><b>School phase<\/b>: Primary",
-            "type": "bar",
-            "textposition": "none",
-            "marker": {
-              "autocolorscale": false,
-              "color": "rgba(40,161,151,1)",
-              "line": {
-                "width": 1.88976377952756,
-                "color": "transparent"
-              }
-            },
-            "name": "Primary",
-            "legendgroup": "Primary",
-            "showlegend": true,
-            "xaxis": "x",
-            "yaxis": "y",
-            "hoverinfo": "text",
-            "frame": null
-          },
-          {
-            "orientation": "v",
-            "width": 0.18,
-            "base": 0,
-            "x": 1,
-            "y": 0.142197599261311,
-            "text": "<i>Pupil Yield<\/i>: 0.14<br><b>School type<\/b>: Mainstream<br><b>School phase<\/b>: Secondary",
-            "type": "bar",
-            "textposition": "none",
-            "marker": {
-              "autocolorscale": false,
-              "color": "rgba(128,22,80,1)",
-              "line": {
-                "width": 1.88976377952756,
-                "color": "transparent"
-              }
-            },
-            "name": "Secondary",
-            "legendgroup": "Secondary",
-            "showlegend": true,
-            "xaxis": "x",
-            "yaxis": "y",
-            "hoverinfo": "text",
-            "frame": null
-          },
-          {
-            "orientation": "v",
-            "width": 0.18,
-            "base": 0,
-            "x": 1.18,
-            "y": 0.0445929064146434,
-            "text": "<i>Pupil Yield<\/i>: 0.04<br><b>School type<\/b>: Mainstream<br><b>School phase<\/b>: Post-16",
-            "type": "bar",
-            "textposition": "none",
-            "marker": {
-              "autocolorscale": false,
-              "color": "rgba(244,106,37,1)",
-              "line": {
-                "width": 1.88976377952756,
-                "color": "transparent"
-              }
-            },
-            "name": "Post-16",
-            "legendgroup": "Post-16",
-            "showlegend": true,
-            "xaxis": "x",
-            "yaxis": "y",
-            "hoverinfo": "text",
-            "frame": null
-          },
-          {
-            "orientation": "v",
-            "width": [
-              0.9,
-              0.18
-            ],
-            "base": [
-              0,
-              0
-            ],
-            "x": [
-              2,
-              1.36
-            ],
-            "y": [
-              0.00897226753670473,
-              0.00192072638379605
-            ],
-            "text": [
-              "<i>Pupil Yield<\/i>: 0.01<br><b>School type<\/b>: Special School<br><b>School phase<\/b>: SP/Alternative",
-              "<i>Pupil Yield<\/i>: 0<br><b>School type<\/b>: Mainstream<br><b>School phase<\/b>: SP/Alternative"
-            ],
-            "type": "bar",
-            "textposition": "none",
-            "marker": {
-              "autocolorscale": false,
-              "color": "rgba(61,61,61,1)",
-              "line": {
-                "width": 1.88976377952756,
-                "color": "transparent"
-              }
-            },
-            "name": "SP/Alternative",
-            "legendgroup": "SP/Alternative",
+            "name": "Mainstream",
+            "legendgroup": "Mainstream",
             "showlegend": true,
             "xaxis": "x",
             "yaxis": "y",
@@ -159,17 +62,17 @@
         ],
         "layout": {
           "margin": {
-            "t": 25.7412480974125,
-            "r": 7.30593607305936,
-            "b": 42.0866196208662,
-            "l": 46.027397260274
+            "t": 25.74124809741248,
+            "r": 7.3059360730593621,
+            "b": 42.086619620866202,
+            "l": 46.027397260273986
           },
           "plot_bgcolor": "rgba(255,255,255,1)",
           "paper_bgcolor": "rgba(255,255,255,1)",
           "font": {
             "color": "rgba(0,0,0,1)",
             "family": "",
-            "size": 15.9402241594022
+            "size": 15.940224159402243
           },
           "xaxis": {
             "domain": [
@@ -180,28 +83,31 @@
             "type": "linear",
             "autorange": false,
             "range": [
-              0.4,
-              2.6
+              0.40000000000000002,
+              3.6000000000000001
             ],
             "tickmode": "array",
             "ticktext": [
-              "Mainstream",
-              "Special School"
+              "Affordable",
+              "Market",
+              "All"
             ],
             "tickvals": [
               1,
-              2
+              2,
+              3
             ],
             "categoryorder": "array",
             "categoryarray": [
-              "Mainstream",
-              "Special School"
+              "Affordable",
+              "Market",
+              "All"
             ],
             "nticks": null,
             "ticks": "outside",
             "tickcolor": "rgba(51,51,51,1)",
-            "ticklen": 3.65296803652968,
-            "tickwidth": 0.66417600664176,
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
             "showticklabels": true,
             "tickfont": {
               "color": "rgba(77,77,77,1)",
@@ -218,11 +124,11 @@
             "zeroline": false,
             "anchor": "y",
             "title": {
-              "text": "School type",
+              "text": "Tenure",
               "font": {
                 "color": "rgba(0,0,0,1)",
                 "family": "",
-                "size": 15.9402241594022
+                "size": 15.940224159402243
               }
             },
             "hoverformat": ".2f"
@@ -236,7 +142,7 @@
             "type": "linear",
             "autorange": false,
             "range": [
-              -0.03,
+              -0.029999999999999999,
               0.63
             ],
             "tickmode": "array",
@@ -248,9 +154,9 @@
             ],
             "tickvals": [
               0,
-              0.2,
-              0.4,
-              0.6
+              0.20000000000000004,
+              0.40000000000000013,
+              0.60000000000000009
             ],
             "categoryorder": "array",
             "categoryarray": [
@@ -262,8 +168,8 @@
             "nticks": null,
             "ticks": "outside",
             "tickcolor": "rgba(51,51,51,1)",
-            "ticklen": 3.65296803652968,
-            "tickwidth": 0.66417600664176,
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
             "showticklabels": true,
             "tickfont": {
               "color": "rgba(77,77,77,1)",
@@ -280,11 +186,11 @@
             "zeroline": false,
             "anchor": "x",
             "title": {
-              "text": "Pupil yield",
+              "text": "Pupil Yield",
               "font": {
                 "color": "rgba(0,0,0,1)",
                 "family": "",
-                "size": 15.9402241594022
+                "size": 15.940224159402243
               }
             },
             "hoverformat": ".2f"
@@ -312,23 +218,23 @@
           "legend": {
             "bgcolor": "rgba(255,255,255,1)",
             "bordercolor": "transparent",
-            "borderwidth": 1.88976377952756,
+            "borderwidth": 1.8897637795275593,
             "font": {
               "color": "rgba(0,0,0,1)",
               "family": "",
               "size": 12.7521793275218
             },
             "title": {
-              "text": "School phase",
+              "text": "School type",
               "font": {
                 "color": "rgba(0,0,0,1)",
                 "family": "",
-                "size": 15.9402241594022
+                "size": 15.940224159402243
               }
             },
             "orientation": "h",
             "x": 0,
-            "y": -0.2
+            "y": -0.20000000000000001
           },
           "hovermode": "closest",
           "barmode": "relative"
@@ -348,7 +254,7 @@
           "persistent": false,
           "dynamic": false,
           "selectize": false,
-          "opacityDim": 0.2,
+          "opacityDim": 0.20000000000000001,
           "selected": {
             "opacity": 1
           },
@@ -456,8 +362,8 @@
         }
       ]
     },
-    "headline_title": {
-      "html": "<h2>Pupil Yield is spilt by School phase<\/h2>",
+    "headlines_caption": {
+      "html": "<p>This chart shows Pupil Yields for school phase set to primary, number of bedrooms set to all and housing type set to all for properties completed up to 2021/22. <\/p>",
       "deps": [
 
       ]

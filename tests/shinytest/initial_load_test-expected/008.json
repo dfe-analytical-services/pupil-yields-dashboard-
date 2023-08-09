@@ -1,0 +1,819 @@
+{
+  "input": {
+    "filter1": "Primary",
+    "filter2": "All",
+    "filter3": "All",
+    "navlistPanel": "dashboard",
+    "select_breakdown": "School type",
+    "select_xaxis": "Number of bedrooms",
+    "select_year": "2021/22",
+    "selectLA": "Barking and Dagenham",
+    "tabsetpanels": "post-completion"
+  },
+  "output": {
+    "bar_headlines": {
+      "x": {
+        "data": [
+          {
+            "orientation": "v",
+            "width": [
+              0.89999999999999991,
+              0.90000000000000013,
+              0.90000000000000036,
+              0.90000000000000036,
+              0.90000000000000036
+            ],
+            "base": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "x": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "y": [
+              0.028695615000000001,
+              0.200483626,
+              0.36781144399999999,
+              0.40217825400000001,
+              0.252768838
+            ],
+            "text": [
+              "<i>Pupil Yield<\/i>: 0.03<br><b>Number of bedrooms<\/b>: 1<br><b>School type<\/b>: Mainstream",
+              "<i>Pupil Yield<\/i>: 0.2<br><b>Number of bedrooms<\/b>: 2<br><b>School type<\/b>: Mainstream",
+              "<i>Pupil Yield<\/i>: 0.37<br><b>Number of bedrooms<\/b>: 3<br><b>School type<\/b>: Mainstream",
+              "<i>Pupil Yield<\/i>: 0.4<br><b>Number of bedrooms<\/b>: 4+<br><b>School type<\/b>: Mainstream",
+              "<i>Pupil Yield<\/i>: 0.25<br><b>Number of bedrooms<\/b>: All<br><b>School type<\/b>: Mainstream"
+            ],
+            "type": "bar",
+            "textposition": "none",
+            "marker": {
+              "autocolorscale": false,
+              "color": "rgba(18,67,109,1)",
+              "line": {
+                "width": 1.8897637795275593,
+                "color": "transparent"
+              }
+            },
+            "name": "Mainstream",
+            "legendgroup": "Mainstream",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          }
+        ],
+        "layout": {
+          "margin": {
+            "t": 25.74124809741248,
+            "r": 7.3059360730593621,
+            "b": 42.086619620866202,
+            "l": 46.027397260273986
+          },
+          "plot_bgcolor": "rgba(255,255,255,1)",
+          "paper_bgcolor": "rgba(255,255,255,1)",
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 15.940224159402243
+          },
+          "xaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              0.40000000000000002,
+              5.5999999999999996
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "1",
+              "2",
+              "3",
+              "4+",
+              "All"
+            ],
+            "tickvals": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "1",
+              "2",
+              "3",
+              "4+",
+              "All"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 12.7521793275218
+            },
+            "tickangle": 0,
+            "showline": true,
+            "linecolor": "rgba(0,0,0,1)",
+            "linewidth": 1.32835201328352,
+            "showgrid": false,
+            "gridcolor": null,
+            "gridwidth": 0,
+            "zeroline": false,
+            "anchor": "y",
+            "title": {
+              "text": "Number of bedrooms",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 15.940224159402243
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "yaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              -0.029999999999999999,
+              0.63
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "0.0",
+              "0.2",
+              "0.4",
+              "0.6"
+            ],
+            "tickvals": [
+              0,
+              0.20000000000000004,
+              0.40000000000000013,
+              0.60000000000000009
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "0.0",
+              "0.2",
+              "0.4",
+              "0.6"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 12.7521793275218
+            },
+            "tickangle": 0,
+            "showline": true,
+            "linecolor": "rgba(0,0,0,1)",
+            "linewidth": 1.32835201328352,
+            "showgrid": false,
+            "gridcolor": null,
+            "gridwidth": 0,
+            "zeroline": false,
+            "anchor": "x",
+            "title": {
+              "text": "Pupil Yield",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 15.940224159402243
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "shapes": [
+            {
+              "type": "rect",
+              "fillcolor": null,
+              "line": {
+                "color": null,
+                "width": 0,
+                "linetype": [
+
+                ]
+              },
+              "yref": "paper",
+              "xref": "paper",
+              "x0": 0,
+              "x1": 1,
+              "y0": 0,
+              "y1": 1
+            }
+          ],
+          "showlegend": true,
+          "legend": {
+            "bgcolor": "rgba(255,255,255,1)",
+            "bordercolor": "transparent",
+            "borderwidth": 1.8897637795275593,
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 12.7521793275218
+            },
+            "title": {
+              "text": "School type",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 15.940224159402243
+              }
+            },
+            "orientation": "h",
+            "x": 0,
+            "y": -0.20000000000000001
+          },
+          "hovermode": "closest",
+          "barmode": "relative"
+        },
+        "config": {
+          "doubleClick": "reset",
+          "modeBarButtonsToAdd": [
+            "hoverclosest",
+            "hovercompare"
+          ],
+          "showSendToCloud": false,
+          "displayModeBar": false
+        },
+        "source": "A",
+        "highlight": {
+          "on": "plotly_click",
+          "persistent": false,
+          "dynamic": false,
+          "selectize": false,
+          "opacityDim": 0.20000000000000001,
+          "selected": {
+            "opacity": 1
+          },
+          "debounce": 0
+        },
+        "shinyEvents": [
+          "plotly_hover",
+          "plotly_click",
+          "plotly_selected",
+          "plotly_relayout",
+          "plotly_brushed",
+          "plotly_brushing",
+          "plotly_clickannotation",
+          "plotly_doubleclick",
+          "plotly_deselect",
+          "plotly_afterplot",
+          "plotly_sunburstclick"
+        ],
+        "base_url": "https://plot.ly"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+        {
+          "name": "setprototypeof",
+          "version": "0.1",
+          "src": {
+            "href": "setprototypeof-0.1"
+          },
+          "meta": null,
+          "script": "setprototypeof.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "typedarray",
+          "version": "0.1",
+          "src": {
+            "href": "typedarray-0.1"
+          },
+          "meta": null,
+          "script": "typedarray.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "jquery",
+          "version": "3.5.1",
+          "src": {
+            "href": "jquery-3.5.1"
+          },
+          "meta": null,
+          "script": "jquery.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "crosstalk",
+          "version": "1.2.0",
+          "src": {
+            "href": "crosstalk-1.2.0"
+          },
+          "meta": null,
+          "script": "js/crosstalk.min.js",
+          "stylesheet": "css/crosstalk.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "plotly-htmlwidgets-css",
+          "version": "2.11.1",
+          "src": {
+            "href": "plotly-htmlwidgets-css-2.11.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "plotly-htmlwidgets.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "plotly-main",
+          "version": "2.11.1",
+          "src": {
+            "href": "plotly-main-2.11.1"
+          },
+          "meta": null,
+          "script": "plotly-latest.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        }
+      ]
+    },
+    "headlines_caption": {
+      "html": "<p>This chart shows Pupil Yields for school phase set to primary, housing type set to all and tenure set to all for properties completed up to 2021/22. <\/p>",
+      "deps": [
+
+      ]
+    },
+    "linePYtime_period": {
+      "x": {
+        "data": [
+          {
+            "x": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "y": [
+              0.043560606000000002,
+              0.072696784,
+              0.107961101,
+              0.13907755499999999,
+              0.179017816,
+              0.19392540699999999,
+              0.20235018299999999,
+              0.218096647,
+              0.23326187400000001,
+              0.240620575,
+              0.247537337,
+              0.25185903100000001,
+              0.25230183099999998,
+              0.255605156,
+              0.252768838
+            ],
+            "text": [
+              "<i>Pupil Yield<\/i>: 0.04<br><b>Academic year<\/b>: 2007/08",
+              "<i>Pupil Yield<\/i>: 0.07<br><b>Academic year<\/b>: 2008/09",
+              "<i>Pupil Yield<\/i>: 0.11<br><b>Academic year<\/b>: 2009/10",
+              "<i>Pupil Yield<\/i>: 0.14<br><b>Academic year<\/b>: 2010/11",
+              "<i>Pupil Yield<\/i>: 0.18<br><b>Academic year<\/b>: 2011/12",
+              "<i>Pupil Yield<\/i>: 0.19<br><b>Academic year<\/b>: 2012/13",
+              "<i>Pupil Yield<\/i>: 0.2<br><b>Academic year<\/b>: 2013/14",
+              "<i>Pupil Yield<\/i>: 0.22<br><b>Academic year<\/b>: 2014/15",
+              "<i>Pupil Yield<\/i>: 0.23<br><b>Academic year<\/b>: 2015/16",
+              "<i>Pupil Yield<\/i>: 0.24<br><b>Academic year<\/b>: 2016/17",
+              "<i>Pupil Yield<\/i>: 0.25<br><b>Academic year<\/b>: 2017/18",
+              "<i>Pupil Yield<\/i>: 0.25<br><b>Academic year<\/b>: 2018/19",
+              "<i>Pupil Yield<\/i>: 0.25<br><b>Academic year<\/b>: 2019/20",
+              "<i>Pupil Yield<\/i>: 0.26<br><b>Academic year<\/b>: 2020/21",
+              "<i>Pupil Yield<\/i>: 0.25<br><b>Academic year<\/b>: 2021/22"
+            ],
+            "type": "scatter",
+            "mode": "lines",
+            "line": {
+              "width": 1.8897637795275593,
+              "color": "rgba(18,67,109,1)",
+              "dash": "solid"
+            },
+            "hoveron": "points",
+            "name": "Pupil Yield for properties completed up to the start of the academic year",
+            "legendgroup": "Pupil Yield for properties completed up to the start of the academic year",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          }
+        ],
+        "layout": {
+          "margin": {
+            "t": 25.74124809741248,
+            "r": 7.3059360730593621,
+            "b": 26.14639546146396,
+            "l": 52.403486924034887
+          },
+          "plot_bgcolor": "rgba(255,255,255,1)",
+          "paper_bgcolor": "rgba(255,255,255,1)",
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 15.940224159402243
+          },
+          "xaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              0.40000000000000002,
+              15.6
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "2007/08",
+              "2008/09",
+              "2009/10",
+              "2010/11",
+              "2011/12",
+              "2012/13",
+              "2013/14",
+              "2014/15",
+              "2015/16",
+              "2016/17",
+              "2017/18",
+              "2018/19",
+              "2019/20",
+              "2020/21",
+              "2021/22"
+            ],
+            "tickvals": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "2007/08",
+              "2008/09",
+              "2009/10",
+              "2010/11",
+              "2011/12",
+              "2012/13",
+              "2013/14",
+              "2014/15",
+              "2015/16",
+              "2016/17",
+              "2017/18",
+              "2018/19",
+              "2019/20",
+              "2020/21",
+              "2021/22"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 12.7521793275218
+            },
+            "tickangle": -320,
+            "showline": true,
+            "linecolor": "rgba(0,0,0,1)",
+            "linewidth": 1.32835201328352,
+            "showgrid": false,
+            "gridcolor": null,
+            "gridwidth": 0,
+            "zeroline": false,
+            "anchor": "y",
+            "title": {
+              "text": "",
+              "font": {
+                "color": null,
+                "family": null,
+                "size": 0
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "yaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              0.032958378500000003,
+              0.26620738350000001
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "0.05",
+              "0.10",
+              "0.15",
+              "0.20",
+              "0.25"
+            ],
+            "tickvals": [
+              0.050000000000000003,
+              0.10000000000000001,
+              0.15000000000000002,
+              0.20000000000000001,
+              0.25
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "0.05",
+              "0.10",
+              "0.15",
+              "0.20",
+              "0.25"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 12.7521793275218
+            },
+            "tickangle": 0,
+            "showline": true,
+            "linecolor": "rgba(0,0,0,1)",
+            "linewidth": 1.32835201328352,
+            "showgrid": false,
+            "gridcolor": null,
+            "gridwidth": 0,
+            "zeroline": false,
+            "anchor": "x",
+            "title": {
+              "text": "Pupil Yield",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 15.940224159402243
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "shapes": [
+            {
+              "type": "rect",
+              "fillcolor": null,
+              "line": {
+                "color": null,
+                "width": 0,
+                "linetype": [
+
+                ]
+              },
+              "yref": "paper",
+              "xref": "paper",
+              "x0": 0,
+              "x1": 1,
+              "y0": 0,
+              "y1": 1
+            }
+          ],
+          "showlegend": true,
+          "legend": {
+            "bgcolor": "rgba(255,255,255,1)",
+            "bordercolor": "transparent",
+            "borderwidth": 1.8897637795275593,
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 12.7521793275218
+            },
+            "title": {
+              "text": "",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 15.940224159402243
+              }
+            },
+            "orientation": "h",
+            "x": 0,
+            "y": -0.20000000000000001
+          },
+          "hovermode": "closest",
+          "barmode": "relative"
+        },
+        "config": {
+          "doubleClick": "reset",
+          "modeBarButtonsToAdd": [
+            "hoverclosest",
+            "hovercompare"
+          ],
+          "showSendToCloud": false,
+          "displayModeBar": false
+        },
+        "source": "A",
+        "highlight": {
+          "on": "plotly_click",
+          "persistent": false,
+          "dynamic": false,
+          "selectize": false,
+          "opacityDim": 0.20000000000000001,
+          "selected": {
+            "opacity": 1
+          },
+          "debounce": 0
+        },
+        "shinyEvents": [
+          "plotly_hover",
+          "plotly_click",
+          "plotly_selected",
+          "plotly_relayout",
+          "plotly_brushed",
+          "plotly_brushing",
+          "plotly_clickannotation",
+          "plotly_doubleclick",
+          "plotly_deselect",
+          "plotly_afterplot",
+          "plotly_sunburstclick"
+        ],
+        "base_url": "https://plot.ly"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+        {
+          "name": "setprototypeof",
+          "version": "0.1",
+          "src": {
+            "href": "setprototypeof-0.1"
+          },
+          "meta": null,
+          "script": "setprototypeof.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "typedarray",
+          "version": "0.1",
+          "src": {
+            "href": "typedarray-0.1"
+          },
+          "meta": null,
+          "script": "typedarray.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "jquery",
+          "version": "3.5.1",
+          "src": {
+            "href": "jquery-3.5.1"
+          },
+          "meta": null,
+          "script": "jquery.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "crosstalk",
+          "version": "1.2.0",
+          "src": {
+            "href": "crosstalk-1.2.0"
+          },
+          "meta": null,
+          "script": "js/crosstalk.min.js",
+          "stylesheet": "css/crosstalk.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "plotly-htmlwidgets-css",
+          "version": "2.11.1",
+          "src": {
+            "href": "plotly-htmlwidgets-css-2.11.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "plotly-htmlwidgets.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "plotly-main",
+          "version": "2.11.1",
+          "src": {
+            "href": "plotly-main-2.11.1"
+          },
+          "meta": null,
+          "script": "plotly-latest.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        }
+      ]
+    },
+    "postcompletion_title": {
+      "html": "<h2>Pupil Yield post completion for England<\/h2>",
+      "deps": [
+
+      ]
+    },
+    "timeseries_caption": {
+      "html": "<p>\n  This chart shows the cumulative Pupil Yield over time for school phase set to \n  primary\n   and housing type set to \n  all\n  . \n<\/p>",
+      "deps": [
+
+      ]
+    },
+    "timeseries_title": {
+      "html": "<h2>Pupil Yield over time as the number of completed properties increases for England<\/h2>",
+      "deps": [
+
+      ]
+    }
+  }
+}

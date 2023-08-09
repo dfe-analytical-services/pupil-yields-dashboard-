@@ -1,10 +1,10 @@
 {
   "input": {
     "filter1": "Primary",
-    "filter2": "All",
+    "filter2": "Mainstream",
     "filter3": "All",
     "navlistPanel": "dashboard",
-    "select_breakdown": "School type",
+    "select_breakdown": "Housing type",
     "select_xaxis": "Number of bedrooms",
     "select_year": "2021/22",
     "selectLA": "Barking and Dagenham",
@@ -17,11 +17,66 @@
           {
             "orientation": "v",
             "width": [
-              0.89999999999999991,
-              0.90000000000000013,
-              0.90000000000000036,
-              0.90000000000000036,
-              0.90000000000000036
+              0.30000000000000004,
+              0.30000000000000027,
+              0.29999999999999982,
+              0.29999999999999982,
+              0.30000000000000071
+            ],
+            "base": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "x": [
+              0.69999999999999996,
+              1.7,
+              2.7000000000000002,
+              3.7000000000000002,
+              4.7000000000000002
+            ],
+            "y": [
+              0.027189789999999998,
+              0.13717636999999999,
+              0.21764335200000001,
+              0.022677642000000001,
+              0.100522765
+            ],
+            "text": [
+              "<i>Pupil Yield<\/i>: 0.03<br><b>Number of bedrooms<\/b>: 1<br><b>Housing type<\/b>: Flats",
+              "<i>Pupil Yield<\/i>: 0.14<br><b>Number of bedrooms<\/b>: 2<br><b>Housing type<\/b>: Flats",
+              "<i>Pupil Yield<\/i>: 0.22<br><b>Number of bedrooms<\/b>: 3<br><b>Housing type<\/b>: Flats",
+              "<i>Pupil Yield<\/i>: 0.02<br><b>Number of bedrooms<\/b>: 4+<br><b>Housing type<\/b>: Flats",
+              "<i>Pupil Yield<\/i>: 0.1<br><b>Number of bedrooms<\/b>: All<br><b>Housing type<\/b>: Flats"
+            ],
+            "type": "bar",
+            "textposition": "none",
+            "marker": {
+              "autocolorscale": false,
+              "color": "rgba(18,67,109,1)",
+              "line": {
+                "width": 1.8897637795275593,
+                "color": "transparent"
+              }
+            },
+            "name": "Flats",
+            "legendgroup": "Flats",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          },
+          {
+            "orientation": "v",
+            "width": [
+              0.29999999999999993,
+              0.29999999999999982,
+              0.29999999999999982,
+              0.30000000000000027,
+              0.30000000000000071
             ],
             "base": [
               0,
@@ -38,6 +93,61 @@
               5
             ],
             "y": [
+              0.123496194,
+              0.284649608,
+              0.379170587,
+              0.43215437400000001,
+              0.35598679300000002
+            ],
+            "text": [
+              "<i>Pupil Yield<\/i>: 0.12<br><b>Number of bedrooms<\/b>: 1<br><b>Housing type<\/b>: Houses",
+              "<i>Pupil Yield<\/i>: 0.28<br><b>Number of bedrooms<\/b>: 2<br><b>Housing type<\/b>: Houses",
+              "<i>Pupil Yield<\/i>: 0.38<br><b>Number of bedrooms<\/b>: 3<br><b>Housing type<\/b>: Houses",
+              "<i>Pupil Yield<\/i>: 0.43<br><b>Number of bedrooms<\/b>: 4+<br><b>Housing type<\/b>: Houses",
+              "<i>Pupil Yield<\/i>: 0.36<br><b>Number of bedrooms<\/b>: All<br><b>Housing type<\/b>: Houses"
+            ],
+            "type": "bar",
+            "textposition": "none",
+            "marker": {
+              "autocolorscale": false,
+              "color": "rgba(40,161,151,1)",
+              "line": {
+                "width": 1.8897637795275593,
+                "color": "transparent"
+              }
+            },
+            "name": "Houses",
+            "legendgroup": "Houses",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          },
+          {
+            "orientation": "v",
+            "width": [
+              0.29999999999999982,
+              0.29999999999999982,
+              0.29999999999999982,
+              0.30000000000000071,
+              0.30000000000000071
+            ],
+            "base": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "x": [
+              1.3,
+              2.2999999999999998,
+              3.2999999999999998,
+              4.2999999999999998,
+              5.2999999999999998
+            ],
+            "y": [
               0.028695615000000001,
               0.200483626,
               0.36781144399999999,
@@ -45,24 +155,24 @@
               0.252768838
             ],
             "text": [
-              "<i>Pupil Yield<\/i>: 0.03<br><b>Number of bedrooms<\/b>: 1<br><b>School type<\/b>: Mainstream",
-              "<i>Pupil Yield<\/i>: 0.2<br><b>Number of bedrooms<\/b>: 2<br><b>School type<\/b>: Mainstream",
-              "<i>Pupil Yield<\/i>: 0.37<br><b>Number of bedrooms<\/b>: 3<br><b>School type<\/b>: Mainstream",
-              "<i>Pupil Yield<\/i>: 0.4<br><b>Number of bedrooms<\/b>: 4+<br><b>School type<\/b>: Mainstream",
-              "<i>Pupil Yield<\/i>: 0.25<br><b>Number of bedrooms<\/b>: All<br><b>School type<\/b>: Mainstream"
+              "<i>Pupil Yield<\/i>: 0.03<br><b>Number of bedrooms<\/b>: 1<br><b>Housing type<\/b>: All",
+              "<i>Pupil Yield<\/i>: 0.2<br><b>Number of bedrooms<\/b>: 2<br><b>Housing type<\/b>: All",
+              "<i>Pupil Yield<\/i>: 0.37<br><b>Number of bedrooms<\/b>: 3<br><b>Housing type<\/b>: All",
+              "<i>Pupil Yield<\/i>: 0.4<br><b>Number of bedrooms<\/b>: 4+<br><b>Housing type<\/b>: All",
+              "<i>Pupil Yield<\/i>: 0.25<br><b>Number of bedrooms<\/b>: All<br><b>Housing type<\/b>: All"
             ],
             "type": "bar",
             "textposition": "none",
             "marker": {
               "autocolorscale": false,
-              "color": "rgba(18,67,109,1)",
+              "color": "rgba(128,22,80,1)",
               "line": {
                 "width": 1.8897637795275593,
                 "color": "transparent"
               }
             },
-            "name": "Mainstream",
-            "legendgroup": "Mainstream",
+            "name": "All",
+            "legendgroup": "All",
             "showlegend": true,
             "xaxis": "x",
             "yaxis": "y",
@@ -241,7 +351,7 @@
               "size": 12.7521793275218
             },
             "title": {
-              "text": "School type",
+              "text": "Housing type",
               "font": {
                 "color": "rgba(0,0,0,1)",
                 "family": "",
@@ -379,7 +489,7 @@
       ]
     },
     "headlines_caption": {
-      "html": "<p>This chart shows Pupil Yields for school phase set to primary, housing type set to all and tenure set to all for properties completed up to 2021/22. <\/p>",
+      "html": "<p>This chart shows Pupil Yields for school phase set to primary, school type set to mainstream and tenure set to all for properties completed up to 2021/22. <\/p>",
       "deps": [
 
       ]

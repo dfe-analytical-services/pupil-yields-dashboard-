@@ -277,7 +277,7 @@ dashboard_panel <- function() {
               )
             ),
             tabPanel(
-              value = "Post completion time series",
+              value = "post-completion",
               title = "Post completion time series",
               fluidRow(
                 column(
@@ -333,6 +333,7 @@ dashboard_panel <- function() {
 
 technical_panel <- function() {
   tabPanel(
+    value='technical',
     "Technical Notes",
     gov_main_layout(
       gov_row(
