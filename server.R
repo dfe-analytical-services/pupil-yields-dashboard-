@@ -76,11 +76,11 @@ server <- function(input, output, session) {
   output$table_headlines <- renderTable({
     df <- reactive_headlines() %>%
       select(time_period, la_name, reactive_xaxis()$colid, reactive_breakdown()$colid, "pupil_yield") %>%
-      mutate(pupil_yield=str_trim(format(pupil_yield,digits=2,nsmall=2))) %>%
+      mutate(pupil_yield = str_trim(format(pupil_yield, digits = 2, nsmall = 2))) %>%
       pivot_wider(
         names_from = reactive_xaxis()$colid,
         values_from = "pupil_yield",
-        values_fill = 'z'
+        values_fill = "z"
       )
     colnames(df)[1:3] <- c("Academic Year", "Local authority", reactive_breakdown()$name)
     return(df)
@@ -102,7 +102,7 @@ server <- function(input, output, session) {
   })
 
   output$timeseries_caption <- renderUI({
-    tags$p("This chart shows the cumulative Pupil Yield over time for school phase set to ", tolower(input$timeseries.phase), " and housing type set to ", tolower(input$timeseries.housing),". ")
+    tags$p("This chart shows the cumulative Pupil Yield over time for school phase set to ", tolower(input$timeseries.phase), " and housing type set to ", tolower(input$timeseries.housing), ". ")
   })
 
   observeEvent(input$cookie_consent, {
@@ -160,7 +160,7 @@ server <- function(input, output, session) {
       input$selectLAD
     }
   })
-  
+
   reactive_headlines <- reactive({
     headlines <- df_py %>% filter(
       la_name == reactive_area(),
@@ -169,10 +169,10 @@ server <- function(input, output, session) {
       get(reactive_filters()$colid[2]) == input$filter2,
       get(reactive_filters()$colid[3]) == input$filter3
     )
-    if(input$agg_beds){
-      headlines %>% filter(!number_of_bedrooms %in% c("2","3"))
+    if (input$agg_beds) {
+      headlines %>% filter(!number_of_bedrooms %in% c("2", "3"))
     } else {
-      headlines %>% filter(!number_of_bedrooms %in% c("2+","3+"))
+      headlines %>% filter(!number_of_bedrooms %in% c("2+", "3+"))
     }
   })
 
@@ -207,22 +207,24 @@ server <- function(input, output, session) {
     }
   )
 
-# Headlines server scripts ------------------------------------------------
+  # Headlines server scripts ------------------------------------------------
 
   observeEvent(
     input$select_xaxis,
     {
-      choices_update <- filter_list %>% filter(name != input$select_xaxis) %>% pull(name)
+      choices_update <- filter_list %>%
+        filter(name != input$select_xaxis) %>%
+        pull(name)
       updateSelectizeInput(
         session, "select_breakdown",
         choices = choices_update,
-        selected = ifelse(input$select_xaxis==input$select_breakdown,choices_update[1],input$select_breakdown)
+        selected = ifelse(input$select_xaxis == input$select_breakdown, choices_update[1], input$select_breakdown)
       )
     }
   )
 
   choices <- reactive({
-    if(input$agg_beds){
+    if (input$agg_beds) {
       choicesnumber_beds <- c("All", "1", "2+", "3+", "4+")
     } else {
       choicesnumber_beds <- c("All", "1", "2", "3", "4+")
@@ -235,11 +237,11 @@ server <- function(input, output, session) {
       number_of_bedrooms = choicesnumber_beds
     )
   })
-  
+
   observeEvent(c(reactive_filters(), choices()), {
     for (i in 1:3) {
       cat("=============================", fill = TRUE)
-      message(paste0("Updating filter ",i," to ", reactive_filters()$name[i]))
+      message(paste0("Updating filter ", i, " to ", reactive_filters()$name[i]))
       updateSelectizeInput(
         session,
         paste0("filter", i),
@@ -247,25 +249,25 @@ server <- function(input, output, session) {
         choices = choices()[reactive_filters()$colid[i][[1]]],
         selected = reactive_filters()$default[i]
       )
-      message(paste0("Updated filter ",i," to ", reactive_filters()$name[i]))
+      message(paste0("Updated filter ", i, " to ", reactive_filters()$name[i]))
     }
   })
-  
-  observeEvent(input$reset_headline_input,{
+
+  observeEvent(input$reset_headline_input, {
     updateSelectizeInput(
       session,
       "select_xaxis",
-      selected="School phase"
+      selected = "School phase"
     )
     updateSelectizeInput(
       session,
       "select_breakdown",
-      selected="School type"
+      selected = "School type"
     )
     updateSelectizeInput(
       session,
       "select_year",
-      selected = "2021/22" 
+      selected = "2021/22"
     )
     for (i in 1:4) {
       updateSelectizeInput(
@@ -277,11 +279,11 @@ server <- function(input, output, session) {
       )
     }
   })
-  
+
   output$headlines_title <- renderUI(
     h2(paste0("Pupil Yield is split by ", input$select_xaxis, " and ", input$select_breakdown, " for ", reactive_area()))
   )
-  
+
   output$headlines_caption <- renderUI(
     p(paste0(
       "This chart shows Pupil Yields for ",
@@ -312,8 +314,8 @@ server <- function(input, output, session) {
   })
 
 
-# Timeseries server scripts -----------------------------------------------
-  
+  # Timeseries server scripts -----------------------------------------------
+
   output$timeseries_title <- renderUI(
     h2(paste0("Pupil Yield over time as the number of completed properties increases for ", reactive_area()))
   )
@@ -332,49 +334,49 @@ server <- function(input, output, session) {
   output$download_headlines_data <- downloadHandler(
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
-      write.csv(df_py_download, file ,row.names = FALSE)
+      write.csv(df_py_download, file, row.names = FALSE)
     }
   )
-  
+
   output$download_averages_data <- downloadHandler(
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
-      write.csv(df_py_download, file ,row.names = FALSE)
+      write.csv(df_py_download, file, row.names = FALSE)
     }
   )
-  
+
   output$download_send_data <- downloadHandler(
     filename = "ehcp_underlying_data.csv",
     content = function(file) {
-      write.csv(df_ehcp_download, file ,row.names = FALSE)
+      write.csv(df_ehcp_download, file, row.names = FALSE)
     }
   )
-  
+
   output$technicaltable <- renderTable(technical_table)
 
 
 
-# Post completion tab scripts ---------------------------------------------
+  # Post completion tab scripts ---------------------------------------------
 
   output$postcompletion_title <- renderUI(
     h2(paste0("Pupil Yield post completion for ", reactive_area()))
   )
-  
 
-# SEND server scripts -----------------------------------------------------
+
+  # SEND server scripts -----------------------------------------------------
 
   output$send_title <- renderUI(
     h2(paste0("Pupils with Special Educational Needs and Disabilities for ", reactive_area()))
   )
-  
+
   ehcp_lines <- reactive({
-    df_ehcp %>% 
+    df_ehcp %>%
       filter(
-        AcademicYear == input$send_year, 
+        AcademicYear == input$send_year,
         LTLA22NM == reactive_area()
-      )     
+      )
   })
-  
+
   output$send_box_1 <- renderValueBox(
     valueBox(
       ehcp_lines() %>% filter(SENprovision_Name == "EHCP") %>% pull(Percentage) %>% paste("%"),
@@ -396,28 +398,28 @@ server <- function(input, output, session) {
     )
   )
 
-   #actionLinks
+  # actionLinks
   observeEvent(input$linkHeadlinesTab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
     updateTabsetPanel(session, "tabsetpanels", selected = "Headlines")
- })
-  
+  })
+
   observeEvent(input$linkAveragesTab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
     updateTabsetPanel(session, "tabsetpanels", selected = "Averages")
   })
-  
+
   observeEvent(input$linkPCTab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
     updateTabsetPanel(session, "tabsetpanels", selected = "Post completion time series")
   })
-  
+
   observeEvent(input$linkSENDTab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
     updateTabsetPanel(session, "tabsetpanels", selected = "SEND")
   })
-  
-  
+
+
   # Stop app ---------------------------------------------------------------------------------
 
   session$onSessionEnded(function() {

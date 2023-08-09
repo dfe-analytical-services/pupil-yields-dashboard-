@@ -34,11 +34,11 @@ homepage_panel <- function() {
                   h4(actionLink("linkAveragesTab", "Cumulative time series")),
                   p("This tab displays the cumulative pupil yield factor over time by school phase and housing type. This will show where additional yield has sped up or slowed down by looking at the slope of the curve. Data can be interrogated further on the headlines tab if required."),
                   h4(actionLink("linkPCTab", "Post completion time series- COMING SOON")),
-                  p("This tab displays the pupil yield factor each year after developments have completed, for all developments or only developments completed in certain academic years.  This will show where pupil yield peaks post development."), 
+                  p("This tab displays the pupil yield factor each year after developments have completed, for all developments or only developments completed in certain academic years.  This will show where pupil yield peaks post development."),
                   strong("Note:"), ("the sample size reduces each year post completion and so care should be taken when using yields furthest from completion."),
                   h4(actionLink("linkSENDTab", "Special Educational Needs and Disabilities")),
                   p("This tab shows the proportion of pupils living in the properties completed up to the selected academic year that required Special Education Needs (SEN) support or had Education, Health and Care Plans (EHCPs)."),
-                  ),
+                ),
                 br()
               )
             )
@@ -114,7 +114,7 @@ dashboard_panel <- function() {
           tabsetPanel(
             id = "tabsetpanels",
 
-# Headlines panel ---------------------------------------------------------
+            # Headlines panel ---------------------------------------------------------
             tabPanel(
               value = "Headlines",
               title = "Headlines",
@@ -161,7 +161,7 @@ dashboard_panel <- function() {
                     inputId = "select_year",
                     label = "Choose a Year:",
                     choices = choicesYears,
-                    selected = "2021/22" 
+                    selected = "2021/22"
                   )
                 )
               ),
@@ -224,7 +224,7 @@ dashboard_panel <- function() {
               )
             ),
 
-# Cumulative time-series --------------------------------------------------
+            # Cumulative time-series --------------------------------------------------
             tabPanel(
               value = "Averages",
               title = "Cumulative time series",
@@ -248,7 +248,7 @@ dashboard_panel <- function() {
                         "timeseries.phase",
                         label = "Choose a school phase",
                         choices = choices_default$education_phase,
-                        selected = 'Primary'
+                        selected = "Primary"
                       )
                     ),
                     column(
@@ -288,7 +288,7 @@ dashboard_panel <- function() {
               )
             ),
 
-# SEND panel --------------------------------------------------------------
+            # SEND panel --------------------------------------------------------------
             tabPanel(
               value = "SEND",
               title = "Special Educational Needs and Disabilities",
@@ -300,7 +300,7 @@ dashboard_panel <- function() {
                     "send_year",
                     label = "Choose a Year",
                     choices = df_ehcp %>% arrange(AcademicYear) %>% pull(AcademicYear) %>% unique(),
-                    selected = max(df_ehcp %>% filter(AcademicYear!='Total') %>% pull(AcademicYear))
+                    selected = max(df_ehcp %>% filter(AcademicYear != "Total") %>% pull(AcademicYear))
                   ),
                   p(" "),
                   valueBoxOutput("send_box_1", width = 6),
@@ -322,7 +322,6 @@ dashboard_panel <- function() {
                   )
                 )
               )
-              
             )
           )
         )
@@ -347,7 +346,7 @@ technical_panel <- function() {
           p("For more information about the PSGA and how to access the OS AddressBase, see", a(href = "https://www.ordnancesurvey.co.uk/customers/public-sector/public-sector-geospatial-agreement", " OS information.")),
           p("The following files were obtained from OS."),
           tableOutput("technicaltable"),
-          )
+        )
       ),
       h2("Properties - VOA Property Bedroom Data"),
       p("The ONS provided us with property bedroom data from the VOA. This data gives the number of bedrooms for a given UPRN."),
@@ -360,7 +359,7 @@ technical_panel <- function() {
       p("•	The Early Years (EY) Census, which has information on children attending any private, voluntary and independent sector nursery with children receiving funding from the Department. "),
       p("•	The Alternative Provision (AP) Census, which has information on children in AP ( i.e. a school not maintained by an LA but which the authority is paying full tuition fees for). "),
       p("•	The Pupil Referral Unit (PRU) census for years 2009-2012 (after which pupils are included in the School Census). "),
-      p("•	The Individualised Learner Record (ILR), which covers all young people in Further Education.",(strong(" Note:")), "The ILR is not within the NPD itself."),
+      p("•	The Individualised Learner Record (ILR), which covers all young people in Further Education.", (strong(" Note:")), "The ILR is not within the NPD itself."),
       br(),
       p("If refreshing this pupil yield analysis in future, local authorities would need to use the pupil census returns from their area to replicate and expand this dataset."),
       h2("Data Cleaning"),
@@ -387,7 +386,7 @@ technical_panel <- function() {
       p(strong("Limitations")),
       p("Calculating pupil yield factors for developments that commenced and completed between January 2008 and 2022  helps to demonstrate when pupil yields peak and stabilise, though in many cases secondary phase pupil yields are on an upward trajectory and the data time period is not long enough to show the peak."),
       p("DfE’s pupil yield data counts all pupils living in the sample developments, whether they moved into the property from elsewhere or were born there. We have not discounted pupils who have moved within the local area, recognising that patterns of pupil migration and the backfilling of vacated properties by more incoming families will vary from place to place. Local authorities can adjust our pupil yield factors to account for local evidence, where appropriate."),
-    
+
       ## h2("Sub Heading"),
       ## p("Add text"),
       ## h2("Sub Heading"),

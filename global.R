@@ -98,8 +98,8 @@ la_lad_lookup <- read.csv("data/la_lad_hierarchy.csv", stringsAsFactors = F) %>%
   mutate(
     la_name = gsub(",", "", la_name),
     lad_name = gsub(",", "", lad_name),
-    date_of_introduction=as.Date(date_of_introduction),
-    date_of_termination=as.Date(date_of_termination)
+    date_of_introduction = as.Date(date_of_introduction),
+    date_of_termination = as.Date(date_of_termination)
   ) %>%
   filter(
     status == "live" | date_of_termination >= as.Date("2023-03-31"),
@@ -125,7 +125,7 @@ df_py$education_phase <- factor(df_py$education_phase, levels = )
 
 choicesgeographic_level <- c("England", "County/Unitary", "District")
 choicesLAs <- df_py %>%
-  filter(geographic_level == "County/Unitary" | la_name=='Cardiff') %>%
+  filter(geographic_level == "County/Unitary" | la_name == "Cardiff") %>%
   pull(la_name) %>%
   unique() %>%
   sort()
@@ -157,12 +157,12 @@ choicestenure <- c("All", levels(df_py$tenure)) %>% unique()
 choicesnumber_beds <- c("All", unique(df_py$number_of_bedrooms) %>% sort()) %>% unique()
 
 choices_default <- list(
-    education_type = choiceseducation_type,
-    education_phase = choicesPhase,
-    housing = choiceshousing,
-    tenure = choicestenure,
-    number_of_bedrooms = choicesnumber_beds
-  )
+  education_type = choiceseducation_type,
+  education_phase = choicesPhase,
+  housing = choiceshousing,
+  tenure = choicestenure,
+  number_of_bedrooms = choicesnumber_beds
+)
 
 dfe_palette <- c("#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1")
 
