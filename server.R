@@ -309,6 +309,7 @@ server <- function(input, output, session) {
       config(displayModeBar = F) %>%
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
+  
   reactiveBenchmark <- reactive({
     df_py %>%
       filter(
