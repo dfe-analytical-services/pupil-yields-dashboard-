@@ -106,10 +106,10 @@ server <- function(input, output, session) {
   #post completion tab
   
   output$pc_data <- renderUI({
-    if (input$timetab_toggle == "Chart") {
+    if (input$postcomtab_toggle == "Chart") {
       plotlyOutput("linepctime_period")
     } else {
-      tableOutput("tablepc_timeseries")
+      tableOutput("table_timeseriespc")
     }
   })
   

@@ -272,7 +272,7 @@ dashboard_panel <- function() {
                   column(
                     width = 12,
                     radioGroupButtons(
-                      "timetab_toggle",
+                      "postcomtab_toggle",
                       label = NULL,
                       choices = c("Chart", "Table"),
                       selected = "Chart"
