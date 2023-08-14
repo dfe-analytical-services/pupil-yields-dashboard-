@@ -71,7 +71,7 @@ create_pc_time_period <- function(dfpc) {
       group=time_period, colour=time_period,
       text = paste0(
         "<i>Academic year</i>: ", time_period,
-        "<i>Pupil yield</i>: ", pupil_yield,
+        "<br><i>Pupil yield</i>: ", pupil_yield,
         "<br><b>Years after completion</b>: ", years_after_completion
       )
     )
@@ -81,27 +81,13 @@ create_pc_time_period <- function(dfpc) {
     theme_classic() +
     theme(
       text = element_text(size = 12),
-      axis.text.x = element_text(angle = 320),
-      axis.title.x = element_blank(),
+      axis.text.x = element_text(angle = 0),
+      axis.title.x = element_text(),
       axis.title.y = element_text(margin = margin(r = 12)),
       axis.line = element_line(size = 1.0),
       legend.position = "top"
     ) +
     xlab("Years after completion") +
-    ylab("Pupil Yield") #+
-  
-  # 
-  # print(dfpc_filtered)
-  # ggplot(
-  #   dfpc_filtered,
-  #   aes(
-  #     x = years_after_completion,
-  #     y = pupil_yield,
-  #     colour = time_period,
-  #   )
-  # ) +
-  #   geom_line() +
-  #   #  +
-  #   # scale_colour_manual(values = dfe_palette) +
-  #   # labs(color = "")
-}
+    ylab("Pupil Yield") +
+    labs(color = "")
+  }
