@@ -227,7 +227,7 @@ dashboard_panel <- function() {
                     ),
                     uiOutput("timeseries_data"),
                     uiOutput("timeseries_caption"),
-                    column(
+                     column(
                       width = 4,
                       selectizeInput(
                         "timeseries.phase",
@@ -282,22 +282,22 @@ dashboard_panel <- function() {
                     column(
                       width = 4,
                       selectizeInput(
+                        "time.period",
+                        label = "Choose a Year:",
+                        choices = choicespc$time_period,
+                        selected = 'All' 
+                      )
+                    )
+                    ,
+                    column(
+                      width = 4,
+                      selectizeInput(
                         "education.phase",
                         label = "Choose an school phase",
                         choices = choicespc$education_phase,
                         selected = 'Primary'
                       )
                     ),
-                    column(
-                      width = 4,
-                      selectizeInput(
-                        "education.type",
-                        label = "Choose an education type",
-                        choices = choicespc$education_type,
-                        selected = 'Mainstream'
-                      )
-                    )
-                  ),
                   gov_row(
                     column(
                       width = 12,
@@ -313,7 +313,10 @@ dashboard_panel <- function() {
                   )
                 )
               )
-            ),
+            )
+            
+            )
+            ,
             tabPanel(
               value = "SEND",
               title = "Special Educational Needs and Disability",

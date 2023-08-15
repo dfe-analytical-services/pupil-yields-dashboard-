@@ -202,8 +202,8 @@ server <- function(input, output, session) {
   reactivepctime_period <- reactive({
     df_pc %>% filter(
       la_name == reactive_area(),
-      education_phase == input$education.phase,
-      education_type == input$education.type
+      time_period == input$time.period,
+      education_phase == input$education.phase
     )
   })
   

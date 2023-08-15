@@ -186,12 +186,11 @@ df_pc$time_period <- factor(df_pc$time_period, levels = choicesYearspc %>% sort(
 
 
 filter_listpc <- data.frame(
-  name = c("School phase", "School type", "Years After Completion"),
-  colid = c("education_phase", "education_type", "years_after_completion" ),
-  default = c("Primary", "Mainstream", "All" )
+  name = c("School phase", "Years After Completion"),
+  colid = c("education_phase",  "years_after_completion" ),
+  default = c("Primary",  "All" )
 )
 
-choiceseducation_typepc <- unique(df_pc$education_type) %>% sort()
 
 choicesPhasepc <- c("Early Years", "Primary", "Secondary", "Post-16", "SP/Alternative")
 df_pc$education_phasepc <- factor(df_pc$education_phase, levels = choicesPhasepc)
@@ -200,9 +199,8 @@ choicesYearsAfterCompletion <- unique(df_pc$years_after_completion) %>% sort(dec
 df_pc$years_after_completion <- factor(df_pc$years_after_completion, levels = choicesYearsAfterCompletion %>% sort())
 
 choicespc <- list(
-  education_type = choiceseducation_typepc,
-  education_phase = choicesPhasepc
-
+  education_phase = choicesPhasepc,
+  time_period = choicesYearspc
 )
 
 
