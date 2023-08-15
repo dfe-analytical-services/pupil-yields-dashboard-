@@ -167,7 +167,7 @@ choices <- list(
 #post completion data
 #Get geographical levels from data
 
-df_pc$education_phase <- factor(df_pc$education_phase, levels = )
+df_pc$education_phase <- factor(df_pc$education_phase)
 
 choicesgeographic_levelpc <- c("England", "County/Unitary", "District")
 choicesLAs <- df_pc %>%
@@ -181,7 +181,11 @@ choicesLADspc <- df_pc %>%
   unique() %>%
   sort()
 
-choicesYearspc <- unique(df_pc$time_period) %>% sort(decreasing = TRUE)
+maxyear <- df_pc %>% filter(time_period != 'All') %>% pull(time_period) %>% max()
+maxyrpc <- df_pc$years_after_completion %>% as.numeric() %>% max()
+
+choicesYearspc <- df_pc %>% filter(time_period != maxyear) %>% pull(time_period) %>% 
+  unique() %>% sort(decreasing = TRUE)
 df_pc$time_period <- factor(df_pc$time_period, levels = choicesYearspc %>% sort())
 
 
