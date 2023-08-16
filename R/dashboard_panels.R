@@ -282,20 +282,19 @@ dashboard_panel <- function() {
                     column(
                       width = 4,
                       selectizeInput(
-                        "time.period",
-                        label = "Choose a Year:",
-                        choices = choicespc$time_period,
-                        selected = 'All' 
-                      )
-                    )
-                    ,
-                    column(
-                      width = 4,
-                      selectizeInput(
                         "education.phase",
                         label = "Choose an school phase",
                         choices = choicespc$education_phase,
                         selected = 'Primary'
+                      )
+                    ),
+                    column(
+                      width = 4,
+                      selectizeInput(
+                        "time.period",
+                        label = "Choose a Year:",
+                        choices = choicespc$time_period,
+                        selected = 'All' 
                       )
                     ),
                   gov_row(
