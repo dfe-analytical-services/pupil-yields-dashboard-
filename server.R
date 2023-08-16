@@ -306,7 +306,8 @@ server <- function(input, output, session) {
     ggplotly(create_pc_time_period(reactivepctime_period()),
              tooltip = c("text")
     ) %>%
-      config(displayModeBar = F)
+      config(displayModeBar = F) %>%
+      layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
   
   reactiveBenchmark <- reactive({
