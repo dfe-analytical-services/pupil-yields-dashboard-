@@ -223,11 +223,17 @@ server <- function(input, output, session) {
     }
   )
 
+  # remove post-16 from drop down if 2021/22 selected
   choices <- reactive({
     if (input$agg_beds) {
       choicesnumber_beds <- c("All", "1", "2+", "3+", "4+")
     } else {
       choicesnumber_beds <- c("All", "1", "2", "3", "4+")
+    } 
+    if (input$select_year == '2021/22') {
+      choicesPhase <- c("Early Years", "Primary", "Secondary","Special Schools/AP")
+    } else {
+      choicesPhase <- c("Early Years", "Primary", "Secondary","Post-16","Special Schools/AP")
     }
     list(
       education_type = choiceseducation_type,
@@ -295,6 +301,13 @@ server <- function(input, output, session) {
       ))
     ))
   )
+  
+  # Add post16 caption if 2021/22 selected
+  output$post16_2122_caption <- renderUI(
+    p(paste0(
+      ifelse(input$select_year == "2021/22", "Select 2020/21 or earlier for Post-16 Yields.","") 
+    ))
+  )
 
 
   # Define server logic required to draw a histogram
@@ -315,9 +328,17 @@ server <- function(input, output, session) {
 
 
   # Timeseries server scripts -----------------------------------------------
-
+ 
+   # Timeseries chart time
   output$timeseries_title <- renderUI(
     h2(paste0("Pupil Yield over time as the number of completed properties increases for ", reactive_area()))
+  )
+  
+  # Add caption if Post-16 selected
+  output$post16_caption <- renderUI(
+    p(paste0(
+       ifelse(input$timeseries.phase == "Post-16", "Post-16 Pupil Yield data up to 2020/21 only.","") 
+         ))
   )
 
   # Render time_period line chart of pupil yield

@@ -165,6 +165,7 @@ dashboard_panel <- function() {
                   )
                 )
               ),
+              uiOutput("post16_2122_caption"),
               gov_row(
                 column(
                   12,
@@ -197,7 +198,7 @@ dashboard_panel <- function() {
                   )
                 )
               ),
-              gov_row(
+                        gov_row(
                 column(
                   12,
                   checkboxInput("agg_beds", "Aggregate bedroom numbers")
@@ -260,6 +261,7 @@ dashboard_panel <- function() {
                       )
                     )
                   ),
+                  uiOutput("post16_caption"),
                   gov_row(
                     column(
                       width = 12,
