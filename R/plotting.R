@@ -77,6 +77,7 @@ create_pc_time_period <- function(dfpc) {
     )
     ) + 
     geom_line(aes(color = "Years after completion pupil yield")) +
+    geom_point(aes(color= "Years after completion pupil yield")) +
     geom_hline(aes(yintercept = mean_pc, color = "Mean pupil yield"), linetype = "dashed") +
     scale_colour_manual(values = dfe_palette) +
     theme_classic() +
