@@ -303,6 +303,11 @@ server <- function(input, output, session) {
 
   # Render time_period line chart of post completion
   output$linepctime_period <- renderPlotly({
+    validate(
+      need(
+        nrow(reactivepctime_period())>0,
+        'Sorry, no data found for selected combination.')
+    )
     ggplotly(create_pc_time_period(reactivepctime_period()),
              tooltip = c("text")
     ) %>%
