@@ -29,6 +29,8 @@ outputs <- c(
   "send_box_1",
   "send_box_3",
   "technicaltable"
+  "line_PC"
+
 )
 
 message("Initial snapshot")

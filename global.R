@@ -109,6 +109,7 @@ la_lad_lookup <- read.csv("data/la_lad_hierarchy.csv", stringsAsFactors = F) %>%
 # Read in the data
 df_py <- read_data()
 df_ehcp <- read_ehcp()
+df_pc <- read_pc()
 
 # Create clean versions of the file for download--------------
 df_py_download <- read_data()
@@ -162,7 +163,51 @@ choices_default <- list(
   housing = choiceshousing,
   tenure = choicestenure,
   number_of_bedrooms = choicesnumber_beds
+  
 )
+
+
+#post completion data
+#Get geographical levels from data
+
+df_pc$education_phase <- factor(df_pc$education_phase, levels = )
+
+choicesgeographic_levelpc <- c("England", "County/Unitary", "District")
+choicesLAs <- df_pc %>%
+  filter(geographic_level == "County/Unitary" | la_name=='Cardiff') %>%
+  pull(la_name) %>%
+  unique() %>%
+  sort()
+choicesLADspc <- df_pc %>%
+  filter(geographic_level == "District") %>%
+  pull(la_name) %>%
+  unique() %>%
+  sort()
+
+choicesYearspc <- unique(df_pc$time_period) %>% sort(decreasing = TRUE)
+
+df_pc$time_period <- factor(df_pc$time_period, levels = choicesYearspc %>% sort())
+
+
+filter_listpc <- data.frame(
+  name = c("School phase", "Years After Completion"),
+  colid = c("education_phase",  "years_after_completion" ),
+  default = c("Primary",  "All" )
+)
+
+
+choicesPhasepc <- c("Early Years", "Primary", "Secondary", "Post-16", "SP/Alternative")
+df_pc$education_phasepc <- factor(df_pc$education_phase, levels = choicesPhasepc)
+
+choicesYearsAfterCompletion <- unique(df_pc$years_after_completion) %>% sort(decreasing = TRUE)
+df_pc$years_after_completion <- factor(df_pc$years_after_completion, levels = choicesYearsAfterCompletion %>% sort())
+
+choicespc <- list(
+  education_phase = choicesPhasepc,
+  time_period = choicesYearspc
+)
+
+
 
 dfe_palette <- c("#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1")
 

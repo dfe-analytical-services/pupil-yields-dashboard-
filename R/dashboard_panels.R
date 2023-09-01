@@ -243,7 +243,7 @@ dashboard_panel <- function() {
                     ),
                     uiOutput("timeseries_data"),
                     uiOutput("timeseries_caption"),
-                    column(
+                     column(
                       width = 4,
                       selectizeInput(
                         "timeseries.phase",
@@ -279,18 +279,67 @@ dashboard_panel <- function() {
               )
             ),
             tabPanel(
-              value = "post-completion",
+              value = "post-completion time series",
               title = "Post completion time series",
               fluidRow(
                 column(
                   width = 12,
-                  uiOutput("postcompletion_title"),
-                  tags$b("The post-completion reporting is currently being prepared and will be provided here soon."),
-                )
-              )
-            ),
+
+                  h2("Pupil Yield post completion"),
+                  #p("This is the standard paragraph style for adding guiding info around data content."),
+                  column(
+                    width = 12,
+                    radioGroupButtons(
+                      "postcomtab_toggle",
+                      label = NULL,
+                      choices = c("Chart", "Table"),
+                      selected = "Chart"
+                    ),
+                    uiOutput("pc_data"),
+                    uiOutput("pc_caption"),
+                    column(
+                      width = 4,
+                      selectizeInput(
+                        "education.phase",
+                        label = "Choose an school phase",
+                        choices = choicespc$education_phase,
+                        selected = 'Primary'
+
+                      )
+                    ),
+                    column(
+                      width = 4,
+                      selectizeInput(
+                        "time.period",
+                        label = "Choose a Year:",
+                        choices = choicespc$time_period,
+                        selected = 'All' 
+                      )
+                    ),
+
 
             # SEND panel --------------------------------------------------------------
+
+                  gov_row(
+                    column(
+                      width = 12,
+                      tags$hr(),
+                      paste("Download the underlying data for this dashboard:"), br(),
+                      downloadButton(
+                        outputId = "download_pc_data",
+                        label = "Download data",
+                        icon = shiny::icon("download"),
+                        class = "downloadButton"
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            
+            )
+            ,
+
             tabPanel(
               value = "SEND",
               title = "Special Educational Needs and Disabilities",

@@ -104,6 +104,28 @@ server <- function(input, output, session) {
   output$timeseries_caption <- renderUI({
     tags$p("This chart shows the cumulative Pupil Yield over time for school phase set to ", tolower(input$timeseries.phase), " and housing type set to ", tolower(input$timeseries.housing), ". ")
   })
+  
+  #post completion tab
+  
+  output$pc_data <- renderUI({
+    if (input$postcomtab_toggle == "Chart") {
+      plotlyOutput("linepctime_period")
+    } else {
+      tableOutput("table_timeseriespc")
+    }
+  })
+  
+  output$table_timeseriespc <- renderTable({
+    df <- reactivepctime_period() %>%
+      select(time_period, la_name, education_phase, number_of_pupils, completed_properties_in_ay, pupil_yield, years_after_completion
+)
+    colnames(df) <- c("Academic year", "Local authority", "School phase", "# pupils", "Completed properties", "Pupil yield", "Years after completion")
+    return(df)
+  })
+  
+  output$timeseriespc_caption <- renderUI({
+    tags$p("This chart shows the yearly pupil yeild and average pupil yield by school phase as ", tolower(input$timeseries.phase), " and housing type as ", tolower(input$timeseries.housing), ". ")
+  })
 
   observeEvent(input$cookie_consent, {
     msg <- list(
@@ -184,6 +206,15 @@ server <- function(input, output, session) {
     )
   })
 
+  reactivepctime_period <- reactive({
+    df_pc %>% filter(
+      la_name == reactive_area(),
+      time_period == input$time.period,
+      education_phase == input$education.phase
+    )
+  })
+  
+  
   reactive_xaxis <- reactive({
     filter_list %>% filter(name == input$select_xaxis)
   })
@@ -350,26 +381,92 @@ server <- function(input, output, session) {
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
 
+  # Render time_period line chart of post completion
+  output$linepctime_period <- renderPlotly({
+    validate(
+      need(
+        nrow(reactivepctime_period())>0,
+        'Sorry, no data found for selected combination.')
+    )
+    ggplotly(create_pc_time_period(reactivepctime_period()),
+             tooltip = c("text")
+    ) %>%
+      config(displayModeBar = F) %>%
+      layout(legend = list(orientation = "h", x = 0, y = -0.2))
+  })
 
-  # Download the underlying data button- downloads version of data with user friendly headings created in global.r
+
+
+  
+  reactiveBenchmark <- reactive({
+    df_py %>%
+      filter(
+        local_authority %in% c(input$selectLA, input$selectBenchLAs),
+        education_phase == input$selecteducation_phase,
+        time_period == max(time_period, na.rm = TRUE)
+      )
+  })
+
+  output$colBenchmark <- renderPlotly({
+    ggplotly(
+      plotAvgRevBenchmark(reactiveBenchmark()) %>%
+        config(displayModeBar = F),
+      height = 560
+    )
+  })
+
+  output$tabBenchmark <- renderDataTable({
+    datatable(
+      reactiveBenchmark() %>%
+        select(
+          Area = local_authority,
+          `Average Revenue Balance (£)` = average_revenue_balance,
+          `Total Revenue Balance (£m)` = total_revenue_balance_million
+        ),
+      options = list(
+        scrollX = TRUE,
+        paging = FALSE
+      )
+    )
+  })
+
+  observeEvent(input$link_to_app_content_tab, {
+    updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
+  })
+
+  # Download the underlying data button
   output$download_headlines_data <- downloadHandler(
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
+
       write.csv(df_py_download, file, row.names = FALSE)
+
     }
   )
 
   output$download_averages_data <- downloadHandler(
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
+
       write.csv(df_py_download, file, row.names = FALSE)
+
+    }
+  )
+  
+  output$download_pc_data <- downloadHandler(
+    filename = "post_completion_underlying_data.csv",
+    content = function(file) {
+      write.csv(df_pc, file, row.names = FALSE)
+
     }
   )
 
   output$download_send_data <- downloadHandler(
     filename = "ehcp_underlying_data.csv",
     content = function(file) {
+
       write.csv(df_ehcp_download, file, row.names = FALSE)
+
     }
   )
 
