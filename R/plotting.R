@@ -71,7 +71,7 @@ create_pc_time_period <- function(dfpc) {
       y=pupil_yield, 
       group=time_period,
       text = paste0(
-        "<br><i>Pupil yield</i>: ", pupil_yield,
+        "<br><i>Pupil yield</i>: ", round(pupil_yield, 2),
         "<br><b>Years after completion</b>: ", years_after_completion
       )
     )
