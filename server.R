@@ -335,9 +335,9 @@ server <- function(input, output, session) {
   
   # Add post16 caption if 2021/22 selected
   output$post16_2122_caption <- renderUI(
-    p(paste0(
+    p(strong(paste0(
       ifelse(input$select_year == "2021/22", "Select 2020/21 or earlier for Post-16 Yields.","") 
-    ))
+    )))
   )
 
 
@@ -367,9 +367,9 @@ server <- function(input, output, session) {
   
   # Add caption if Post-16 selected
   output$post16_caption <- renderUI(
-    p(paste0(
+    p(strong(paste0(
        ifelse(input$timeseries.phase == "Post-16", "Post-16 Pupil Yield data up to 2020/21 only.","") 
-         ))
+         )))
   )
 
   # Render time_period line chart of pupil yield
