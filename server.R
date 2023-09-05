@@ -119,7 +119,7 @@ server <- function(input, output, session) {
     df <- reactivepctime_period() %>%
       select(time_period, la_name, education_phase, number_of_pupils, completed_properties_in_ay, pupil_yield, years_after_completion
 )
-    colnames(df) <- c("Academic year", "Local authority", "School phase", "# pupils", "Completed properties", "Pupil yield", "Years after completion")
+    colnames(df) <- c("Academic year", "Local authority", "School phase", "# pupils", "Completed properties", "Pupil Yield", "Years after completion")
     return(df)
   })
   
