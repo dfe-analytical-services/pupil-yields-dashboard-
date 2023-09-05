@@ -165,7 +165,7 @@ dashboard_panel <- function() {
                   )
                 )
               ),
-              uiOutput("post16_2122_caption"),
+              uiOutput("post16_2122_caption", style="color:red"),
               gov_row(
                 column(
                   12,
@@ -261,7 +261,7 @@ dashboard_panel <- function() {
                       )
                     )
                   ),
-                  uiOutput("post16_caption"),
+                  uiOutput("post16_caption", style="color:red"),
                   gov_row(
                     column(
                       width = 12,
