@@ -456,7 +456,7 @@ server <- function(input, output, session) {
   output$download_pc_data <- downloadHandler(
     filename = "post_completion_underlying_data.csv",
     content = function(file) {
-      write.csv(df_pc, file, row.names = FALSE)
+      write.csv(df_pc_download, file, row.names = FALSE)
 
     }
   )

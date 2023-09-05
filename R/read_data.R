@@ -121,3 +121,4 @@ read_pc <- function(file = "data/post_completion.csv") {
 # read in metadata to get variable names for files for download--------------
 metadata_PY <- read.csv("data/PYMetadata.csv", encoding = "UTF-8")
 metadata_EHCP <- read.csv("data/EHCPMetadata.csv", encoding = "UTF-8")
+metadata_PC <- read.csv("data/PCMetadata.csv", encoding = "UTF-8")

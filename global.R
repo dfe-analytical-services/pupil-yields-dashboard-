@@ -114,10 +114,12 @@ df_pc <- read_pc()
 # Create clean versions of the file for download--------------
 df_py_download <- read_data()
 df_ehcp_download <- read_ehcp()
+df_pc_download <- read_pc()
 
 # renames the columns of the old data set using the lookup table
 df_py_download <- data.table::setnames(df_py_download, old = metadata_PY$programmer_friendly_names, new = metadata_PY$user_friendly_name, skip_absent = TRUE)
 df_ehcp_download <- data.table::setnames(df_ehcp_download, old = metadata_EHCP$programmer_friendly_names, new = metadata_EHCP$user_friendly_name, skip_absent = TRUE)
+df_pc_download <- data.table::setnames(df_pc_download, old = metadata_PC$programmer_friendly_names, new = metadata_PC$user_friendly_name, skip_absent = TRUE)
 
 
 # Get geographical levels from data

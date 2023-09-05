@@ -71,14 +71,14 @@ create_pc_time_period <- function(dfpc) {
       y=pupil_yield, 
       group=time_period,
       text = paste0(
-        "<br><i>Pupil yield</i>: ", round(pupil_yield, 2),
+        "<br><i>Pupil Yield</i>: ", round(pupil_yield, 2),
         "<br><b>Years after completion</b>: ", years_after_completion
       )
     )
     ) + 
-    geom_line(aes(color = "Years after completion pupil yield")) +
-    geom_point(aes(color= "Years after completion pupil yield")) +
-    geom_hline(aes(yintercept = mean_pc, color = "Mean pupil yield"), linetype = "dashed") +
+    geom_line(aes(color = "Years after completion Pupil Yield")) +
+    geom_point(aes(color= "Years after completion Pupil Yield")) +
+    geom_hline(aes(yintercept = mean_pc, color = "Mean Pupil Yield"), linetype = "dashed") +
     scale_colour_manual(values = dfe_palette) +
     theme_classic() +
     theme(
