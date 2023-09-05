@@ -123,8 +123,8 @@ server <- function(input, output, session) {
     return(df)
   })
   
-  output$timeseriespc_caption <- renderUI({
-    tags$p("This chart shows the yearly pupil yeild and average pupil yield by school phase as ", tolower(input$timeseries.phase), " and housing type as ", tolower(input$timeseries.housing), ". ")
+  output$pc_caption <- renderUI({
+    tags$p("This chart shows the Pupil Yield post completion by school phase as ", tolower(input$education.phase), " and academic year as ", tolower(input$time.period), ". ")
   })
 
   observeEvent(input$cookie_consent, {
