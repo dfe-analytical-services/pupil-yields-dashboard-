@@ -89,7 +89,7 @@ create_pc_time_period <- function(dfpc) {
       axis.line = element_line(size = 1.0),
       legend.position = "top"
     ) +
-    xlab("Development scheme years after completion") +
+    xlab("Years after completion of development schemes") +
     ylab("Pupil Yield") +
     labs(color = "")
   }

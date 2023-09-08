@@ -297,7 +297,7 @@ dashboard_panel <- function() {
                     ),
                     uiOutput("pc_data"),
                     uiOutput("pc_caption"),
-                    p("This data does not account for developments that are still under construction and only partially occupied, when pupil yield is lower. This tab may show higher pupil yield factors than in the “headlines” tab. "),
+                    p("This data does not account for developments that are still under construction and only partially occupied, when pupil yield is lower. This tab may show higher pupil yield factors than in the “headlines” tab which is based on cumulative property completions rather than completion of whole development schemes. "),
                     column(
                       width = 4,
                       selectizeInput(
