@@ -437,7 +437,7 @@ technical_panel <- function() {
       p(strong("Bedrooms: "), ("Number of bedrooms in the property, if available, or total (all properties)")),
       br(),
       p(strong("Post completion time series")),
-      p("This data does not account for developments that are still under construction and only partially occupied, when pupil yield is lower. This tab may show higher pupil yield factors than in the “headlines” tab which is based on cumulative property completions rather than completion of whole development schemes."),
+      p("This data does not account for developments that are still under construction and only partially occupied, when pupil yield is lower. The “post completion time series” tab may show higher pupil yield factors than in the “headlines” tab which is based on cumulative property completions rather than completion of whole development schemes."),
       br(),
       p(strong("Limitations")),
       p("Calculating pupil yield factors for developments that commenced and completed between January 2008 and 2022  helps to demonstrate when pupil yields peak and stabilise, though in many cases secondary phase pupil yields are on an upward trajectory and the data time period is not long enough to show the peak."),
