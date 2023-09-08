@@ -436,7 +436,7 @@ technical_panel <- function() {
       p(strong("Property tenure:"), ("Whether affordable or market housing, or total (all properties)")),
       p(strong("Bedrooms: "), ("Number of bedrooms in the property, if available, or total (all properties)")),
       br(),
-      p(strong("Post completion timeseries")),
+      p(strong("Post completion time series")),
       p("This data does not account for developments that are still under construction and only partially occupied, when pupil yield is lower. This tab may show higher pupil yield factors than in the “headlines” tab which is based on cumulative property completions rather than completion of whole development schemes."),
       br(),
       p(strong("Limitations")),
