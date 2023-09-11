@@ -52,10 +52,12 @@ app$snapshot(list(input = inputs, output = outputs))
 
 message("Set breakdown to housing type")
 app$setInputs(select_breakdown = "Housing type")
+Sys.sleep(2.0)
 app$snapshot(list(input = inputs, output = outputs))
 
 message("Set breakdown to school type")
 app$setInputs(select_breakdown = "School type")
+Sys.sleep(2.0)
 app$snapshot(list(input = inputs, output = outputs))
 
 message("Switch to time series tab")
