@@ -95,7 +95,26 @@ read_ehcp <- function() {
       )
     )
 }
+# reads in post_completion data
+read_pc <- function(file = "data/post_completion.csv") {
+  # This reads in an example file. For the purposes of this demo, we're using the
+  # latest test data.
+  dfpc <- read.csv(file) %>%
+    mutate(
+      time_period = if_else(
+        time_period == "All", "All",
+        paste(substr(time_period, 1, 4), substr(time_period, 5, 6), sep = "/")
+      )
+    ) %>%
+    select(
+      time_period, geographic_level, la_name,
+      education_phase, education_type, tenure, housing,
+      number_of_bedrooms, number_of_pupils, completed_properties_in_ay, pupil_yield, years_after_completion
+    ) %>%
+    arrange(time_period, geographic_level, la_name, education_phase, education_type, tenure, housing, number_of_bedrooms, years_after_completion)
+}
 
 # read in metadata to get variable names for files for download--------------
 metadata_PY <- read.csv("data/PYMetadata.csv", encoding = "UTF-8")
 metadata_EHCP <- read.csv("data/EHCPMetadata.csv", encoding = "UTF-8")
+metadata_PC <- read.csv("data/PCMetadata.csv", encoding = "UTF-8")

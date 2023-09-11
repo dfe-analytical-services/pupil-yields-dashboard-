@@ -105,6 +105,27 @@ server <- function(input, output, session) {
     tags$p("This chart shows the cumulative Pupil Yield over time for school phase set to ", tolower(input$timeseries.phase), " and housing type set to ", tolower(input$timeseries.housing), ". ")
   })
 
+  # post completion tab
+
+  output$pc_data <- renderUI({
+    if (input$postcomtab_toggle == "Chart") {
+      plotlyOutput("linepctime_period")
+    } else {
+      tableOutput("table_timeseriespc")
+    }
+  })
+
+  output$table_timeseriespc <- renderTable({
+    df <- reactivepctime_period() %>%
+      select(time_period, la_name, education_phase, number_of_pupils, completed_properties_in_ay, pupil_yield, years_after_completion)
+    colnames(df) <- c("Academic year", "Local authority", "School phase", "# pupils", "Completed properties", "Pupil Yield", "Years after completion")
+    return(df)
+  })
+
+  output$pc_caption <- renderUI({
+    tags$p("This chart shows the Pupil Yield post completion by school phase as ", tolower(input$education.phase), " and academic year as ", tolower(input$time.period), ". ")
+  })
+
   observeEvent(input$cookie_consent, {
     msg <- list(
       name = "dfe_analytics",
@@ -184,6 +205,15 @@ server <- function(input, output, session) {
     )
   })
 
+  reactivepctime_period <- reactive({
+    df_pc %>% filter(
+      la_name == reactive_area(),
+      time_period == input$time.period,
+      education_phase == input$education.phase
+    )
+  })
+
+
   reactive_xaxis <- reactive({
     filter_list %>% filter(name == input$select_xaxis)
   })
@@ -223,11 +253,17 @@ server <- function(input, output, session) {
     }
   )
 
+  # remove post-16 from drop down if 2021/22 selected
   choices <- reactive({
     if (input$agg_beds) {
       choicesnumber_beds <- c("All", "1", "2+", "3+", "4+")
     } else {
       choicesnumber_beds <- c("All", "1", "2", "3", "4+")
+    }
+    if (input$select_year == "2021/22") {
+      choicesPhase <- c("Early Years", "Primary", "Secondary", "Special Schools/AP")
+    } else {
+      choicesPhase <- c("Early Years", "Primary", "Secondary", "Post-16", "Special Schools/AP")
     }
     list(
       education_type = choiceseducation_type,
@@ -296,6 +332,13 @@ server <- function(input, output, session) {
     ))
   )
 
+  # Add post16 caption if 2021/22 selected
+  output$post16_2122_caption <- renderUI(
+    p(strong(paste0(
+      ifelse(input$select_year == "2021/22", "Select 2020/21 or earlier for Post-16 Yields.", "")
+    )))
+  )
+
 
   # Define server logic required to draw a histogram
   output$bar_headlines <- renderPlotly({
@@ -316,8 +359,16 @@ server <- function(input, output, session) {
 
   # Timeseries server scripts -----------------------------------------------
 
+  # Timeseries chart time
   output$timeseries_title <- renderUI(
     h2(paste0("Pupil Yield over time as the number of completed properties increases for ", reactive_area()))
+  )
+
+  # Add caption if Post-16 selected
+  output$post16_caption <- renderUI(
+    p(strong(paste0(
+      ifelse(input$timeseries.phase == "Post-16", "Post-16 Pupil Yield data up to 2020/21 only.", "")
+    )))
   )
 
   # Render time_period line chart of pupil yield
@@ -329,8 +380,61 @@ server <- function(input, output, session) {
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
 
+  # Render time_period line chart of post completion
+  output$linepctime_period <- renderPlotly({
+    validate(
+      need(
+        nrow(reactivepctime_period()) > 0,
+        "Sorry, no data found for selected combination."
+      )
+    )
+    ggplotly(create_pc_time_period(reactivepctime_period()),
+      tooltip = c("text")
+    ) %>%
+      config(displayModeBar = F) %>%
+      layout(legend = list(orientation = "h", x = 0, y = -0.2))
+  })
 
-  # Download the underlying data button- downloads version of data with user friendly headings created in global.r
+
+
+
+  reactiveBenchmark <- reactive({
+    df_py %>%
+      filter(
+        local_authority %in% c(input$selectLA, input$selectBenchLAs),
+        education_phase == input$selecteducation_phase,
+        time_period == max(time_period, na.rm = TRUE)
+      )
+  })
+
+  output$colBenchmark <- renderPlotly({
+    ggplotly(
+      plotAvgRevBenchmark(reactiveBenchmark()) %>%
+        config(displayModeBar = F),
+      height = 560
+    )
+  })
+
+  output$tabBenchmark <- renderDataTable({
+    datatable(
+      reactiveBenchmark() %>%
+        select(
+          Area = local_authority,
+          `Average Revenue Balance (£)` = average_revenue_balance,
+          `Total Revenue Balance (£m)` = total_revenue_balance_million
+        ),
+      options = list(
+        scrollX = TRUE,
+        paging = FALSE
+      )
+    )
+  })
+
+  observeEvent(input$link_to_app_content_tab, {
+    updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
+  })
+
+  # Download the underlying data button
   output$download_headlines_data <- downloadHandler(
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
@@ -342,6 +446,13 @@ server <- function(input, output, session) {
     filename = "pupil_yield_underlying_data.csv",
     content = function(file) {
       write.csv(df_py_download, file, row.names = FALSE)
+    }
+  )
+
+  output$download_pc_data <- downloadHandler(
+    filename = "post_completion_underlying_data.csv",
+    content = function(file) {
+      write.csv(df_pc_download, file, row.names = FALSE)
     }
   )
 
@@ -411,7 +522,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$linkPCTab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
-    updateTabsetPanel(session, "tabsetpanels", selected = "post-completion")
+    updateTabsetPanel(session, "tabsetpanels", selected = "post-completion time series")
   })
 
   observeEvent(input$linkSENDTab, {

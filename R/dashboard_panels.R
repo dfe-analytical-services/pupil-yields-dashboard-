@@ -33,7 +33,7 @@ homepage_panel <- function() {
                   p("This tab displays the pupil yield factor for each combination of breakdowns (school type, housing type, bedrooms, and tenure)."),
                   h4(actionLink("linkAveragesTab", "Cumulative time series")),
                   p("This tab displays the cumulative pupil yield factor over time by school phase and housing type. This will show where additional yield has sped up or slowed down by looking at the slope of the curve. Data can be interrogated further on the headlines tab if required."),
-                  h4(actionLink("linkPCTab", "Post completion time series- COMING SOON")),
+                  h4(actionLink("linkPCTab", "Post completion time series")),
                   p("This tab displays the pupil yield factor each year after developments have completed, for all developments or only developments completed in certain academic years.  This will show where pupil yield peaks post development."),
                   strong("Note:"), ("the sample size reduces each year post completion and so care should be taken when using yields furthest from completion."),
                   h4(actionLink("linkSENDTab", "Special Educational Needs and Disabilities")),
@@ -165,6 +165,7 @@ dashboard_panel <- function() {
                   )
                 )
               ),
+              uiOutput("post16_2122_caption", style = "color:red"),
               gov_row(
                 column(
                   12,
@@ -260,6 +261,7 @@ dashboard_panel <- function() {
                       )
                     )
                   ),
+                  uiOutput("post16_caption", style = "color:red"),
                   gov_row(
                     column(
                       width = 12,
@@ -282,13 +284,58 @@ dashboard_panel <- function() {
               fluidRow(
                 column(
                   width = 12,
-                  uiOutput("postcompletion_title"),
-                  tags$b("The post-completion reporting is currently being prepared and will be provided here soon."),
+                  h2("Pupil Yield post completion"),
+                  # p("This is the standard paragraph style for adding guiding info around data content."),
+                  column(
+                    width = 12,
+                    radioGroupButtons(
+                      "postcomtab_toggle",
+                      label = NULL,
+                      choices = c("Chart", "Table"),
+                      selected = "Chart"
+                    ),
+                    uiOutput("pc_data"),
+                    uiOutput("pc_caption"),
+                    p("This data does not account for developments that are still under construction and only partially occupied, when pupil yield is lower. This tab may show higher pupil yield factors than in the “headlines” tab which is based on cumulative property completions rather than completion of whole development schemes. "),
+                    column(
+                      width = 4,
+                      selectizeInput(
+                        "education.phase",
+                        label = "Choose an school phase",
+                        choices = choicespc$education_phase,
+                        selected = "Primary"
+                      )
+                    ),
+                    column(
+                      width = 4,
+                      selectizeInput(
+                        "time.period",
+                        label = "Choose a Year:",
+                        choices = choicespc$time_period,
+                        selected = "All"
+                      )
+                    ),
+
+
+                    # SEND panel --------------------------------------------------------------
+
+                    gov_row(
+                      column(
+                        width = 12,
+                        tags$hr(),
+                        paste("Download the underlying data for this dashboard:"), br(),
+                        downloadButton(
+                          outputId = "download_pc_data",
+                          label = "Download data",
+                          icon = shiny::icon("download"),
+                          class = "downloadButton"
+                        )
+                      )
+                    )
+                  )
                 )
               )
             ),
-
-            # SEND panel --------------------------------------------------------------
             tabPanel(
               value = "SEND",
               title = "Special Educational Needs and Disabilities",
@@ -378,11 +425,14 @@ technical_panel <- function() {
       p("From the linked dataset, we calculated pupil yield factors by dividing the number of pupils by the number of completed properties, for each applicable breakdown combination. Within these yield factors, a pupil is counted for every year that they live in a new build development. For example, a child would be included in annual counts for year one, two, three, etc. They will continue to be counted even if they change phase (e.g. from Primary to Secondary) but will at this point be captured in the yield factors for their new phase."),
       p("The yields can be broken down by education setting, phase, academic year, housing type, market/affordable tenure and number of bedrooms."),
       p(strong("Education setting:"), ("If the pupil is in an AP, PRU or special school then we defined the setting as a special setting, otherwise mainstream.")),
-      p(strong("Phase:"), ("Early years, post-16, primary, secondary and special (where special covers all phases where a pupil is in a special, AP or PRU school or is in a post 16 setting with a EHCP up to the age of 25)")),
+      p(strong("Phase:"), ("Early years, post-16, primary, secondary and special (where special covers all phases where a pupil is in a special, AP or PRU school or is in a post 16 setting with a EHCP up to the age of 25). For Post-16 the 2021/22 year is not available due to the ILR data not being available at the time of the analysis")),
       p(strong("Academic year:"), ("For pupils, this is the number of pupils in new build properties in the Spring census for that academic year. For properties, this is the number of completed properties up to the start of that academic year. For example, in the academic year 2021/22 we have the pupil numbers in the Spring census (in Jan 2022) and the number of completed properties up to and including 31st August 2021.")),
       p(strong("Housing type:"), ("Flat, house, or total (all properties)")),
       p(strong("Property tenure:"), ("Whether affordable or market housing, or total (all properties)")),
       p(strong("Bedrooms: "), ("Number of bedrooms in the property, if available, or total (all properties)")),
+      br(),
+      p(strong("Post completion time series")),
+      p("This data does not account for developments that are still under construction and only partially occupied, when pupil yield is lower. The “post completion time series” tab may show higher pupil yield factors than in the “headlines” tab which is based on cumulative property completions rather than completion of whole development schemes."),
       br(),
       p(strong("Limitations")),
       p("Calculating pupil yield factors for developments that commenced and completed between January 2008 and 2022  helps to demonstrate when pupil yields peak and stabilise, though in many cases secondary phase pupil yields are on an upward trajectory and the data time period is not long enough to show the peak."),
