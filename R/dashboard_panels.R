@@ -165,7 +165,7 @@ dashboard_panel <- function() {
                   )
                 )
               ),
-              uiOutput("post16_2122_caption", style="color:red"),
+              uiOutput("post16_2122_caption", style = "color:red"),
               gov_row(
                 column(
                   12,
@@ -198,7 +198,7 @@ dashboard_panel <- function() {
                   )
                 )
               ),
-                        gov_row(
+              gov_row(
                 column(
                   12,
                   checkboxInput("agg_beds", "Aggregate bedroom numbers")
@@ -243,7 +243,7 @@ dashboard_panel <- function() {
                     ),
                     uiOutput("timeseries_data"),
                     uiOutput("timeseries_caption"),
-                     column(
+                    column(
                       width = 4,
                       selectizeInput(
                         "timeseries.phase",
@@ -261,7 +261,7 @@ dashboard_panel <- function() {
                       )
                     )
                   ),
-                  uiOutput("post16_caption", style="color:red"),
+                  uiOutput("post16_caption", style = "color:red"),
                   gov_row(
                     column(
                       width = 12,
@@ -284,9 +284,8 @@ dashboard_panel <- function() {
               fluidRow(
                 column(
                   width = 12,
-
                   h2("Pupil Yield post completion"),
-                  #p("This is the standard paragraph style for adding guiding info around data content."),
+                  # p("This is the standard paragraph style for adding guiding info around data content."),
                   column(
                     width = 12,
                     radioGroupButtons(
@@ -304,8 +303,7 @@ dashboard_panel <- function() {
                         "education.phase",
                         label = "Choose an school phase",
                         choices = choicespc$education_phase,
-                        selected = 'Primary'
-
+                        selected = "Primary"
                       )
                     ),
                     column(
@@ -314,33 +312,30 @@ dashboard_panel <- function() {
                         "time.period",
                         label = "Choose a Year:",
                         choices = choicespc$time_period,
-                        selected = 'All' 
+                        selected = "All"
                       )
                     ),
 
 
-            # SEND panel --------------------------------------------------------------
+                    # SEND panel --------------------------------------------------------------
 
-                  gov_row(
-                    column(
-                      width = 12,
-                      tags$hr(),
-                      paste("Download the underlying data for this dashboard:"), br(),
-                      downloadButton(
-                        outputId = "download_pc_data",
-                        label = "Download data",
-                        icon = shiny::icon("download"),
-                        class = "downloadButton"
+                    gov_row(
+                      column(
+                        width = 12,
+                        tags$hr(),
+                        paste("Download the underlying data for this dashboard:"), br(),
+                        downloadButton(
+                          outputId = "download_pc_data",
+                          label = "Download data",
+                          icon = shiny::icon("download"),
+                          class = "downloadButton"
+                        )
                       )
                     )
                   )
                 )
               )
-            )
-            
-            )
-            ,
-
+            ),
             tabPanel(
               value = "SEND",
               title = "Special Educational Needs and Disabilities",

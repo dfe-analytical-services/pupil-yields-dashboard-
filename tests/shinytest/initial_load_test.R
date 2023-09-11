@@ -28,7 +28,7 @@ outputs <- c(
   "send_title",
   "send_box_1",
   "send_box_3",
-  "technicaltable"
+  "technicaltable",
   "line_PC"
 
 )

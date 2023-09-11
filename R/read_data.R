@@ -92,30 +92,26 @@ read_ehcp <- function() {
       AcademicYear = if_else(
         AcademicYear == "Total", "Total",
         paste(substr(AcademicYear, 1, 4), substr(AcademicYear, 5, 6), sep = "/")
-
-        )
+      )
     )
 }
-#reads in post_completion data
+# reads in post_completion data
 read_pc <- function(file = "data/post_completion.csv") {
   # This reads in an example file. For the purposes of this demo, we're using the
   # latest test data.
   dfpc <- read.csv(file) %>%
     mutate(
       time_period = if_else(
-        time_period == 'All', 'All',
+        time_period == "All", "All",
         paste(substr(time_period, 1, 4), substr(time_period, 5, 6), sep = "/")
       )
     ) %>%
-  select(
-    time_period, geographic_level, la_name, 
-    education_phase, education_type, tenure, housing,
-    number_of_bedrooms, number_of_pupils, completed_properties_in_ay, pupil_yield, years_after_completion
-
-  ) %>%
-  arrange(time_period, geographic_level, la_name, education_phase, education_type, tenure, housing, number_of_bedrooms, years_after_completion
-
-    )
+    select(
+      time_period, geographic_level, la_name,
+      education_phase, education_type, tenure, housing,
+      number_of_bedrooms, number_of_pupils, completed_properties_in_ay, pupil_yield, years_after_completion
+    ) %>%
+    arrange(time_period, geographic_level, la_name, education_phase, education_type, tenure, housing, number_of_bedrooms, years_after_completion)
 }
 
 # read in metadata to get variable names for files for download--------------

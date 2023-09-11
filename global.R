@@ -165,18 +165,17 @@ choices_default <- list(
   housing = choiceshousing,
   tenure = choicestenure,
   number_of_bedrooms = choicesnumber_beds
-  
 )
 
 
-#post completion data
-#Get geographical levels from data
+# post completion data
+# Get geographical levels from data
 
 df_pc$education_phase <- factor(df_pc$education_phase, levels = )
 
 choicesgeographic_levelpc <- c("England", "County/Unitary", "District")
 choicesLAs <- df_pc %>%
-  filter(geographic_level == "County/Unitary" | la_name=='Cardiff') %>%
+  filter(geographic_level == "County/Unitary" | la_name == "Cardiff") %>%
   pull(la_name) %>%
   unique() %>%
   sort()
@@ -193,8 +192,8 @@ df_pc$time_period <- factor(df_pc$time_period, levels = choicesYearspc %>% sort(
 
 filter_listpc <- data.frame(
   name = c("School phase", "Years After Completion"),
-  colid = c("education_phase",  "years_after_completion" ),
-  default = c("Primary",  "All" )
+  colid = c("education_phase", "years_after_completion"),
+  default = c("Primary", "All")
 )
 
 

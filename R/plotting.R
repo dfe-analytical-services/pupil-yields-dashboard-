@@ -60,24 +60,24 @@ create_py_time_period <- function(dfPY) {
     labs(color = "")
 }
 
-#post completion chart 
+# post completion chart
 create_pc_time_period <- function(dfpc) {
   dfpc_filtered <- dfpc
   mean_pc <- mean(dfpc_filtered$pupil_yield)
   ggplot(
     dfpc_filtered,
     aes(
-      x=years_after_completion,
-      y=pupil_yield, 
-      group=time_period,
+      x = years_after_completion,
+      y = pupil_yield,
+      group = time_period,
       text = paste0(
         "<br><i>Pupil Yield</i>: ", round(pupil_yield, 2),
         "<br><b>Years after completion</b>: ", years_after_completion
       )
     )
-    ) + 
+  ) +
     geom_line(aes(color = "Years after completion Pupil Yield")) +
-    geom_point(aes(color= "Years after completion Pupil Yield")) +
+    geom_point(aes(color = "Years after completion Pupil Yield")) +
     geom_hline(aes(yintercept = mean_pc, color = "Mean Pupil Yield"), linetype = "dashed") +
     scale_colour_manual(values = dfe_palette) +
     theme_classic() +
@@ -92,4 +92,4 @@ create_pc_time_period <- function(dfpc) {
     xlab("Years after completion of development schemes") +
     ylab("Pupil Yield") +
     labs(color = "")
-  }
+}
