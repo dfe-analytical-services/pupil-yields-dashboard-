@@ -279,7 +279,7 @@ dashboard_panel <- function() {
               )
             ),
             tabPanel(
-              value = "post-completion time series",
+              value = "post-completion",
               title = "Post completion time series",
               fluidRow(
                 column(

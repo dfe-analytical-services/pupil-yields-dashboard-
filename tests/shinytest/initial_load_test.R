@@ -24,13 +24,15 @@ outputs <- c(
   "table_timeseries",
   "linePYtime_period",
   "timeseries_caption",
-  "postcompletion_title",
+  "postcomtab_toggle",
+  "pc_caption",
+  "education.phase",
+  "time.period",
   "send_title",
   "send_box_1",
   "send_box_3",
   "technicaltable",
   "line_PC"
-
 )
 
 message("Initial snapshot")

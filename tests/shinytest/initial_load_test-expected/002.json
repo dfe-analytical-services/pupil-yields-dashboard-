@@ -18,31 +18,26 @@
             "orientation": "v",
             "width": [
               0.89999999999999991,
-              0.90000000000000036,
               0.90000000000000013,
               0.90000000000000036
             ],
             "base": [
               0,
               0,
-              0,
               0
             ],
             "x": [
               1,
-              4,
               2,
               3
             ],
             "y": [
               0.063087596999999995,
-              0.013934754000000001,
               0.252768838,
               0.125202432
             ],
             "text": [
               "<i>Pupil Yield<\/i>: 0.06<br><b>School phase<\/b>: Early Years<br><b>School type<\/b>: Mainstream",
-              "<i>Pupil Yield<\/i>: 0.01<br><b>School phase<\/b>: Post-16<br><b>School type<\/b>: Mainstream",
               "<i>Pupil Yield<\/i>: 0.25<br><b>School phase<\/b>: Primary<br><b>School type<\/b>: Mainstream",
               "<i>Pupil Yield<\/i>: 0.13<br><b>School phase<\/b>: Secondary<br><b>School type<\/b>: Mainstream"
             ],
@@ -68,7 +63,7 @@
             "orientation": "v",
             "width": 0.90000000000000036,
             "base": 0,
-            "x": 5,
+            "x": 4,
             "y": 0.0089247909999999996,
             "text": "<i>Pupil Yield<\/i>: 0.01<br><b>School phase<\/b>: Special Schools/AP<br><b>School type<\/b>: Special School",
             "type": "bar",
@@ -114,29 +109,26 @@
             "autorange": false,
             "range": [
               0.40000000000000002,
-              5.5999999999999996
+              4.5999999999999996
             ],
             "tickmode": "array",
             "ticktext": [
               "Early Years",
               "Primary",
               "Secondary",
-              "Post-16",
               "Special Schools/AP"
             ],
             "tickvals": [
               1,
               2,
               3,
-              4,
-              5
+              4
             ],
             "categoryorder": "array",
             "categoryarray": [
               "Early Years",
               "Primary",
               "Secondary",
-              "Post-16",
               "Special Schools/AP"
             ],
             "nticks": null,

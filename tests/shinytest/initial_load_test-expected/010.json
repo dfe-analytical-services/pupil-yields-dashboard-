@@ -797,8 +797,8 @@
         }
       ]
     },
-    "postcompletion_title": {
-      "html": "<h2>Pupil Yield post completion for England<\/h2>",
+    "pc_caption": {
+      "html": "<p>\n  This chart shows the Pupil Yield post completion by school phase as \n  primary\n   and academic year as \n  all\n  . \n<\/p>",
       "deps": [
 
       ]
