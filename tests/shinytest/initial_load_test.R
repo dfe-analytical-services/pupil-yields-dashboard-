@@ -44,10 +44,12 @@ app$snapshot(list(input = inputs, output = outputs))
 
 message("Set x-axis to tenure")
 app$setInputs(select_xaxis = "Tenure")
+Sys.sleep(2.0)
 app$snapshot(list(input = inputs, output = outputs))
 
 message("Set x-axis to number of bedrooms")
 app$setInputs(select_xaxis = "Number of bedrooms")
+Sys.sleep(2.0)
 app$snapshot(list(input = inputs, output = outputs))
 
 message("Set breakdown to housing type")
